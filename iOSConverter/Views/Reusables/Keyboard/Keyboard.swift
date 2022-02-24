@@ -11,6 +11,7 @@ protocol KeyboardDelegate: AnyObject {
     func didPressNumber(_ number: Int)
     func didPressDecimal()
     func didPressDelete()
+    func willCloseKeyboard()
 }
 
 class Keyboard: UIView {
@@ -40,7 +41,7 @@ class Keyboard: UIView {
         contentView = view
 
         keyboardButtons.forEach { button in
-            button.layer.cornerRadius = 10
+            button.layer.cornerRadius = K.View.CornerRadius
 //            button.setShadow(withColor: .navyBlue, withAlpha: 0.1)
         }
     }
@@ -52,6 +53,7 @@ class Keyboard: UIView {
     }
 
     @IBAction func didPressNumber(_ sender: UIButton) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         sender.backgroundColor = .navyBlue.withAlphaComponent(0.5)
         UIView.animate(withDuration: 0.2) {
             sender.backgroundColor = .lightGrey
@@ -62,15 +64,21 @@ class Keyboard: UIView {
     }
 
     @IBAction func didPressDelete(_ sender: UIButton) {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         delegate?.didPressDelete()
     }
 
     @IBAction func didPressDecimal(_ sender: UIButton) {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         sender.backgroundColor = .navyBlue.withAlphaComponent(0.5)
         UIView.animate(withDuration: 0.2) {
             sender.backgroundColor = .lightGrey
         }
 
         delegate?.didPressDecimal()
+    }
+
+    @IBAction func didPressCloseKeyboard(_ sender: Any) {
+        delegate?.willCloseKeyboard()
     }
 }

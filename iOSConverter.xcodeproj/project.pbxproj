@@ -16,6 +16,11 @@
 		4B44E03927C7A1F10036B6D6 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E03827C7A1F10036B6D6 /* Keyboard.xib */; };
 		4B44E03B27C7A3360036B6D6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E03A27C7A3360036B6D6 /* Keyboard.swift */; };
 		4B44E03E27C7AB060036B6D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E03D27C7AB060036B6D6 /* Extensions.swift */; };
+		4B44E04127C7BF2C0036B6D6 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04027C7BF2C0036B6D6 /* KeyboardViewController.swift */; };
+		4B44E04327C7C86C0036B6D6 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04227C7C86C0036B6D6 /* LandingViewController.swift */; };
+		4B44E04827C7C9990036B6D6 /* LandingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04627C7C9990036B6D6 /* LandingCVC.swift */; };
+		4B44E04927C7C9990036B6D6 /* LandingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E04727C7C9990036B6D6 /* LandingCVC.xib */; };
+		4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04A27C7D7490036B6D6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		4B44E03827C7A1F10036B6D6 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		4B44E03A27C7A3360036B6D6 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		4B44E03D27C7AB060036B6D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4B44E04027C7BF2C0036B6D6 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		4B44E04227C7C86C0036B6D6 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		4B44E04627C7C9990036B6D6 /* LandingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingCVC.swift; sourceTree = "<group>"; };
+		4B44E04727C7C9990036B6D6 /* LandingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingCVC.xib; sourceTree = "<group>"; };
+		4B44E04A27C7D7490036B6D6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +78,7 @@
 				4B44E03427C79F9A0036B6D6 /* Views */,
 				4B44E03527C79FA50036B6D6 /* Resources */,
 				4B44E02C27C79F1D0036B6D6 /* Info.plist */,
+				4B44E04A27C7D7490036B6D6 /* Constants.swift */,
 			);
 			path = iOSConverter;
 			sourceTree = "<group>";
@@ -85,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				4B44E02227C79F1B0036B6D6 /* ViewController.swift */,
+				4B44E04027C7BF2C0036B6D6 /* KeyboardViewController.swift */,
+				4B44E04227C7C86C0036B6D6 /* LandingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -118,6 +131,7 @@
 		4B44E03727C79FC70036B6D6 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				4B44E04427C7C96A0036B6D6 /* Cells */,
 				4B44E03C27C7A33B0036B6D6 /* Keyboard */,
 			);
 			path = Reusables;
@@ -138,6 +152,23 @@
 				4B44E03D27C7AB060036B6D6 /* Extensions.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4B44E04427C7C96A0036B6D6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4B44E04527C7C9740036B6D6 /* CollectionView */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4B44E04527C7C9740036B6D6 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				4B44E04627C7C9990036B6D6 /* LandingCVC.swift */,
+				4B44E04727C7C9990036B6D6 /* LandingCVC.xib */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B44E04927C7C9990036B6D6 /* LandingCVC.xib in Resources */,
 				4B44E02B27C79F1D0036B6D6 /* LaunchScreen.storyboard in Resources */,
 				4B44E02827C79F1D0036B6D6 /* Assets.xcassets in Resources */,
 				4B44E03927C7A1F10036B6D6 /* Keyboard.xib in Resources */,
@@ -213,10 +245,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B44E03E27C7AB060036B6D6 /* Extensions.swift in Sources */,
+				4B44E04327C7C86C0036B6D6 /* LandingViewController.swift in Sources */,
+				4B44E04127C7BF2C0036B6D6 /* KeyboardViewController.swift in Sources */,
 				4B44E02327C79F1B0036B6D6 /* ViewController.swift in Sources */,
+				4B44E04827C7C9990036B6D6 /* LandingCVC.swift in Sources */,
 				4B44E01F27C79F1B0036B6D6 /* AppDelegate.swift in Sources */,
 				4B44E03B27C7A3360036B6D6 /* Keyboard.swift in Sources */,
 				4B44E02127C79F1B0036B6D6 /* SceneDelegate.swift in Sources */,
+				4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +407,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -382,7 +419,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -399,6 +436,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -410,7 +448,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

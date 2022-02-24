@@ -29,3 +29,10 @@ extension UIColor {
     static let navyBlue: UIColor = UIColor(named: "NavyBlue")!
     static let lightGrey: UIColor = UIColor(named: "LightGrey")!
 }
+
+// MARK: UIStoryBoard
+extension UIStoryboard{
+    class func load(_ storyboard: String) -> UIViewController{
+        return UIStoryboard(name: storyboard, bundle: nil).instantiateViewController(withIdentifier: storyboard)
+    }
+}
