@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */; };
+		4B096B2927D3AA6A00B57AFB /* LabelledTextfield.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */; };
 		4B44E01F27C79F1B0036B6D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E01E27C79F1B0036B6D6 /* AppDelegate.swift */; };
 		4B44E02127C79F1B0036B6D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E02027C79F1B0036B6D6 /* SceneDelegate.swift */; };
 		4B44E02327C79F1B0036B6D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E02227C79F1B0036B6D6 /* ViewController.swift */; };
-		4B44E02627C79F1B0036B6D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E02427C79F1B0036B6D6 /* Main.storyboard */; };
+		4B44E02627C79F1B0036B6D6 /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E02427C79F1B0036B6D6 /* Tabbar.storyboard */; };
 		4B44E02827C79F1D0036B6D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E02727C79F1D0036B6D6 /* Assets.xcassets */; };
 		4B44E02B27C79F1D0036B6D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E02927C79F1D0036B6D6 /* LaunchScreen.storyboard */; };
 		4B44E03927C7A1F10036B6D6 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E03827C7A1F10036B6D6 /* Keyboard.xib */; };
@@ -21,14 +23,21 @@
 		4B44E04827C7C9990036B6D6 /* LandingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04627C7C9990036B6D6 /* LandingCVC.swift */; };
 		4B44E04927C7C9990036B6D6 /* LandingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E04727C7C9990036B6D6 /* LandingCVC.xib */; };
 		4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04A27C7D7490036B6D6 /* Constants.swift */; };
+		4B9C6DB427D0DF0200A7EC3C /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB327D0DD5700A7EC3C /* Raleway-Light.ttf */; };
+		4B9C6DB527D0DF0600A7EC3C /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB127D0DD5700A7EC3C /* Raleway-Regular.ttf */; };
+		4B9C6DB627D0DF0600A7EC3C /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB227D0DD5700A7EC3C /* Raleway-Thin.ttf */; };
+		4B9C6DB727D0DF0600A7EC3C /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DAF27D0DD5700A7EC3C /* Raleway-Medium.ttf */; };
+		4B9C6DB827D0DF0600A7EC3C /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB027D0DD5700A7EC3C /* Raleway-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledTextfield.swift; sourceTree = "<group>"; };
+		4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelledTextfield.xib; sourceTree = "<group>"; };
 		4B44E01B27C79F1B0036B6D6 /* iOSConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B44E01E27C79F1B0036B6D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B44E02027C79F1B0036B6D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4B44E02227C79F1B0036B6D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4B44E02527C79F1B0036B6D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4B44E02527C79F1B0036B6D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tabbar.storyboard; sourceTree = "<group>"; };
 		4B44E02727C79F1D0036B6D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B44E02A27C79F1D0036B6D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B44E02C27C79F1D0036B6D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,6 +49,11 @@
 		4B44E04627C7C9990036B6D6 /* LandingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingCVC.swift; sourceTree = "<group>"; };
 		4B44E04727C7C9990036B6D6 /* LandingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingCVC.xib; sourceTree = "<group>"; };
 		4B44E04A27C7D7490036B6D6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4B9C6DAF27D0DD5700A7EC3C /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		4B9C6DB027D0DD5700A7EC3C /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		4B9C6DB127D0DD5700A7EC3C /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		4B9C6DB227D0DD5700A7EC3C /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
+		4B9C6DB327D0DD5700A7EC3C /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B096B2527D3A39100B57AFB /* LabelledTextfield */ = {
+			isa = PBXGroup;
+			children = (
+				4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */,
+				4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */,
+			);
+			path = LabelledTextfield;
+			sourceTree = "<group>";
+		};
 		4B44E01227C79F1B0036B6D6 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +137,7 @@
 		4B44E03527C79FA50036B6D6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4B9C6DAD27D0DC5600A7EC3C /* Fonts */,
 				4B44E02727C79F1D0036B6D6 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -122,7 +146,7 @@
 		4B44E03627C79FBE0036B6D6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				4B44E02427C79F1B0036B6D6 /* Main.storyboard */,
+				4B44E02427C79F1B0036B6D6 /* Tabbar.storyboard */,
 				4B44E02927C79F1D0036B6D6 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -133,6 +157,7 @@
 			children = (
 				4B44E04427C7C96A0036B6D6 /* Cells */,
 				4B44E03C27C7A33B0036B6D6 /* Keyboard */,
+				4B096B2527D3A39100B57AFB /* LabelledTextfield */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -169,6 +194,18 @@
 				4B44E04727C7C9990036B6D6 /* LandingCVC.xib */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		4B9C6DAD27D0DC5600A7EC3C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4B9C6DB327D0DD5700A7EC3C /* Raleway-Light.ttf */,
+				4B9C6DAF27D0DD5700A7EC3C /* Raleway-Medium.ttf */,
+				4B9C6DB127D0DD5700A7EC3C /* Raleway-Regular.ttf */,
+				4B9C6DB027D0DD5700A7EC3C /* Raleway-SemiBold.ttf */,
+				4B9C6DB227D0DD5700A7EC3C /* Raleway-Thin.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,10 +267,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B44E04927C7C9990036B6D6 /* LandingCVC.xib in Resources */,
+				4B096B2927D3AA6A00B57AFB /* LabelledTextfield.xib in Resources */,
+				4B9C6DB627D0DF0600A7EC3C /* Raleway-Thin.ttf in Resources */,
 				4B44E02B27C79F1D0036B6D6 /* LaunchScreen.storyboard in Resources */,
 				4B44E02827C79F1D0036B6D6 /* Assets.xcassets in Resources */,
+				4B9C6DB727D0DF0600A7EC3C /* Raleway-Medium.ttf in Resources */,
+				4B9C6DB527D0DF0600A7EC3C /* Raleway-Regular.ttf in Resources */,
+				4B9C6DB427D0DF0200A7EC3C /* Raleway-Light.ttf in Resources */,
 				4B44E03927C7A1F10036B6D6 /* Keyboard.xib in Resources */,
-				4B44E02627C79F1B0036B6D6 /* Main.storyboard in Resources */,
+				4B44E02627C79F1B0036B6D6 /* Tabbar.storyboard in Resources */,
+				4B9C6DB827D0DF0600A7EC3C /* Raleway-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +295,7 @@
 				4B44E01F27C79F1B0036B6D6 /* AppDelegate.swift in Sources */,
 				4B44E03B27C7A3360036B6D6 /* Keyboard.swift in Sources */,
 				4B44E02127C79F1B0036B6D6 /* SceneDelegate.swift in Sources */,
+				4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */,
 				4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,12 +303,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4B44E02427C79F1B0036B6D6 /* Main.storyboard */ = {
+		4B44E02427C79F1B0036B6D6 /* Tabbar.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4B44E02527C79F1B0036B6D6 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Tabbar.storyboard;
 			sourceTree = "<group>";
 		};
 		4B44E02927C79F1D0036B6D6 /* LaunchScreen.storyboard */ = {
@@ -406,7 +450,7 @@
 				INFOPLIST_FILE = iOSConverter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Tabbar;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -435,7 +479,7 @@
 				INFOPLIST_FILE = iOSConverter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Tabbar;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

@@ -19,4 +19,8 @@ struct K {
     struct VC {
         static let ViewController: String = "ViewController"
     }
+
+    struct Keys {
+        static let AppTheme: String = "APP_THEME"
+    }
 }

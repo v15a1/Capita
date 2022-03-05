@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,8 +22,9 @@
                 <outletCollection property="keyboardButtons" destination="llA-Jo-hZh" collectionClass="NSMutableArray" id="6lK-wf-mB4"/>
                 <outletCollection property="keyboardButtons" destination="UOW-87-D1D" collectionClass="NSMutableArray" id="6M3-lp-U2b"/>
                 <outletCollection property="keyboardButtons" destination="Du8-8W-VcG" collectionClass="NSMutableArray" id="lje-yk-RCk"/>
-                <outletCollection property="keyboardButtons" destination="REK-q3-72e" collectionClass="NSMutableArray" id="NJB-IV-uTa"/>
                 <outletCollection property="keyboardButtons" destination="kYY-8T-0gr" collectionClass="NSMutableArray" id="hbd-qp-F4y"/>
+                <outletCollection property="keyboardButtons" destination="REK-q3-72e" collectionClass="NSMutableArray" id="NJB-IV-uTa"/>
+                <outletCollection property="keyboardButtons" destination="MQ8-ME-ufR" collectionClass="NSMutableArray" id="w01-Ci-PdO"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -43,7 +44,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="1">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="xBV-j8-xNH"/>
@@ -55,7 +56,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="2">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="to0-tZ-Az7"/>
@@ -67,7 +68,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="3">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="UIA-Ye-PG4"/>
@@ -84,7 +85,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="4">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="mbW-hc-UGR"/>
@@ -96,7 +97,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="5">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="2EN-ah-08J"/>
@@ -108,7 +109,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="6">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="VnH-DF-pyg"/>
@@ -125,7 +126,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="7">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="wUs-R0-tXv"/>
@@ -137,7 +138,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="8">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="LnQ-82-YHY"/>
@@ -149,7 +150,7 @@
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="9">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="tvH-FR-J8a"/>
@@ -160,25 +161,42 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qvl-8t-dlj">
                             <rect key="frame" x="0.0" y="250.5" width="414" height="73.5"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REK-q3-72e">
+                                <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="16c-Zn-40e">
                                     <rect key="frame" x="0.0" y="0.0" width="131.5" height="73.5"/>
-                                    <color key="backgroundColor" name="LightGrey"/>
-                                    <color key="tintColor" name="NavyBlue"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title=".">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="didPressDecimal:" destination="-1" eventType="touchUpInside" id="zR7-UE-aB6"/>
-                                    </connections>
-                                </button>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REK-q3-72e">
+                                            <rect key="frame" x="0.0" y="0.0" width="131.5" height="33"/>
+                                            <color key="backgroundColor" name="LightGrey"/>
+                                            <color key="tintColor" name="NavyBlue"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="-">
+                                                <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="didPressDecimal:" destination="-1" eventType="touchUpInside" id="zR7-UE-aB6"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQ8-ME-ufR">
+                                            <rect key="frame" x="0.0" y="41" width="131.5" height="32.5"/>
+                                            <color key="backgroundColor" name="LightGrey"/>
+                                            <color key="tintColor" name="NavyBlue"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="•">
+                                                <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="didPressDecimal:" destination="-1" eventType="touchUpInside" id="I6F-ff-zN2"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Du8-8W-VcG">
                                     <rect key="frame" x="141.5" y="0.0" width="131" height="73.5"/>
                                     <color key="backgroundColor" name="LightGrey"/>
                                     <color key="tintColor" name="NavyBlue"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="0">
-                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
+                                        <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="y8B-JA-dg3"/>
@@ -232,13 +250,13 @@
         <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="delete.left.fill" catalog="system" width="128" height="104"/>
         <namedColor name="LightBlue">
-            <color red="0.28627450980392155" green="0.77254901960784317" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.28600001335144043" green="0.77300000190734863" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGrey">
-            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="NavyBlue">
-            <color red="0.16078431372549018" green="0.4392156862745098" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.16099999845027924" green="0.43900001049041748" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

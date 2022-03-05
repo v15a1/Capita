@@ -16,9 +16,8 @@ protocol KeyboardDelegate: AnyObject {
 
 class Keyboard: UIView {
 
-    private let XibName: String = "Keyboard"
+    private let NibName: String = "Keyboard"
 
-    var contentView: UIView!
     weak var delegate: KeyboardDelegate?
 
     @IBOutlet var keyboardButtons: [UIButton]!
@@ -35,21 +34,13 @@ class Keyboard: UIView {
     }
 
     private func commonInitilizer() {
-        guard let view = loadFromXib() else { return }
+        guard let view = self.loadFromNib(NibName) else { return }
         view.frame = self.bounds
         self.addSubview(view)
-        contentView = view
 
         keyboardButtons.forEach { button in
             button.layer.cornerRadius = K.View.CornerRadius
-//            button.setShadow(withColor: .navyBlue, withAlpha: 0.1)
         }
-    }
-
-    func loadFromXib() -> UIView? {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: XibName, bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
 
     @IBAction func didPressNumber(_ sender: UIButton) {

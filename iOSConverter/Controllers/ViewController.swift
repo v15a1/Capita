@@ -9,11 +9,28 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var keyboard: Keyboard!
     @IBOutlet weak var keyboardBottomAnchor: NSLayoutConstraint!
 
-    var isKeyboardShowing: Bool = false
+    @IBOutlet var inputTextfields: [LabelledTextfield]!
+
+    var firstResponder: UITextField?{
+        didSet {
+            if firstResponder == nil {
+                hideKeyboard(UITextField())
+            }
+        }
+    }
+    var isKeyboardOpen: Bool = false
+
+    let textfieldLabels = [
+        "Principal Amount",
+        "Interest %",
+        "Monthly Payment",
+        "Future Value",
+        "Number of Payments"
+        
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +43,43 @@ class ViewController: UIViewController {
         keyboardBottomAnchor.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
         keyboard.isHidden = true
         view.layoutIfNeeded()
+
+        for (i, tf) in inputTextfields.enumerated() {
+            tf.delegate = self
+            tf.title = textfieldLabels[i]
+        }
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
 
+    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+        self.firstResponder = nil
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
     private func setup() {
-        textField.inputView = UIView()
-        textField.inputAccessoryView = UIView()
-        textField.delegate = self
+//        textField.inputView = UIView()
+//        textField.inputAccessoryView = UIView()
+//        textField.delegate = self
 
         keyboard.delegate = self
+
+        self.title = "Compound Saving"
+        inputTextfields.first?.title = "Principal Amount $"
+
+    }
+
+    private func showOnboardingIfNeeded() {
+        if !UserDefaults.standard.bool(forKey: .didFirstLoad) {
+            if let vc = self.loadFromStoryboard("Tabbar", vc: .LandingViewController) as? LandingViewController {
+                present(vc, animated: true, completion: nil)
+            }
+        }
     }
 
     private func showKeyboard() {
@@ -43,7 +88,7 @@ class ViewController: UIViewController {
         UIView.animate(
             withDuration: 0.3,
             delay: 0,
-            options: [.curveEaseIn]) {
+            options: [.curveEaseInOut]) {
                 self.view.layoutIfNeeded()
                 self.keyboard.alpha = 1
             }
@@ -54,7 +99,7 @@ class ViewController: UIViewController {
         UIView.animate(
             withDuration: 0.3,
             delay: 0,
-            options: [.curveEaseIn]) {
+            options: [.curveEaseInOut]) {
                 self.view.layoutIfNeeded()
                 self.keyboard.alpha = 0
             } completion: { _ in
@@ -64,7 +109,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didpressButton(_ sender: Any) {
-        hideKeyboard(self.textField)
+        hideKeyboard(firstResponder!)
     }
 
 }
@@ -93,8 +138,19 @@ extension ViewController: KeyboardDelegate {
     }
 
     func willCloseKeyboard() {
-        hideKeyboard(textField)
+        hideKeyboard(firstResponder!)
+    }
+}
+
+extension ViewController: LabelledTextfieldProtocol {
+    func didBecomeFirstResponder(_ textfield: UITextField) {
+        !isKeyboardOpen ? showKeyboard() : nil
+        isKeyboardOpen = true
+        firstResponder = textfield
     }
 
-
+    func didResignFirstResponder(_ textfield: UITextField) {
+        isKeyboardOpen = false
+//        hideKeyboard(textfield)
+    }
 }

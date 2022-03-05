@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LabelledTextfield" customModule="iOSConverter" customModuleProvider="target">
+            <connections>
+                <outlet property="inputLabel" destination="LXg-hX-deE" id="xN8-gn-DPW"/>
+                <outlet property="inputTextfield" destination="MJR-yl-UbB" id="gXh-dI-nNg"/>
+                <outlet property="organizerStack" destination="DNS-aj-ruc" id="5xI-Yu-kbS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DNS-aj-ruc">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXg-hX-deE">
+                            <rect key="frame" x="0.0" y="0.0" width="203" height="72"/>
+                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJR-yl-UbB">
+                            <rect key="frame" x="211" y="0.0" width="203" height="72"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Pwv-yk-zhq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="didBeginEditting:" destination="-1" eventType="editingDidBegin" id="Qi4-t3-gwZ"/>
+                                <action selector="didEndEditting:" destination="-1" eventType="editingDidEnd" id="DzE-9u-G0Q"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="DNS-aj-ruc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FeY-9t-DuM"/>
+                <constraint firstItem="DNS-aj-ruc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GEn-Gn-l2K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DNS-aj-ruc" secondAttribute="trailing" id="I9p-uA-8Ic"/>
+                <constraint firstAttribute="bottom" secondItem="DNS-aj-ruc" secondAttribute="bottom" id="VfE-Xa-aYb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="131.8840579710145" y="154.01785714285714"/>
+        </view>
+    </objects>
+</document>
