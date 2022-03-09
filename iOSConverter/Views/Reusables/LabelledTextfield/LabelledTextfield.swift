@@ -8,8 +8,8 @@
 import UIKit
 
 protocol LabelledTextfieldProtocol: AnyObject {
-    func didBecomeFirstResponder(_ textfield: UITextField)
-    func didResignFirstResponder(_ textfield: UITextField)
+    func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield)
+    func didResignFirstResponder(_ labelledTextfield: LabelledTextfield)
 }
 
 class LabelledTextfield: UIView {
@@ -26,9 +26,9 @@ class LabelledTextfield: UIView {
         }
     }
 
-    var text: String? {
+    var text: String {
         get {
-            return inputTextfield.text
+            return inputTextfield.text ?? ""
         }
 
         set {
@@ -66,6 +66,9 @@ class LabelledTextfield: UIView {
         inputTextfield.delegate = self
         inputTextfield.inputView = UIView()
         inputTextfield.inputAccessoryView = UIView()
+        inputTextfield.layer.cornerRadius = 4
+        inputTextfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+
     }
 
     func setup(label: String) {
@@ -90,10 +93,18 @@ class LabelledTextfield: UIView {
 
 extension LabelledTextfield: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.didBecomeFirstResponder(textField)
+        delegate?.didBecomeFirstResponder(self)
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.didResignFirstResponder(textField)
+        delegate?.didResignFirstResponder(self)
+    }
+}
+
+extension LabelledTextfield {
+    func removeFinal() {
+        if text.count > 0 {
+            _ = text.removeLast()
+        }
     }
 }

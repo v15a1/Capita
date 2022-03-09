@@ -16,23 +16,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
             endingLineNumber = "65"
-            landmarkName = "viewDidAppear(_:)"
+            landmarkName = "setup()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6DAD79C-AE8C-4E4C-B2DA-A3E969408CAB"
-            shouldBeEnabled = "No"
+            uuid = "91296402-54ED-43A9-B152-64F987C330D6"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOSConverter/Controllers/ViewController.swift"
+            filePath = "iOSConverter/Views/Reusables/Cells/TableView/Precision/PrecisionTVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "ViewController"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "ConfigurationTVC"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>

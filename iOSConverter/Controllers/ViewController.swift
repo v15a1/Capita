@@ -12,12 +12,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var keyboard: Keyboard!
     @IBOutlet weak var keyboardBottomAnchor: NSLayoutConstraint!
 
+    @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet var inputTextfields: [LabelledTextfield]!
 
-    var firstResponder: UITextField?{
+    var firstResponder: LabelledTextfield?{
         didSet {
             if firstResponder == nil {
-                hideKeyboard(UITextField())
+                hideKeyboard(firstResponder?.inputTextfield)
             }
         }
     }
@@ -29,7 +30,6 @@ class ViewController: UIViewController {
         "Monthly Payment",
         "Future Value",
         "Number of Payments"
-        
     ]
 
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
-        self.view.addGestureRecognizer(tapGesture)
+        self.contentScrollView.addGestureRecognizer(tapGesture)
     }
 
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -66,10 +66,11 @@ class ViewController: UIViewController {
 //        textField.inputView = UIView()
 //        textField.inputAccessoryView = UIView()
 //        textField.delegate = self
+        UITabBar.appearance().unselectedItemTintColor = UIColor.lightBlue
 
         keyboard.delegate = self
 
-        self.title = "Compound Saving"
+        self.title = "Calculations"
         inputTextfields.first?.title = "Principal Amount $"
 
     }
@@ -94,7 +95,7 @@ class ViewController: UIViewController {
             }
     }
 
-    private func hideKeyboard(_ sender: UITextField) {
+    private func hideKeyboard(_ sender: UITextField?) {
         keyboardBottomAnchor.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
         UIView.animate(
             withDuration: 0.3,
@@ -104,12 +105,12 @@ class ViewController: UIViewController {
                 self.keyboard.alpha = 0
             } completion: { _ in
                 self.keyboard.isHidden = true
-                sender.resignFirstResponder()
+                sender?.resignFirstResponder()
             }
     }
 
     @IBAction func didpressButton(_ sender: Any) {
-        hideKeyboard(firstResponder!)
+        hideKeyboard(firstResponder?.inputTextfield)
     }
 
 }
@@ -126,7 +127,7 @@ extension ViewController: UITextFieldDelegate {
 
 extension ViewController: KeyboardDelegate {
     func didPressNumber(_ number: Int) {
-        // unused
+        firstResponder?.text += "\(number)"
     }
 
     func didPressDecimal() {
@@ -134,23 +135,22 @@ extension ViewController: KeyboardDelegate {
     }
 
     func didPressDelete() {
-        // unused
+        firstResponder?.removeFinal()
     }
 
     func willCloseKeyboard() {
-        hideKeyboard(firstResponder!)
+        hideKeyboard(firstResponder?.inputTextfield)
     }
 }
 
 extension ViewController: LabelledTextfieldProtocol {
-    func didBecomeFirstResponder(_ textfield: UITextField) {
+    func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield) {
         !isKeyboardOpen ? showKeyboard() : nil
         isKeyboardOpen = true
-        firstResponder = textfield
+        firstResponder = labelledTextfield
     }
 
-    func didResignFirstResponder(_ textfield: UITextField) {
+    func didResignFirstResponder(_ labelledTextfield: LabelledTextfield) {
         isKeyboardOpen = false
-//        hideKeyboard(textfield)
     }
 }

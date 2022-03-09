@@ -22,5 +22,8 @@ struct K {
 
     struct Keys {
         static let AppTheme: String = "APP_THEME"
+        static let Precision: String = "PRECISION"
+        static let Currency: String = "CURRENCY"
+
     }
 }
