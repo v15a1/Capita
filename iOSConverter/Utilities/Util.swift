@@ -9,7 +9,7 @@ import Foundation
 
 final class Util {
 
-    let shared: Util = Util()
+    static let shared: Util = Util()
 
     private init() {
 
@@ -24,15 +24,23 @@ final class Util {
         return ""
     }
 
-    func validateDecimals(_ forString: String) -> Bool{
-        return forString.contains(".")
+    func applyDecimalIfNeeded( _ forString: String) -> String {
+        let containsDecimal = !forString.contains(".")
+        let length = forString.count > 0
+        if containsDecimal && length {
+            var decimalString = forString
+            decimalString += "."
+            return decimalString
+        }
+        return forString
     }
 
-    func letZeroDigit(_ forString: String) -> Bool {
-//        if forString.count >= 1 {
-//            let starterDigitCheck = forString.first == "0" && forString.contains(".")
-//            return starterDigitCheck ? true : false
-//        }
-        return false
+    func includeZeroIfNeeded(_ forString: String) -> String {
+        var string = forString
+        if forString.count == 1 && forString.first == "0"{
+            return forString
+        }
+        string += "0"
+        return string
     }
 }

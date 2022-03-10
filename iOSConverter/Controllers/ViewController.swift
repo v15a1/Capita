@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: RootStatefulViewController {
 
     @IBOutlet weak var keyboard: Keyboard!
     @IBOutlet weak var keyboardBottomAnchor: NSLayoutConstraint!
@@ -15,14 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet var inputTextfields: [LabelledTextfield]!
 
-    var firstResponder: LabelledTextfield?{
+    override var firstResponder: LabelledTextfield? {
         didSet {
             if firstResponder == nil {
                 hideKeyboard(firstResponder?.inputTextfield)
             }
         }
     }
-    var isKeyboardOpen: Bool = false
 
     let textfieldLabels = [
         "Principal Amount",
@@ -37,22 +36,6 @@ class ViewController: UIViewController {
         setup()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        keyboardBottomAnchor.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
-        keyboard.isHidden = true
-        view.layoutIfNeeded()
-
-        for (i, tf) in inputTextfields.enumerated() {
-            tf.delegate = self
-            tf.title = textfieldLabels[i]
-        }
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
-        self.contentScrollView.addGestureRecognizer(tapGesture)
-    }
-
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
         self.firstResponder = nil
@@ -63,24 +46,27 @@ class ViewController: UIViewController {
     }
 
     private func setup() {
-//        textField.inputView = UIView()
-//        textField.inputAccessoryView = UIView()
-//        textField.delegate = self
         UITabBar.appearance().unselectedItemTintColor = UIColor.lightBlue
 
         keyboard.delegate = self
 
-        self.title = "Calculations"
-        inputTextfields.first?.title = "Principal Amount $"
+        title = "Calculations"
+        stateKey = K.Keys.SavedSavingsState
 
-    }
+        keyboardBottomAnchor.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
+        keyboard.isHidden = true
+        view.layoutIfNeeded()
 
-    private func showOnboardingIfNeeded() {
-        if !UserDefaults.standard.bool(forKey: .didFirstLoad) {
-            if let vc = self.loadFromStoryboard("Tabbar", vc: .LandingViewController) as? LandingViewController {
-                present(vc, animated: true, completion: nil)
-            }
+        for (i, tf) in inputTextfields.enumerated() {
+            tf.tag = i
+            tf.delegate = self
+            tf.title = textfieldLabels[i]
         }
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
+        self.contentScrollView.addGestureRecognizer(tapGesture)
+
+        restoreStateIfNeeded(inputTextfields)
     }
 
     private func showKeyboard() {
@@ -97,6 +83,7 @@ class ViewController: UIViewController {
 
     private func hideKeyboard(_ sender: UITextField?) {
         keyboardBottomAnchor.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
+        sender?.resignFirstResponder()
         UIView.animate(
             withDuration: 0.3,
             delay: 0,
@@ -105,14 +92,8 @@ class ViewController: UIViewController {
                 self.keyboard.alpha = 0
             } completion: { _ in
                 self.keyboard.isHidden = true
-                sender?.resignFirstResponder()
             }
     }
-
-    @IBAction func didpressButton(_ sender: Any) {
-        hideKeyboard(firstResponder?.inputTextfield)
-    }
-
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -127,15 +108,24 @@ extension ViewController: UITextFieldDelegate {
 
 extension ViewController: KeyboardDelegate {
     func didPressNumber(_ number: Int) {
-        firstResponder?.text += "\(number)"
+        guard let tfString = firstResponder?.text else { return }
+        if number == 0 {
+            firstResponder?.text = Util.shared.includeZeroIfNeeded(tfString)
+        } else {
+            firstResponder?.text += "\(number)"
+        }
+        saveState()
     }
 
     func didPressDecimal() {
-        // unused
+        guard let tfString = firstResponder?.text else { return }
+        firstResponder?.text = Util.shared.applyDecimalIfNeeded(tfString)
+        saveState()
     }
 
     func didPressDelete() {
         firstResponder?.removeFinal()
+        saveState()
     }
 
     func willCloseKeyboard() {

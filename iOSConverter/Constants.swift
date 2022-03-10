@@ -24,6 +24,14 @@ struct K {
         static let AppTheme: String = "APP_THEME"
         static let Precision: String = "PRECISION"
         static let Currency: String = "CURRENCY"
+        static let SavedSavingsState: String = "SAVING_STATE"
+        static let SavedMortgageState: String = "MORTGAGE_STATE"
 
+    }
+
+    struct Segues {
+        static let SavingsCalculation: String = "SavingsCalculation"
+        static let MortgageCalculator: String = "MortgageCalculator"
+        static let LoansCalculation: String = "LoansCalculation"
     }
 }

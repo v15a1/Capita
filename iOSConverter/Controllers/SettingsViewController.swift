@@ -26,6 +26,8 @@ class SettingsViewController: UIViewController {
     }
 
     private func setup() {
+        title = "Settings"
+
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         settingsTableView.allowsSelection = false
@@ -33,9 +35,8 @@ class SettingsViewController: UIViewController {
         settingsTableView.register(UINib(nibName: HelpTVC.identifier, bundle: nil), forCellReuseIdentifier: HelpTVC.identifier)
         settingsTableView.register(UINib(nibName: ConfigurationTVC.identifier, bundle: nil), forCellReuseIdentifier: ConfigurationTVC.identifier)
 
-        title = "Settings"
 
-        precision = Precision(rawValue: UserDefaults.standard.integer(forKey: K.Keys.Precision))
+        precision = Precision(rawValue: UserDefaults.standard.integer(forKey: K.Keys.Precision)) ?? .high
         currency = Currency(rawValue: UserDefaults.standard.string(forKey: K.Keys.Currency) ?? "LKR")
     }
 }

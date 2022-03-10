@@ -31,6 +31,15 @@ extension UIView {
         self.layer.shadowRadius = radius
         self.layer.shouldRasterize = true
     }
+
+    func setGradient(colors: [UIColor], locations: [NSNumber] = [0.0, 1.0]) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = locations
+        gradientLayer.frame = self.bounds
+
+        self.layer.insertSublayer(gradientLayer, at:0)
+    }
 }
 
 // MARK: UIColor Extensions
