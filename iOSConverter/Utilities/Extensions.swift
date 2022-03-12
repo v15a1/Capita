@@ -61,6 +61,12 @@ extension UIViewController {
         let storyboard = UIStoryboard(name: withStoryboardName, bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: vc.rawValue)
     }
+
+    func showError(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: UIFont Extensions
@@ -89,6 +95,21 @@ extension AppDelegate {
                 .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
                 .first { $0.isKeyWindow }
             window?.overrideUserInterfaceStyle = (theme == Theme.dark) ? .dark : .light
+        }
+    }
+}
+
+extension Array where Element: LabelledTextfield {
+    func valueByTag(tag: Int) -> Double? {
+        if let element = self.first(where: { $0.tag == tag}) {
+            return Double(element.inputTextfield.text!)
+        }
+        return nil
+    }
+
+    func setText(_ text: String, forTag: Int) {
+        if let element = self.first(where: { $0.tag == forTag}) {
+            element.text = text
         }
     }
 }

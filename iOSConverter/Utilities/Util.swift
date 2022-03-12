@@ -43,4 +43,10 @@ final class Util {
         string += "0"
         return string
     }
+
+    func calculateLoanInterest(amount: Double??, monthlyPay: Double?, terms: Double?) -> Double? {
+        let precision = UserDefaults.standard.integer(forKey: K.Keys.Precision)
+
+        return 0
+    }
 }
