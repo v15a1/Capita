@@ -67,8 +67,8 @@ class LabelledTextfield: UIView {
         inputTextfield.inputView = UIView()
         inputTextfield.inputAccessoryView = UIView()
         inputTextfield.layer.cornerRadius = 4
-        inputTextfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-
+        inputTextfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+        inputTextfield.leftViewMode = .always
     }
 
     func setup(label: String) {

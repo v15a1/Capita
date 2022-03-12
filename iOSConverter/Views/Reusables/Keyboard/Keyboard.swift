@@ -11,6 +11,7 @@ protocol KeyboardDelegate: AnyObject {
     func didPressNumber(_ number: Int)
     func didPressDecimal()
     func didPressDelete()
+    func willDeleteAllText()
     func willCloseKeyboard()
 }
 
@@ -21,6 +22,12 @@ class Keyboard: UIView {
     weak var delegate: KeyboardDelegate?
 
     @IBOutlet var keyboardButtons: [UIButton]!
+    @IBOutlet weak var deleteButton: UIButton!
+
+    init() {
+        super.init(frame: .zero)
+        commonInitilizer()
+    }
 
 
     override init(frame: CGRect) {
@@ -41,17 +48,28 @@ class Keyboard: UIView {
         keyboardButtons.forEach { button in
             button.layer.cornerRadius = K.View.CornerRadius
         }
+
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressDeleteButton(_:)))
+        longPressRecognizer.numberOfTouchesRequired = 1
+        longPressRecognizer.allowableMovement = 10
+        longPressRecognizer.minimumPressDuration = 0.5
+        deleteButton.addGestureRecognizer(longPressRecognizer)
+    }
+
+    @objc private func didLongPressDeleteButton(_ sender: UILongPressGestureRecognizer) {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        delegate?.willDeleteAllText()
     }
 
     @IBAction func didPressNumber(_ sender: UIButton) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        sender.backgroundColor = .navyBlue.withAlphaComponent(0.5)
-        UIView.animate(withDuration: 0.2) {
-            sender.backgroundColor = .lightGrey
-        }
-
+//        sender.backgroundColor = .navyBlue.withAlphaComponent(0.5)
         let number = Int((sender.titleLabel?.text)!)
         delegate?.didPressNumber(number!)
+
+//        UIView.animate(withDuration: 0.2) {
+//            sender.backgroundColor = .lightGrey
+//        }
     }
 
     @IBAction func didPressDelete(_ sender: UIButton) {

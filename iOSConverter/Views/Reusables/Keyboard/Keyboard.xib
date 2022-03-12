@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Keyboard" customModule="iOSConverter" customModuleProvider="target">
             <connections>
+                <outlet property="deleteButton" destination="kYY-8T-0gr" id="dgy-Lv-uhE"/>
                 <outletCollection property="keyboardButtons" destination="qca-rA-F5m" collectionClass="NSMutableArray" id="BpL-52-AFb"/>
                 <outletCollection property="keyboardButtons" destination="jLQ-3C-NH7" collectionClass="NSMutableArray" id="RC3-ZX-YQr"/>
                 <outletCollection property="keyboardButtons" destination="7AY-7x-azr" collectionClass="NSMutableArray" id="4Dc-cc-UMQ"/>

@@ -13,11 +13,12 @@ struct K {
     }
 
     struct Storyboard {
-        static let Main: String = "Main"
+        static let Tabbar: String = "Tabbar"
     }
 
     struct VC {
         static let ViewController: String = "ViewController"
+        static let HelpViewController: String = "HelpViewController"
     }
 
     struct Keys {
@@ -26,6 +27,7 @@ struct K {
         static let Currency: String = "CURRENCY"
         static let SavedSavingsState: String = "SAVING_STATE"
         static let SavedMortgageState: String = "MORTGAGE_STATE"
+        static let SavedLoansState: String = "MORTGAGE_STATE"
 
     }
 

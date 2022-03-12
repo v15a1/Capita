@@ -47,9 +47,9 @@ extension CalculationViewController: UITableViewDataSource, UITableViewDelegate 
         case 0:
             performSegue(withIdentifier: K.Segues.SavingsCalculation, sender: self)
         case 1:
-            performSegue(withIdentifier: K.Segues.SavingsCalculation, sender: self)
+            performSegue(withIdentifier: K.Segues.MortgageCalculator, sender: self)
         case 2:
-            performSegue(withIdentifier: K.Segues.SavingsCalculation, sender: self)
+            performSegue(withIdentifier: K.Segues.LoansCalculation, sender: self)
         default:
             return
         }
