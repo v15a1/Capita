@@ -32,7 +32,8 @@ class LabelledTextfield: UIView {
         }
 
         set {
-            self.inputTextfield.text = newValue
+            removeHighlight()
+            inputTextfield.text = newValue
         }
     }
 
@@ -45,6 +46,8 @@ class LabelledTextfield: UIView {
             inputLabel.text = newValue
         }
     }
+
+    var isHighlighted: Bool = false
 
     weak var delegate: LabelledTextfieldProtocol?
 
@@ -69,6 +72,7 @@ class LabelledTextfield: UIView {
         inputTextfield.layer.cornerRadius = 4
         inputTextfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         inputTextfield.leftViewMode = .always
+
     }
 
     func setup(label: String) {
@@ -87,6 +91,42 @@ class LabelledTextfield: UIView {
         self.organizerStack.axis = axis
         UIView.animate(withDuration: 0.3) {
             self.layoutIfNeeded()
+        }
+    }
+
+    func highLightAnswer() {
+        isHighlighted = true
+        inputTextfield.layer.borderColor = UIColor.systemGreen.cgColor
+        UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseInOut]) {
+            self.inputTextfield.layer.borderWidth = 2
+            self.inputTextfield.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.2)
+        } completion: { _ in
+            UIView.animate(withDuration: 1.2) {
+                self.inputTextfield.backgroundColor = UIColor.lightGrey
+            }
+        }
+    }
+
+    func highlightEmpty() {
+        isHighlighted = true
+        inputTextfield.layer.borderColor = UIColor.systemRed.cgColor
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
+            self.inputTextfield.layer.borderWidth = 2
+            self.inputTextfield.backgroundColor = UIColor.systemRed.withAlphaComponent(0.2)
+        } completion: { _ in
+            UIView.animate(withDuration: 1.2) {
+                self.inputTextfield.backgroundColor = UIColor.lightGrey
+            }
+        }
+    }
+
+    func removeHighlight() {
+        if isHighlighted {
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
+                self.inputTextfield.layer.borderWidth = 0
+            } completion: { _ in
+                self.isHighlighted = false
+            }
         }
     }
 }

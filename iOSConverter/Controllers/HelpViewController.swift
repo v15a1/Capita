@@ -39,7 +39,7 @@ class HelpViewController: UIViewController {
 
     private func setSavingsHelpScreen() {
         titleLabel.text = "Help on Savings"
-        descriptionLabel.text = "This screen allows you to calculate the interest required to return an amount for a future value for a fixed initial investment over a known period of time. \n\n• The application will automatically calculate the savings needed when 3 of the 4 values are provided \n"
+        descriptionLabel.text = K.Content.SavingsHelpContent
     }
 
     @IBAction func didReadHelp(_ sender: UIButton) {

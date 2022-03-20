@@ -30,9 +30,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Jnd-hG-E8R">
-                        <barButtonItem key="rightBarButtonItem" image="play.circle.fill" catalog="system" id="DCY-dl-Xpz"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Jnd-hG-E8R"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,16 +130,20 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Savings"/>
-                                <segment title="Savings WRC"/>
-                                <segment title="Loans"/>
                                 <segment title="Mortgage"/>
+                                <segment title="Loans"/>
                             </segments>
+                            <connections>
+                                <action selector="didChangeSection:" destination="Cxh-cz-qeS" eventType="valueChanged" id="Khf-X8-NSZ"/>
+                            </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" id="5JY-lS-xv7">
                             <color key="tintColor" systemColor="systemRedColor"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteAllButton" destination="5JY-lS-xv7" id="bme-MU-HK0"/>
+                        <outlet property="historySegmentedController" destination="I9e-TF-hIf" id="qQl-LE-OrK"/>
                         <outlet property="historyTableView" destination="au4-Cm-GW4" id="1vv-dJ-u0z"/>
                     </connections>
                 </viewController>
@@ -389,7 +391,6 @@
         <image name="clock.fill" catalog="system" width="128" height="121"/>
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gearshape.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

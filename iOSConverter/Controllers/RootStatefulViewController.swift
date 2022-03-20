@@ -27,6 +27,8 @@ class RootStatefulViewController: UIViewController {
     lazy var keyboard: Keyboard = {
         let keyboard = Keyboard()
         keyboard.delegate = self
+        keyboard.isHidden = true
+        keyboard.alpha = 0
         keyboard.backgroundColor = .red
         keyboard.translatesAutoresizingMaskIntoConstraints = false
         return keyboard
@@ -47,10 +49,24 @@ class RootStatefulViewController: UIViewController {
         }
     }
 
+    var emptyTextField: LabelledTextfield? {
+        didSet {
+            highlightCalculatedTextField()
+        }
+    }
+
+    var calculatorMode: Calculate {
+        return Calculate(rawValue: UserDefaults.standard.string(forKey: K.Keys.AutoCalculate) ?? "") ?? .manual
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         restoreStateIfNeeded()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupBarButtons()
     }
 
@@ -59,10 +75,10 @@ class RootStatefulViewController: UIViewController {
         self.view.addSubview(contentScrollView)
         self.contentScrollView.addSubview(content)
         self.view.addSubview(keyboard)
-        keyboardBottomAnchor = keyboard.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        keyboardBottomAnchor = keyboard.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: Keyboard.height)
 
         NSLayoutConstraint.activate([
-            keyboard.heightAnchor.constraint(equalToConstant: 380),
+            keyboard.heightAnchor.constraint(equalToConstant: Keyboard.height),
             keyboard.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             keyboard.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             keyboardBottomAnchor,
@@ -81,27 +97,46 @@ class RootStatefulViewController: UIViewController {
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
         self.contentScrollView.addGestureRecognizer(tapGesture)
+        self.view.backgroundColor = .systemBackground
     }
 
     private func setupBarButtons() {
+        self.navigationItem.rightBarButtonItems?.removeAll()
+        print("Root: \(calculatorMode)")
+        var barButtons = [UIBarButtonItem]()
+
         let helpBarButton = UIButton(type: .system)
         helpBarButton.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
         helpBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
         helpBarButton.addTarget(self, action: #selector(onHelpButtonPress(_:)), for: .touchUpInside)
         let helpBarButtonItem = UIBarButtonItem(customView: helpBarButton)
+        barButtons.append(helpBarButtonItem)
 
-        let calculateBarButton = UIButton(type: .system)
-        calculateBarButton.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-        calculateBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
-        calculateBarButton.addTarget(self, action: #selector(calculate(_:)), for: .touchUpInside)
-        let calculateBarButtonItem = UIBarButtonItem(customView: calculateBarButton)
+        let saveBarButton = UIButton(type: .system)
+        saveBarButton.setImage(UIImage(systemName: "square.and.arrow.down.fill"), for: .normal)
+        saveBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
+        saveBarButton.addTarget(self, action: #selector(saveCalculation(_:)), for: .touchUpInside)
+        let saveBarButtonItem = UIBarButtonItem(customView: saveBarButton)
+        barButtons.append(saveBarButtonItem)
 
-        self.navigationItem.rightBarButtonItems = [helpBarButtonItem, calculateBarButtonItem]
+        if calculatorMode == .manual {
+            let calculateBarButton = UIButton(type: .system)
+            calculateBarButton.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            calculateBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
+            calculateBarButton.addTarget(self, action: #selector(calculate(_:)), for: .touchUpInside)
+            let calculateBarButtonItem = UIBarButtonItem(customView: calculateBarButton)
+            barButtons.append(calculateBarButtonItem)
+        }
+
+
+        self.navigationItem.rightBarButtonItems = barButtons
     }
 
     @objc func onHelpButtonPress(_ sender: Any){}
 
     @objc func calculate(_ sender: Any){}
+
+    @objc func saveCalculation(_ sender: Any) {}
 
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
@@ -137,14 +172,10 @@ class RootStatefulViewController: UIViewController {
             options: [.curveEaseInOut]) {
                 self.view.layoutIfNeeded()
                 self.keyboard.alpha = 0
-            } completion: { _ in
-                self.keyboard.isHidden = true
             }
     }
 
     func abruptlyHideKeyboard() {
-        keyboardBottomAnchor.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
-        firstResponder?.inputTextfield.resignFirstResponder()
         self.view.layoutIfNeeded()
         self.keyboard.alpha = 0
         self.keyboard.isHidden = true
@@ -156,6 +187,24 @@ class RootStatefulViewController: UIViewController {
         }
         state.values[firstResponder!.tag] = firstResponder?.text ?? ""
         state.save(forKey: stateKey)
+    }
+
+    func highlightCalculatedTextField() {
+        if calculatorMode == .manual {
+            emptyTextField?.highLightAnswer()
+        }
+    }
+
+    func highlightEmptyFields() {
+        if calculatorMode == .manual {
+            textfields.filter { $0.text.isEmpty }.forEach { $0.highlightEmpty() }
+        }
+    }
+
+    func resetEmptyFields() {
+        if calculatorMode == .manual {
+            textfields.filter { $0.text.isEmpty }.forEach { $0.removeHighlight() }
+        }
     }
 
     func restoreStateIfNeeded() {

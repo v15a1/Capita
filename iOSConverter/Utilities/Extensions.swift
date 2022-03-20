@@ -10,6 +10,15 @@ import UIKit
 // MARK: UIView Extensions
 extension UIView {
 
+    var isDarkMode: Bool {
+        if #available(iOS 13.0, *) {
+            return self.traitCollection.userInterfaceStyle == .dark
+        }
+        else {
+            return false
+        }
+    }
+
     /// Loads the UIView from the XIB (Nib is the more popular name. It stems from Swifts predecessor -- Objective-C)
     /// - Parameter nibName: Name of the XIB/Nib in string
     /// - Returns: The UIView corresponding to the given `nibName`
@@ -47,6 +56,18 @@ extension UIColor {
     static let lightBlue: UIColor = UIColor(named: "LightBlue")!
     static let navyBlue: UIColor = UIColor(named: "NavyBlue")!
     static let lightGrey: UIColor = UIColor(named: "LightGrey")!
+    static let CrayonBlue: UIColor = UIColor(named: "CrayonBlue")!
+    static let CrayonPurple: UIColor = UIColor(named: "CrayonPurple")!
+    static let CrayonPeach: UIColor = UIColor(named: "CrayonPeach")!
+    static let Background: UIColor = UIColor(named: "Background")!
+
+}
+
+extension UIFont {
+    static let ralewayLight: String = "Raleway-Light"
+    static let ralewayMedium: String = "Raleway-Medium"
+    static let ralewayRegular: String = "Raleway-Regular"
+    static let ralewaySemiBold: String = "Raleway-SemiBold"
 }
 
 // MARK: UIStoryBoard
@@ -55,6 +76,7 @@ extension UIViewController {
     enum ViewControllerNames: String {
         case ViewController = "ViewController"
         case LandingViewController = "LandingViewController"
+        case HelpViewController = "HelpViewController"
     }
 
     func loadFromStoryboard(_ withStoryboardName: String, vc: ViewControllerNames) -> UIViewController {
@@ -62,10 +84,57 @@ extension UIViewController {
         return storyboard.instantiateViewController(withIdentifier: vc.rawValue)
     }
 
-    func showError(message: String) {
+    func showError(message: String, action: (() -> Void)? = nil) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            if let action = action {
+                action()
+            }
+        }))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    func showHelp(type: HelpScreenType) {
+        if let vc = loadFromStoryboard(K.Storyboard.Tabbar, vc: .HelpViewController) as? HelpViewController {
+            vc.screen = type
+            present(vc, animated: true)
+        }
+    }
+
+    func savePersistable<T: Persistable>(_ object: T, forKey: String) {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(object)
+
+            if var saved = UserDefaults.standard.array(forKey: forKey) as? [Data] {
+                if saved.count >= 5 {
+                    saved.removeFirst()
+                }
+                saved.append(data)
+                UserDefaults.standard.set(saved, forKey: forKey)
+            } else {
+                UserDefaults.standard.set([data], forKey: forKey)
+            }
+        } catch {
+            showError(message: "Oops we couldn't save the item")
+        }
+    }
+
+    func readPersistables<T: Persistable>(forKey: String) -> [T]? {
+        do {
+            let decoder = JSONDecoder()
+            var decodedArray = [T]()
+            if let array = UserDefaults.standard.array(forKey: forKey) as? [Data] {
+                try array.forEach {
+                    let loan = try decoder.decode(T.self, from: $0)
+                    decodedArray.append(loan)
+                }
+                return decodedArray
+            }
+        } catch {
+            showError(message: "Oops we couldn't retrieve the history at this time")
+        }
+        return nil
     }
 }
 
@@ -74,32 +143,12 @@ extension String {
     static let didFirstLoad: String = "DID_FIRST_LOAD"
 }
 
-extension AppDelegate {
-
-    enum Theme: Int {
-        case light = 1
-        case dark = 2
-        case system = 3
-    }
-
-    func overrideApplicationThemeStyle() {
-        let persistedTheme = UserDefaults.standard.integer(forKey: K.Keys.AppTheme)
-        let theme = Theme(rawValue: persistedTheme)
-
-        if theme == .system {
-
-        } else {
-            let window = UIApplication
-                .shared
-                .connectedScenes
-                .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-                .first { $0.isKeyWindow }
-            window?.overrideUserInterfaceStyle = (theme == Theme.dark) ? .dark : .light
-        }
-    }
-}
-
 extension Array where Element: LabelledTextfield {
+
+    func by(tag: Int) -> LabelledTextfield {
+        return self.first(where: { $0.tag == tag})!
+    }
+
     func valueByTag(tag: Int) -> Double? {
         if let element = self.first(where: { $0.tag == tag}) {
             return Double(element.inputTextfield.text!)
@@ -111,5 +160,13 @@ extension Array where Element: LabelledTextfield {
         if let element = self.first(where: { $0.tag == forTag}) {
             element.text = text
         }
+    }
+}
+
+
+extension Double {
+    func fixedTo(_ places: Int) -> Double {
+        let divisor: Double = pow(10, Double(places))
+        return (divisor * self).rounded() / divisor
     }
 }

@@ -10,6 +10,10 @@
 		4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */; };
 		4B096B2927D3AA6A00B57AFB /* LabelledTextfield.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */; };
 		4B096B2B27D3CFFD00B57AFB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2A27D3CFFD00B57AFB /* Util.swift */; };
+		4B2D445527E77542005915CF /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445427E77542005915CF /* Persistable.swift */; };
+		4B2D445727E7772A005915CF /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445627E7772A005915CF /* Loan.swift */; };
+		4B44C2E927E0A7CE00314399 /* HistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */; };
+		4B44C2EA27E0A7CE00314399 /* HistoryTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44C2E827E0A7CE00314399 /* HistoryTVC.xib */; };
 		4B44E01F27C79F1B0036B6D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E01E27C79F1B0036B6D6 /* AppDelegate.swift */; };
 		4B44E02127C79F1B0036B6D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E02027C79F1B0036B6D6 /* SceneDelegate.swift */; };
 		4B44E02327C79F1B0036B6D6 /* SavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E02227C79F1B0036B6D6 /* SavingsViewController.swift */; };
@@ -55,6 +59,10 @@
 		4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledTextfield.swift; sourceTree = "<group>"; };
 		4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelledTextfield.xib; sourceTree = "<group>"; };
 		4B096B2A27D3CFFD00B57AFB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		4B2D445427E77542005915CF /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		4B2D445627E7772A005915CF /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
+		4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTVC.swift; sourceTree = "<group>"; };
+		4B44C2E827E0A7CE00314399 /* HistoryTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTVC.xib; sourceTree = "<group>"; };
 		4B44E01B27C79F1B0036B6D6 /* iOSConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B44E01E27C79F1B0036B6D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B44E02027C79F1B0036B6D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +124,15 @@
 				4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */,
 			);
 			path = LabelledTextfield;
+			sourceTree = "<group>";
+		};
+		4B44C2E627E0A7A800314399 /* HistoryTVC */ = {
+			isa = PBXGroup;
+			children = (
+				4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */,
+				4B44C2E827E0A7CE00314399 /* HistoryTVC.xib */,
+			);
+			path = HistoryTVC;
 			sourceTree = "<group>";
 		};
 		4B44E01227C79F1B0036B6D6 = {
@@ -254,6 +271,7 @@
 		4B45296327D8B12E00813D86 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				4B44C2E627E0A7A800314399 /* HistoryTVC */,
 				4B45296A27D8B71300813D86 /* Help */,
 				4B45297427D8B78A00813D86 /* Configuration */,
 				4BFA4AFC27D99F94001AB5A5 /* CalculationTVC */,
@@ -285,6 +303,7 @@
 				4B45297827D8E25400813D86 /* Protocols */,
 				4B45297927D8E27000813D86 /* Configuration.swift */,
 				4BB32F2C27DA41680077C498 /* SavedState.swift */,
+				4B2D445627E7772A005915CF /* Loan.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -293,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				4B45297527D8E1FD00813D86 /* Enumerable.swift */,
+				4B2D445427E77542005915CF /* Persistable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -395,6 +415,7 @@
 				4B9C6DB427D0DF0200A7EC3C /* Raleway-Light.ttf in Resources */,
 				4B44E03927C7A1F10036B6D6 /* Keyboard.xib in Resources */,
 				4BFA4AF527D99BE6001AB5A5 /* MoreInfoView.xib in Resources */,
+				4B44C2EA27E0A7CE00314399 /* HistoryTVC.xib in Resources */,
 				4B44E02627C79F1B0036B6D6 /* Tabbar.storyboard in Resources */,
 				4B45296727D8B16B00813D86 /* HelpTVC.xib in Resources */,
 				4B45297327D8B78400813D86 /* ConfigurationTVC.xib in Resources */,
@@ -413,6 +434,7 @@
 			files = (
 				4BFA4AF227D99BD7001AB5A5 /* MoreInfoView.swift in Sources */,
 				4B096B2B27D3CFFD00B57AFB /* Util.swift in Sources */,
+				4B2D445527E77542005915CF /* Persistable.swift in Sources */,
 				4BB32F2F27DA4F3D0077C498 /* RootStatefulViewController.swift in Sources */,
 				4BF3D66227DC7A0D00E3C13B /* HelpViewController.swift in Sources */,
 				4B44E03E27C7AB060036B6D6 /* Extensions.swift in Sources */,
@@ -434,8 +456,10 @@
 				4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */,
 				4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */,
 				4B45296627D8B16B00813D86 /* HelpTVC.swift in Sources */,
+				4B2D445727E7772A005915CF /* Loan.swift in Sources */,
 				4B681CA627DB34610030704D /* LoansViewController.swift in Sources */,
 				4B45296927D8B32600813D86 /* SettingsViewController.swift in Sources */,
+				4B44C2E927E0A7CE00314399 /* HistoryTVC.swift in Sources */,
 				4B45297627D8E1FE00813D86 /* Enumerable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,27 +14,48 @@ enum Precision: Int {
 }
 
 enum Currency: String {
-    case lkr = "LKR"
-    case usd = "USD"
-    case gbp = "GBP"
+    case lkr = "රු"
+    case usd = "$"
+    case gbp = "£"
+
+    static var selected: String {
+        return UserDefaults.standard.string(forKey: K.Keys.Currency) ?? Currency.usd.rawValue
+    }
+}
+
+enum Calculate: String {
+    case auto = "Auto"
+    case manual = "Manual"
+}
+
+enum ConfigurationType {
+    case none
+    case currency
+    case precision
+    case calculation
 }
 
 protocol ConfigurationProtocol: AnyObject {
     func didChangePrecision(_ precision: Precision)
     func didChangeCurrency(_ currency: Currency)
-
+    func didChangeCalculationMode(_ mode: Calculate)
 }
 
 class ConfigurationTVC: UITableViewCell {
 
     static let identifier = "ConfigurationTVC"
     
-    var isCurrency = false {
+    var type: ConfigurationType = .none {
         didSet {
-            if isCurrency {
+            switch type {
+            case .currency:
                 setupCurrency()
-            } else {
+            case .precision:
                 setupPrecision()
+            case .calculation:
+                setupCalculationSetting()
+            case .none:
+                return
             }
         }
     }
@@ -63,6 +84,21 @@ class ConfigurationTVC: UITableViewCell {
         configSegmentController.setTitle("High", forSegmentAt: 2)
     }
 
+    private func setupCalculationSetting() {
+        configSegmentController.removeSegment(at: 2, animated: false)
+        configSegmentController.setTitle(Calculate.auto.rawValue, forSegmentAt: 0)
+        configSegmentController.setTitle(Calculate.manual.rawValue, forSegmentAt: 1)
+    }
+
+    func setSegment(_ calculationMode: Calculate) {
+        switch (calculationMode) {
+        case .auto:
+            configSegmentController.selectedSegmentIndex = 0
+        case .manual:
+            configSegmentController.selectedSegmentIndex = 1
+        }
+    }
+
     func setSegment(_ precision: Precision) {
         switch (precision) {
         case .low:
@@ -89,22 +125,31 @@ class ConfigurationTVC: UITableViewCell {
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         let currency: Currency!
         let precision: Precision!
+        let calculator: Calculate!
 
         if sender.selectedSegmentIndex == 0 {
             currency = .lkr
             precision = .low
+            calculator = .auto
         } else if sender.selectedSegmentIndex == 1 {
             currency = .usd
             precision = .medium
+            calculator = .manual
         } else {
             currency = .gbp
             precision = .high
+            calculator = .none
         }
 
-        if isCurrency {
+        switch type {
+        case .currency:
             delegate?.didChangeCurrency(currency)
-        } else {
+        case .precision:
             delegate?.didChangePrecision(precision)
+        case .calculation:
+            delegate?.didChangeCalculationMode(calculator)
+        case .none:
+            return
         }
 
     }

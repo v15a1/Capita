@@ -10,9 +10,9 @@ import UIKit
 class SavingsViewController: RootStatefulViewController {
 
     let textfieldLabels = [
-        "Principal Amount",
+        "Principal Amount (\(Currency.selected))",
         "Interest %",
-        "Monthly Payment",
+        "Monthly Payment (\(Currency.selected))",
         "Future Value",
         "Number of Payments"
     ]
@@ -48,11 +48,7 @@ class SavingsViewController: RootStatefulViewController {
     }
 
     override func onHelpButtonPress(_ sender: Any) {
-        let storyboard = UIStoryboard(name: K.Storyboard.Tabbar, bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: K.VC.HelpViewController) as? HelpViewController {
-            vc.screen = .savings         
-            present(vc, animated: true)
-        }
+        self.showHelp(type: .savings)
     }
 
 }

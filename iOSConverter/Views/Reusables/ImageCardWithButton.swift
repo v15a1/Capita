@@ -66,7 +66,7 @@ class ImageCardWithButton: UIView {
         self.addSubview(cardImage) // Adding the subview to the current view. i.e., self
 
         // Setting the corner radius of the view
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = K.View.CornerRadius
         self.layer.masksToBounds = true
 
         NSLayoutConstraint.activate([

@@ -18,7 +18,8 @@ protocol KeyboardDelegate: AnyObject {
 class Keyboard: UIView {
 
     private let NibName: String = "Keyboard"
-
+    static let height: CGFloat = 380
+    
     weak var delegate: KeyboardDelegate?
 
     @IBOutlet var keyboardButtons: [UIButton]!

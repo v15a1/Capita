@@ -24,7 +24,6 @@ class CalculationViewController: UIViewController {
         calculatorTableView.separatorStyle = .none
 
         calculatorTableView.register(UINib(nibName: CalculationTVC.identifier, bundle: nil), forCellReuseIdentifier: CalculationTVC.identifier)
-
     }
 }
 
@@ -36,6 +35,25 @@ extension CalculationViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CalculationTVC.identifier, for: indexPath) as? CalculationTVC {
             cell.selectionStyle = .none
+            if indexPath.row == 0 {
+//                cell.image = UIImage(named: "dog")
+                cell.title = "Savings"
+                cell.contentDescriptor = "Calculate your savings"
+                cell.tint = .CrayonPeach
+            } else if indexPath.row == 1 {
+//                cell.image = UIImage(named: "star")
+                cell.title = "Mortgage "
+                cell.contentDescriptor = "Calculate your Mortgage based on the interest"
+                cell.tint = .CrayonBlue
+            } else if indexPath.row == 2 {
+//                cell.image = UIImage(named: "dog")
+                cell.title = "Loans"
+                cell.contentDescriptor = "Find various values for a given loan"
+                cell.tint = .CrayonPurple
+            } else if indexPath.row == 3 {
+
+            }
+
             return cell
         }
 
@@ -53,6 +71,10 @@ extension CalculationViewController: UITableViewDataSource, UITableViewDelegate 
         default:
             return
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CalculationTVC.height
     }
 
 }
