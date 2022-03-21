@@ -16,12 +16,24 @@ class LoansViewController: RootStatefulViewController {
         "Number of Payments"
     ]
 
+    lazy var loan = Loan(icon: "",
+                           type: .loan,
+                           principleAmount: 0,
+                           interestRate: 0,
+                           monthlyPay: 0,
+                           numOfPayments: 0)
+
     override func viewDidLoad() {
         setup()
         super.viewDidLoad()
     }
 
-    lazy var loan: Loan = Loan(type: .loan)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(UserDefaults.standard.loans)
+
+    }
+
 
     private func setup() {
         title = "Loans"
@@ -47,16 +59,18 @@ class LoansViewController: RootStatefulViewController {
 
         let values = [loanAmount, interest, monthlyPay, terms].compactMap { $0 }
         guard values.count >= 3 else {
-            self.showError(message: "Ensure that 3 out of the 4 textfields are not empty") {
+            self.showAlert(title: "Error", message: "Ensure that 3 out of the 4 textfields are not empty") {
                 self.highlightEmptyFields()
             }
             return
         }
 
-        loan.principleAmount = loanAmount
-        loan.interestRate = interest
-        loan.monthlyPay = monthlyPay
-        loan.numOfPayments = terms
+
+        loan.principleAmount = loanAmount ?? 0
+        loan.interestRate = interest ?? 0
+        loan.monthlyPay = monthlyPay ?? 0
+        loan.numOfPayments = terms ?? 0
+
 
         resetEmptyFields()
         var missingOperand: Double = 0
@@ -89,7 +103,20 @@ class LoansViewController: RootStatefulViewController {
     }
 
     override func saveCalculation(_ sender: Any) {
-        savePersistable(loan, forKey: K.Keys.SavedLoans)
+        var history = UserDefaults.standard.loans
+        if history.count >= 5 {
+            _ = history.removeFirst()
+        }
+        history.append(loan)
+        UserDefaults.standard.loans = history
+//        var history = UserDefaults.standard.loans
+//        print(history)
+//        if !history.isEmpty {
+//            history.append(loan)
+//        } else {
+//            UserDefaults.standard.loans = []
+//        }
+
     }
 }
 

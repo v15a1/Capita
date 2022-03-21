@@ -84,8 +84,8 @@ extension UIViewController {
         return storyboard.instantiateViewController(withIdentifier: vc.rawValue)
     }
 
-    func showError(message: String, action: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
+    func showAlert(title: String, message: String, action: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
             if let action = action {
                 action()
@@ -99,42 +99,6 @@ extension UIViewController {
             vc.screen = type
             present(vc, animated: true)
         }
-    }
-
-    func savePersistable<T: Persistable>(_ object: T, forKey: String) {
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(object)
-
-            if var saved = UserDefaults.standard.array(forKey: forKey) as? [Data] {
-                if saved.count >= 5 {
-                    saved.removeFirst()
-                }
-                saved.append(data)
-                UserDefaults.standard.set(saved, forKey: forKey)
-            } else {
-                UserDefaults.standard.set([data], forKey: forKey)
-            }
-        } catch {
-            showError(message: "Oops we couldn't save the item")
-        }
-    }
-
-    func readPersistables<T: Persistable>(forKey: String) -> [T]? {
-        do {
-            let decoder = JSONDecoder()
-            var decodedArray = [T]()
-            if let array = UserDefaults.standard.array(forKey: forKey) as? [Data] {
-                try array.forEach {
-                    let loan = try decoder.decode(T.self, from: $0)
-                    decodedArray.append(loan)
-                }
-                return decodedArray
-            }
-        } catch {
-            showError(message: "Oops we couldn't retrieve the history at this time")
-        }
-        return nil
     }
 }
 
@@ -162,7 +126,6 @@ extension Array where Element: LabelledTextfield {
         }
     }
 }
-
 
 extension Double {
     func fixedTo(_ places: Int) -> Double {

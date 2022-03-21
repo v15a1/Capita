@@ -8,13 +8,21 @@
 import Foundation
 
 struct Loan: Persistable {
-    var id: UUID = UUID()
-    var createdAt: Date! = Date()
-    var icon: String!
-    var type: CalculationType!
+    var createdAt: String
+    var icon: String
+    var type: CalculationType
+    var principleAmount: Double
+    var interestRate: Double
+    var monthlyPay: Double
+    var numOfPayments: Double
 
-    var principleAmount: Double!
-    var interestRate: Double!
-    var monthlyPay: Double!
-    var numOfPayments: Double!
+    init(icon: String, type: CalculationType, principleAmount: Double, interestRate: Double, monthlyPay: Double, numOfPayments: Double) {
+        self.icon = icon
+        self.type = type
+        self.principleAmount = principleAmount
+        self.interestRate = interestRate
+        self.monthlyPay = monthlyPay
+        self.numOfPayments = numOfPayments
+        self.createdAt = "\(Date())"
+    }
 }

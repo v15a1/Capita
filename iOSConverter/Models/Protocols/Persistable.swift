@@ -14,9 +14,8 @@ enum CalculationType: Int, Codable {
     case loan
 }
 
-protocol Persistable: Codable, Identifiable {
-    var id: UUID { get }
-    var type: CalculationType! { get }
-    var icon: String! { get }
-    var createdAt: Date! { get }
+protocol Persistable: Codable {
+    var type: CalculationType { get }
+    var icon: String { get }
+    var createdAt: String { get }
 }

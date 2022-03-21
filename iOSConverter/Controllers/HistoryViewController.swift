@@ -23,6 +23,11 @@ class HistoryViewController: UIViewController {
         setup()
         retrieveData()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveData()
+    }
     
     private func setup() {
         title = "History"
@@ -34,7 +39,8 @@ class HistoryViewController: UIViewController {
     }
 
     private func retrieveData() {
-        loans = readPersistables(forKey: K.Keys.SavedLoans) ?? []
+        loans = UserDefaults.standard.loans.reversed()
+        historyTableView.reloadData()
     }
 
     @IBAction func didChangeSection(_ sender: UISegmentedControl) {
@@ -60,5 +66,14 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
         return UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle  == .delete {
+            loans.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+//            let success = loans.update(withKey: K.Keys.SavedLoans)
+//            print(success)
+        }
     }
 }

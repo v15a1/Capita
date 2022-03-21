@@ -10,6 +10,8 @@
 		4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */; };
 		4B096B2927D3AA6A00B57AFB /* LabelledTextfield.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */; };
 		4B096B2B27D3CFFD00B57AFB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2A27D3CFFD00B57AFB /* Util.swift */; };
+		4B1D7A1627E8AA7000EF3506 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */; };
+		4B1D7A1827E8AB5000EF3506 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D7A1727E8AB5000EF3506 /* PersistenceController.swift */; };
 		4B2D445527E77542005915CF /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445427E77542005915CF /* Persistable.swift */; };
 		4B2D445727E7772A005915CF /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445627E7772A005915CF /* Loan.swift */; };
 		4B44C2E927E0A7CE00314399 /* HistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */; };
@@ -59,6 +61,8 @@
 		4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledTextfield.swift; sourceTree = "<group>"; };
 		4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelledTextfield.xib; sourceTree = "<group>"; };
 		4B096B2A27D3CFFD00B57AFB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		4B1D7A1727E8AB5000EF3506 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		4B2D445427E77542005915CF /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
 		4B2D445627E7772A005915CF /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
 		4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTVC.swift; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 			children = (
 				4B44E03D27C7AB060036B6D6 /* Extensions.swift */,
 				4B096B2A27D3CFFD00B57AFB /* Util.swift */,
+				4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */,
+				4B1D7A1727E8AB5000EF3506 /* PersistenceController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 				4BF3D66227DC7A0D00E3C13B /* HelpViewController.swift in Sources */,
 				4B44E03E27C7AB060036B6D6 /* Extensions.swift in Sources */,
 				4BFA4AFA27D99F8E001AB5A5 /* CalculationTVC.swift in Sources */,
+				4B1D7A1627E8AA7000EF3506 /* UserDefaults+Extensions.swift in Sources */,
 				4B44E04327C7C86C0036B6D6 /* LandingViewController.swift in Sources */,
 				4BFA4AF727D99DE1001AB5A5 /* CalculationViewController.swift in Sources */,
 				4B44E02327C79F1B0036B6D6 /* SavingsViewController.swift in Sources */,
@@ -452,6 +459,7 @@
 				4B44E03B27C7A3360036B6D6 /* Keyboard.swift in Sources */,
 				4B44E02127C79F1B0036B6D6 /* SceneDelegate.swift in Sources */,
 				4BB32F3127DA60E20077C498 /* MortgageViewController.swift in Sources */,
+				4B1D7A1827E8AB5000EF3506 /* PersistenceController.swift in Sources */,
 				4BB32F2D27DA41680077C498 /* SavedState.swift in Sources */,
 				4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */,
 				4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */,
