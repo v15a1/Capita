@@ -30,7 +30,7 @@ struct K {
         static let SavedLoansState: String = "MORTGAGE_STATE"
         static let AutoCalculate: String = "AUTO_CALCULATE"
 
-        static let SavedLoans: String = "MORTGAGE_STATE"
+        static let SavedLoans: String = "SAVED_LOANS"
 
     }
 

@@ -44,7 +44,7 @@ class SavingsViewController: RootStatefulViewController {
     }
 
     override func calculate(_ sender: Any) {
-        print("asdfjasdkfjaskfjaksdfkas")
+
     }
 
     override func onHelpButtonPress(_ sender: Any) {

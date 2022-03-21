@@ -132,6 +132,7 @@
                                 <segment title="Savings"/>
                                 <segment title="Mortgage"/>
                                 <segment title="Loans"/>
+                                <segment title="All"/>
                             </segments>
                             <connections>
                                 <action selector="didChangeSection:" destination="Cxh-cz-qeS" eventType="valueChanged" id="Khf-X8-NSZ"/>
@@ -139,10 +140,13 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" id="5JY-lS-xv7">
                             <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="didPressDeleteAll:" destination="Cxh-cz-qeS" id="uhH-8n-L2v"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="deleteAllButton" destination="5JY-lS-xv7" id="bme-MU-HK0"/>
+                        <outlet property="deleteAllButton" destination="5JY-lS-xv7" id="4vR-Yb-LSL"/>
                         <outlet property="historySegmentedController" destination="I9e-TF-hIf" id="qQl-LE-OrK"/>
                         <outlet property="historyTableView" destination="au4-Cm-GW4" id="1vv-dJ-u0z"/>
                     </connections>

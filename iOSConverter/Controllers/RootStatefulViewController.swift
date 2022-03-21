@@ -102,7 +102,6 @@ class RootStatefulViewController: UIViewController {
 
     private func setupBarButtons() {
         self.navigationItem.rightBarButtonItems?.removeAll()
-        print("Root: \(calculatorMode)")
         var barButtons = [UIBarButtonItem]()
 
         let helpBarButton = UIButton(type: .system)

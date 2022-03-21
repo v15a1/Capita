@@ -19,7 +19,7 @@ extension SavedState {
             let data = try encoder.encode(self)
             UserDefaults.standard.set(data, forKey: forKey)
         } catch {
-            print("Could not write SavedState obj: \(self)")
+            return
         }
     }
 

@@ -94,6 +94,21 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    func showAlert(title: String, message: String, action: (() -> Void)? = nil, cancel: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            if let action = action {
+                action()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+            if let cancel = cancel {
+                cancel()
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     func showHelp(type: HelpScreenType) {
         if let vc = loadFromStoryboard(K.Storyboard.Tabbar, vc: .HelpViewController) as? HelpViewController {
             vc.screen = type
@@ -127,9 +142,28 @@ extension Array where Element: LabelledTextfield {
     }
 }
 
+extension Array where Element: Persistable {
+    func resetAppend(contentsOf data: [[Persistable]]) -> [Persistable] {
+        return data.flatMap { $0 }
+    }
+
+}
+
+
 extension Double {
     func fixedTo(_ places: Int) -> Double {
         let divisor: Double = pow(10, Double(places))
         return (divisor * self).rounded() / divisor
+    }
+}
+
+extension UIStackView {
+    func clear() {
+        let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
+            self.removeArrangedSubview(subview)
+            return allSubviews + [subview]
+        }
+        NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
+        removedSubviews.forEach({ $0.removeFromSuperview() })
     }
 }

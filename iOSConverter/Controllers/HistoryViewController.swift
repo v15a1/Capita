@@ -10,10 +10,14 @@ import UIKit
 class HistoryViewController: UIViewController {
 
     @IBOutlet weak var historyTableView: UITableView!
-    @IBOutlet weak var deleteAllButton: UIBarButtonItem!
     @IBOutlet weak var historySegmentedController: UISegmentedControl!
+    @IBOutlet weak var deleteAllButton: UIBarButtonItem!
 
+    var savings: [Loan]!
+    var mortgage: [Loan]!
     var loans: [Loan]!
+    var all: [Persistable] = []
+
     var selectedSegment: Int {
         return historySegmentedController.selectedSegmentIndex
     }
@@ -35,16 +39,35 @@ class HistoryViewController: UIViewController {
         historyTableView.delegate = self
         historyTableView.dataSource = self
         historyTableView.allowsSelection = false
-//        historyTableView.separatorStyle = .none
+        historyTableView.separatorStyle = .none
+        historyTableView.register(UINib(nibName: HistoryTVC.identifier, bundle: nil), forCellReuseIdentifier: HistoryTVC.identifier)
     }
 
     private func retrieveData() {
         loans = UserDefaults.standard.loans.reversed()
+        all.removeAll()
+        all.append(contentsOf: loans)
         historyTableView.reloadData()
     }
 
     @IBAction func didChangeSection(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 2:
+            deleteAllButton.isEnabled = !loans.isEmpty
+        case 3:
+            deleteAllButton.isEnabled = !all.isEmpty
+        default:
+            deleteAllButton.isEnabled = false
+        }
         historyTableView.reloadData()
+    }
+    @IBAction func didPressDeleteAll(_ sender: Any) {
+        self.showAlert(title: "Delete All?", message: "Are you sure you want to delete all the previous calculations?") {
+            //Delete
+        } cancel: {
+            return
+        }
+
     }
 }
 
@@ -52,17 +75,19 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedSegment == 2 {
             return loans.count
+        } else if selectedSegment == 3 {
+            return all.count
         }
         return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if selectedSegment == 2 {
-            let cell = UITableViewCell()
-            var content = cell.defaultContentConfiguration()
-            content.text = "\(loans[indexPath.row].principleAmount)"
-            content.secondaryText = "\(loans[indexPath.row].createdAt)"
-            cell.contentConfiguration = content
+        if let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTVC.identifier, for: indexPath) as? HistoryTVC {
+            if selectedSegment == 2 {
+                cell.persistable = loans[indexPath.row]
+            } else if selectedSegment == 3 {
+                cell.persistable = all[indexPath.row]
+            }
             return cell
         }
         return UITableViewCell()
@@ -72,8 +97,6 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle  == .delete {
             loans.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-//            let success = loans.update(withKey: K.Keys.SavedLoans)
-//            print(success)
         }
     }
 }

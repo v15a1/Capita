@@ -62,17 +62,14 @@ final class Util {
         let rate: Double = (interest / 100) / 12
         let numerator = (rate * amount)
         let denomenator = (1 - pow(1 + rate, -terms))
-//        print("rate: ", rate, "num: ", numerator, "den: ", denomenator)
         return (numerator / denomenator).fixedTo(2)
     }
 
     func calculateLoanTerms(amount: Double, interest: Double, monthlyPay: Double) -> Double? {
         var minMonthlyPay = calculateLoanMonthlyPay(amount: amount, interest: interest, terms: 1) - amount
-        print("minMP: ", minMonthlyPay)
         minMonthlyPay -= amount
 
         if Int(monthlyPay) <= Int(minMonthlyPay) {
-            print("NIL")
             return nil
         }
 

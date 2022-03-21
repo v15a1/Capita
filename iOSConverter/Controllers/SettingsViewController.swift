@@ -140,7 +140,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 extension SettingsViewController: ConfigurationProtocol {
     func didChangeCalculationMode(_ mode: Calculate) {
         self.calcMode = mode
-        print(mode)
     }
 
     func didChangeCurrency(_ currency: Currency) {

@@ -104,7 +104,6 @@ class ImageCardWithButton: UIView {
             width: self.frame.width,
             height: height)
         gradientView.layer.insertSublayer(gradientLayer, at:0)
-        print(self.frame)
     }
 
     private func addTextAndButton() {
@@ -116,12 +115,11 @@ class ImageCardWithButton: UIView {
         gradientView.addSubview(contentStack)
         NSLayoutConstraint.activate([
             contentStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            contentStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),    // Negative for leading and bottom constraints
-            contentStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),        // Negative for leading and bottom constraints
+            contentStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            contentStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
 
             cardButton.heightAnchor.constraint(equalToConstant: 60)
         ])
-
         cardButton.layer.cornerRadius = 30 // Half of the height of the button
     }
 

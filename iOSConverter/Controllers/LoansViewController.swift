@@ -30,8 +30,6 @@ class LoansViewController: RootStatefulViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(UserDefaults.standard.loans)
-
     }
 
 
@@ -79,22 +77,22 @@ class LoansViewController: RootStatefulViewController {
             emptyTextField = textfields.by(tag: 0)
             missingOperand = Util.shared.calculateLoanPrincipalAmount(interest: interest!, monthlyPay: monthlyPay!, terms: terms!)
             textfields.setText(String(missingOperand), forTag: 0)
-            loan.principleAmount = missingOperand
+            loan.principleAmount = missingOperand.fixedTo(2)
         } else if interest == nil {
             emptyTextField = textfields.by(tag: 1)
             missingOperand = Util.shared.calculateLoanInterest(amount: loanAmount!, monthlyPay: monthlyPay!, terms: terms!) ?? 0
             textfields.setText(String(missingOperand), forTag: 1)
-            loan.interestRate = missingOperand
+            loan.interestRate = missingOperand.fixedTo(2)
         } else if monthlyPay == nil {
             emptyTextField = textfields.by(tag: 2)
             missingOperand = Util.shared.calculateLoanMonthlyPay(amount: loanAmount!, interest: interest!, terms: terms!)
             textfields.setText(String(missingOperand), forTag: 2)
-            loan.monthlyPay = missingOperand
+            loan.monthlyPay = missingOperand.fixedTo(2)
         } else if terms == nil {
             emptyTextField = textfields.by(tag: 3)
             missingOperand = Util.shared.calculateLoanTerms(amount: loanAmount!, interest: interest!, monthlyPay: monthlyPay!) ?? 0
             textfields.setText(String(Int(missingOperand)), forTag: 3)
-            loan.numOfPayments = missingOperand
+            loan.numOfPayments = missingOperand.fixedTo(2)
         }
     }
 
@@ -109,14 +107,6 @@ class LoansViewController: RootStatefulViewController {
         }
         history.append(loan)
         UserDefaults.standard.loans = history
-//        var history = UserDefaults.standard.loans
-//        print(history)
-//        if !history.isEmpty {
-//            history.append(loan)
-//        } else {
-//            UserDefaults.standard.loans = []
-//        }
-
     }
 }
 
