@@ -16,11 +16,7 @@ class HistoryTVC: UITableViewCell {
     @IBOutlet weak var contentVStack: UIStackView!
     @IBOutlet weak var contentHolder: UIView!
 
-    var persistable: Persistable! {
-        didSet {
-            setupLoanHistory()
-        }
-    }
+    var persistable: Persistable!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,19 +33,24 @@ class HistoryTVC: UITableViewCell {
         contentVStack.clear()
     }
 
+    func setup(data: Persistable) {
+        persistable = data
+        setupLoanHistory()
+    }
+
     private func setupLoanHistory() {
         guard let data = persistable as? Loan else { return }
         typeLabel.text = "LOAN"
         typeView.backgroundColor = UIColor.CrayonPurple.withAlphaComponent(0.3)
         typeLabel.textColor = UIColor.CrayonPurple
         let content = [
-            "Loan Amount": "\(data.principleAmount)",
-            "Interest (%)": "\(data.interestRate)",
-            "Payment/mo": "\(data.monthlyPay)",
-            "No. of Payments": "\(data.numOfPayments)"
+            ["Loan Amount", "\(data.principleAmount)"],
+            ["Interest (%)", "\(data.interestRate)"],
+            ["Payment/mo", "\(data.monthlyPay)"],
+            ["No. of Payments", "\(data.numOfPayments)"]
         ]
 
-        content.forEach { k,v in
+        content.forEach { arr in
             let hStack = UIStackView()
             hStack.axis = .horizontal
             hStack.distribution = .equalCentering
@@ -57,11 +58,11 @@ class HistoryTVC: UITableViewCell {
 
             let title = UILabel()
             title.font = UIFont(name: UIFont.ralewaySemiBold, size: 14)
-            title.text = k
+            title.text = arr[0]
 
             let value = UILabel()
             value.font = UIFont(name: UIFont.ralewayLight, size: 14)
-            value.text = v
+            value.text = arr[1]
 
             hStack.addArrangedSubview(title)
             hStack.addArrangedSubview(value)

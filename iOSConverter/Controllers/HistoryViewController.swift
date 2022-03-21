@@ -45,9 +45,28 @@ class HistoryViewController: UIViewController {
 
     private func retrieveData() {
         loans = UserDefaults.standard.loans.reversed()
+
         all.removeAll()
         all.append(contentsOf: loans)
+
         historyTableView.reloadData()
+    }
+
+    private func delete(at indexPath: IndexPath) {
+        let index = indexPath.row
+        loans.remove(at: index)
+        UserDefaults.standard.loans = loans
+    }
+
+    private func sortAll() -> [Persistable] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "IST")
+        dateFormatter.dateFormat = "dd MMM yyyy"
+
+        return all
+            .map { return ($0, dateFormatter.date(from: $0.createdAt)!) }
+            .sorted { $0.1 > $1.1 }
+            .map(\.0)
     }
 
     @IBAction func didChangeSection(_ sender: UISegmentedControl) {
@@ -84,9 +103,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTVC.identifier, for: indexPath) as? HistoryTVC {
             if selectedSegment == 2 {
-                cell.persistable = loans[indexPath.row]
+                cell.setup(data: loans[indexPath.row])
             } else if selectedSegment == 3 {
-                cell.persistable = all[indexPath.row]
+                cell.setup(data: all[indexPath.row])
             }
             return cell
         }
@@ -95,7 +114,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle  == .delete {
-            loans.remove(at: indexPath.row)
+            delete(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

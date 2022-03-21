@@ -142,13 +142,6 @@ extension Array where Element: LabelledTextfield {
     }
 }
 
-extension Array where Element: Persistable {
-    func resetAppend(contentsOf data: [[Persistable]]) -> [Persistable] {
-        return data.flatMap { $0 }
-    }
-
-}
-
 
 extension Double {
     func fixedTo(_ places: Int) -> Double {
@@ -159,11 +152,14 @@ extension Double {
 
 extension UIStackView {
     func clear() {
-        let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
-            self.removeArrangedSubview(subview)
-            return allSubviews + [subview]
+//        let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
+//            self.removeArrangedSubview(subview)
+//            return allSubviews + [subview]
+//        }
+//        NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
+//        removedSubviews.forEach({ $0.removeFromSuperview() })
+        self.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
         }
-        NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
-        removedSubviews.forEach({ $0.removeFromSuperview() })
     }
 }
