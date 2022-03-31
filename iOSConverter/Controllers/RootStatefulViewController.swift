@@ -12,6 +12,7 @@ class RootStatefulViewController: UIViewController {
     lazy var contentScrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.showsVerticalScrollIndicator = false
         return view
     }()
 
@@ -32,6 +33,14 @@ class RootStatefulViewController: UIViewController {
         keyboard.backgroundColor = .red
         keyboard.translatesAutoresizingMaskIntoConstraints = false
         return keyboard
+    }()
+
+    lazy var banner: Banner = {
+        let banner = Banner()
+        banner.isHidden = true
+        banner.alpha = 0
+        banner.type = .none
+        return banner
     }()
 
     var keyboardBottomAnchor: NSLayoutConstraint!
@@ -122,10 +131,17 @@ class RootStatefulViewController: UIViewController {
             let calculateBarButton = UIButton(type: .system)
             calculateBarButton.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
             calculateBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
-            calculateBarButton.addTarget(self, action: #selector(calculate(_:)), for: .touchUpInside)
+            calculateBarButton.addTarget(self, action: #selector(calculate), for: .touchUpInside)
             let calculateBarButtonItem = UIBarButtonItem(customView: calculateBarButton)
             barButtons.append(calculateBarButtonItem)
         }
+
+        let resetBarButton = UIButton(type: .system)
+        resetBarButton.setImage(UIImage(systemName: "gobackward"), for: .normal)
+        resetBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
+        resetBarButton.addTarget(self, action: #selector(resetPage(_:)), for: .touchUpInside)
+        let resetBarButtonItem = UIBarButtonItem(customView: resetBarButton)
+        barButtons.append(resetBarButtonItem)
 
 
         self.navigationItem.rightBarButtonItems = barButtons
@@ -133,21 +149,15 @@ class RootStatefulViewController: UIViewController {
 
     @objc func onHelpButtonPress(_ sender: Any){}
 
-    @objc func calculate(_ sender: Any){}
+    @objc func calculate(){}
 
     @objc func saveCalculation(_ sender: Any) {}
+
+    @objc func resetPage(_ sender: Any) {}
 
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
         self.firstResponder = nil
-    }
-
-    func showOnboardingIfNeeded() {
-        if !UserDefaults.standard.bool(forKey: .didFirstLoad) {
-            if let vc = self.loadFromStoryboard("Tabbar", vc: .LandingViewController) as? LandingViewController {
-                present(vc, animated: true, completion: nil)
-            }
-        }
     }
 
     func showKeyboard() {
@@ -237,20 +247,36 @@ extension RootStatefulViewController: KeyboardDelegate {
             firstResponder?.text += "\(number)"
         }
         saveState()
+
+        if calculatorMode == .auto {
+            calculate()
+        }
     }
 
     func didPressDecimal() {
         guard let tfString = firstResponder?.text else { return }
         firstResponder?.text = Util.shared.applyDecimalIfNeeded(tfString)
         saveState()
+
+        if calculatorMode == .auto {
+            calculate()
+        }
     }
 
     func didPressDelete() {
         firstResponder?.removeFinal()
         saveState()
+
+        if calculatorMode == .auto {
+            calculate()
+        }
     }
 
     func willCloseKeyboard() {
         hideKeyboard()
     }
+}
+
+extension RootStatefulViewController {
+//    func showBanner(title:)
 }

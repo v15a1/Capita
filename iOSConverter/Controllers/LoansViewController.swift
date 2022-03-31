@@ -57,8 +57,10 @@ class LoansViewController: RootStatefulViewController {
 
         let values = [loanAmount, interest, monthlyPay, terms].compactMap { $0 }
         guard values.count >= 3 else {
-            self.showAlert(title: "Error", message: "Ensure that 3 out of the 4 textfields are not empty") {
-                self.highlightEmptyFields()
+            if calculatorMode == .manual {
+                self.showAlert(title: "Error", message: "Ensure that 3 out of the 4 textfields are not empty") {
+                    self.highlightEmptyFields()
+                }
             }
             return
         }
@@ -91,13 +93,21 @@ class LoansViewController: RootStatefulViewController {
         } else if terms == nil {
             emptyTextField = textfields.by(tag: 3)
             missingOperand = Util.shared.calculateLoanTerms(amount: loanAmount!, interest: interest!, monthlyPay: monthlyPay!) ?? 0
+            print(missingOperand)
             textfields.setText(String(Int(missingOperand)), forTag: 3)
             loan.numOfPayments = missingOperand.fixedTo(2)
         }
     }
 
-    override func calculate(_ sender: Any) {
+    override func calculate() {
         calculateMissingValue()
+    }
+
+    override func resetPage(_ sender: Any) {
+        textfields.forEach { tf in
+            tf.text = ""
+        }
+        hideKeyboard()
     }
 
     override func saveCalculation(_ sender: Any) {

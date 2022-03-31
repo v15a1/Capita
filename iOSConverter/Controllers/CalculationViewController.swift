@@ -16,14 +16,29 @@ class CalculationViewController: UIViewController {
         setup()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(UserDefaults.standard.bool(forKey: K.Keys.DidOnboard))
+        if !UserDefaults.standard.bool(forKey: K.Keys.DidOnboard) {
+            showOnboardingScreen()
+        }
+    }
+
     private func setup() {
         title = "Calculations"
 
         calculatorTableView.delegate = self
         calculatorTableView.dataSource = self
         calculatorTableView.separatorStyle = .none
+        calculatorTableView.showsVerticalScrollIndicator = false
 
         calculatorTableView.register(UINib(nibName: CalculationTVC.identifier, bundle: nil), forCellReuseIdentifier: CalculationTVC.identifier)
+    }
+
+    private func showOnboardingScreen() {
+        if let vc = loadFromStoryboard(K.Storyboard.Tabbar, vc: .LandingViewController) as? LandingViewController {
+            present(vc, animated: true)
+        }
     }
 }
 

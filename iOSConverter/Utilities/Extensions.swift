@@ -117,11 +117,6 @@ extension UIViewController {
     }
 }
 
-// MARK: UIFont Extensions
-extension String {
-    static let didFirstLoad: String = "DID_FIRST_LOAD"
-}
-
 extension Array where Element: LabelledTextfield {
 
     func by(tag: Int) -> LabelledTextfield {
@@ -131,6 +126,13 @@ extension Array where Element: LabelledTextfield {
     func valueByTag(tag: Int) -> Double? {
         if let element = self.first(where: { $0.tag == tag}) {
             return Double(element.inputTextfield.text!)
+        }
+        return nil
+    }
+
+    func getEmpty() -> LabelledTextfield? {
+        if let tf = self.first(where: { $0.text.isEmpty  == true }) {
+            return tf
         }
         return nil
     }

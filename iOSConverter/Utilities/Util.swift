@@ -72,10 +72,13 @@ final class Util {
         if Int(monthlyPay) <= Int(minMonthlyPay) {
             return nil
         }
+        print(minMonthlyPay)
 
         let interestPerMonth: Double = (interest / 100) / 12
         let mPayForInterest: Double = monthlyPay / interestPerMonth
         let terms = (log(mPayForInterest / (mPayForInterest - amount)) / log(1 + interestPerMonth))
+
+        print("int/mo: \(interestPerMonth), mpayI: \(mPayForInterest), t: \(terms)")
         return terms
     }
 }
