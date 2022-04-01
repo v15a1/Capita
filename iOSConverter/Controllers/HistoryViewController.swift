@@ -13,7 +13,7 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var historySegmentedController: UISegmentedControl!
     @IBOutlet weak var deleteAllButton: UIBarButtonItem!
 
-    var savings: [Loan]!
+    var savings: [Saving]!
     var mortgage: [Loan]!
     var loans: [Loan]!
     var all: [Persistable] = []
@@ -45,10 +45,12 @@ class HistoryViewController: UIViewController {
 
     private func retrieveData() {
         loans = UserDefaults.standard.loans.reversed()
+        savings = UserDefaults.standard.savings.reversed()
 
         all.removeAll()
         all.append(contentsOf: loans)
-
+        all.append(contentsOf: savings)
+        all = all.sorted(by: { $0.toDate().compare($1.toDate()) == .orderedDescending })
         historyTableView.reloadData()
     }
 
@@ -92,7 +94,9 @@ class HistoryViewController: UIViewController {
 
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if selectedSegment == 2 {
+        if selectedSegment == 0 {
+            return savings.count
+        } else if selectedSegment == 2 {
             return loans.count
         } else if selectedSegment == 3 {
             return all.count
@@ -102,7 +106,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTVC.identifier, for: indexPath) as? HistoryTVC {
-            if selectedSegment == 2 {
+            if selectedSegment == 0 {
+                cell.setup(data: savings[indexPath.row])
+            } else if selectedSegment == 2 {
                 cell.setup(data: loans[indexPath.row])
             } else if selectedSegment == 3 {
                 cell.setup(data: all[indexPath.row])

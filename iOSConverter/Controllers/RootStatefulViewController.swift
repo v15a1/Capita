@@ -60,6 +60,7 @@ class RootStatefulViewController: UIViewController, SaveImplementable {
 
     var emptyTextField: LabelledTextfield? {
         didSet {
+            state.emptyTFTag = emptyTextField?.tag
             highlightCalculatedTextField()
         }
     }
@@ -153,7 +154,11 @@ class RootStatefulViewController: UIViewController, SaveImplementable {
 
     @objc func saveCalculation(_ sender: Any) {}
 
-    @objc func resetPage(_ sender: Any) {}
+    @objc func resetPage(_ sender: Any) {
+        textfields.forEach { $0.text = "" }
+        state = SaveableState(values: [:])
+        saveState()
+    }
 
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
@@ -224,7 +229,7 @@ extension RootStatefulViewController: KeyboardDelegate {
         } else {
             firstResponder?.text += "\(number)"
         }
-        saveState()
+        saveStateOnEdit()
 
         if calculatorMode == .auto {
             calculate()
@@ -234,7 +239,7 @@ extension RootStatefulViewController: KeyboardDelegate {
     func didPressDecimal() {
         guard let tfString = firstResponder?.text else { return }
         firstResponder?.text = Util.shared.applyDecimalIfNeeded(tfString)
-        saveState()
+        saveStateOnEdit()
 
         if calculatorMode == .auto {
             calculate()
@@ -243,7 +248,7 @@ extension RootStatefulViewController: KeyboardDelegate {
 
     func didPressDelete() {
         firstResponder?.removeFinal()
-        saveState()
+        saveStateOnEdit()
 
         if calculatorMode == .auto {
             calculate()

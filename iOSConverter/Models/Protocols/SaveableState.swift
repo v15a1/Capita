@@ -10,6 +10,7 @@ import Foundation
 
 struct SaveableState: Codable {
     var values: [Int: String]
+    var emptyTFTag: Int?
 }
 
 extension SaveableState {

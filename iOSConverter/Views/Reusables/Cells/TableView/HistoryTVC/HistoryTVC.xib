@@ -11,6 +11,9 @@
         <array key="Raleway-Regular.ttf">
             <string>Raleway-Regular</string>
         </array>
+        <array key="Raleway-SemiBold.ttf">
+            <string>Raleway-SemiBold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -43,18 +46,27 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="K9I-zU-ttY">
-                                <rect key="frame" x="60" y="10" width="320" height="153"/>
+                                <rect key="frame" x="60" y="10" width="320" height="132.5"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5T-ej-Wyq">
+                                <rect key="frame" x="56" y="150.5" width="324" height="14.5"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="K9I-zU-ttY" secondAttribute="bottom" constant="10" id="0if-jz-flu"/>
                             <constraint firstItem="y5B-6q-tli" firstAttribute="top" secondItem="CXV-aA-DoM" secondAttribute="top" id="7bl-sq-WVf"/>
+                            <constraint firstAttribute="bottom" secondItem="h5T-ej-Wyq" secondAttribute="bottom" constant="8" id="A1g-NQ-t07"/>
+                            <constraint firstItem="h5T-ej-Wyq" firstAttribute="top" secondItem="K9I-zU-ttY" secondAttribute="bottom" constant="8" id="DuD-fx-rXk"/>
                             <constraint firstItem="y5B-6q-tli" firstAttribute="leading" secondItem="CXV-aA-DoM" secondAttribute="leading" id="Rvy-g3-rbB"/>
                             <constraint firstAttribute="trailing" secondItem="K9I-zU-ttY" secondAttribute="trailing" constant="20" id="X6g-Os-m6r"/>
                             <constraint firstItem="K9I-zU-ttY" firstAttribute="leading" secondItem="y5B-6q-tli" secondAttribute="trailing" constant="20" id="fFn-qG-PGA"/>
                             <constraint firstAttribute="bottom" secondItem="y5B-6q-tli" secondAttribute="bottom" id="mTI-pK-3IA"/>
+                            <constraint firstAttribute="trailing" secondItem="h5T-ej-Wyq" secondAttribute="trailing" constant="20" id="tHR-qz-Zae"/>
                             <constraint firstItem="K9I-zU-ttY" firstAttribute="top" secondItem="CXV-aA-DoM" secondAttribute="top" constant="10" id="tQF-LW-C9Y"/>
+                            <constraint firstItem="h5T-ej-Wyq" firstAttribute="leading" secondItem="y5B-6q-tli" secondAttribute="trailing" constant="16" id="vkU-yf-RDG"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -69,6 +81,7 @@
             <connections>
                 <outlet property="contentHolder" destination="CXV-aA-DoM" id="F7M-8k-M93"/>
                 <outlet property="contentVStack" destination="K9I-zU-ttY" id="hOf-PR-MUf"/>
+                <outlet property="createdAtLabel" destination="h5T-ej-Wyq" id="Qxd-0g-o4d"/>
                 <outlet property="typeLabel" destination="TXa-BP-NMi" id="csl-GR-RT5"/>
                 <outlet property="typeView" destination="y5B-6q-tli" id="lT6-so-Ak1"/>
             </connections>

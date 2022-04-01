@@ -15,6 +15,7 @@ class HistoryTVC: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var contentVStack: UIStackView!
     @IBOutlet weak var contentHolder: UIView!
+    @IBOutlet weak var createdAtLabel: UILabel!
 
     var persistable: Persistable!
 
@@ -36,6 +37,24 @@ class HistoryTVC: UITableViewCell {
     func setup(data: Persistable) {
         persistable = data
         setupLoanHistory()
+        setupSavingHistory()
+        createdAtLabel.text = persistable.toDate()
+    }
+
+    private func setupSavingHistory() {
+        guard let data = persistable as? Saving else { return }
+        typeLabel.text = "SAVING"
+        typeView.backgroundColor = UIColor.CrayonPeach.withAlphaComponent(0.3)
+        typeLabel.textColor = UIColor.CrayonPeach
+        let content = [
+            ["Amount", "\(data.principleAmount)"],
+            ["Interest (%)", "\(data.interestRate)"],
+            ["Compounds/yr", "\(data.compound)"],
+            ["Future value", "\(data.futureValue)"],
+            ["No. of Years", "\(data.numOfPayments)"]
+        ]
+
+        renderData(content)
     }
 
     private func setupLoanHistory() {
@@ -50,6 +69,10 @@ class HistoryTVC: UITableViewCell {
             ["No. of Payments", "\(data.numOfPayments)"]
         ]
 
+        renderData(content)
+    }
+
+    private func renderData(_ content: [[String]]) {
         content.forEach { arr in
             let hStack = UIStackView()
             hStack.axis = .horizontal
@@ -69,5 +92,4 @@ class HistoryTVC: UITableViewCell {
             contentVStack.addArrangedSubview(hStack)
         }
     }
-
 }

@@ -79,23 +79,25 @@ class SavingsViewController: RootStatefulViewController {
                 let denWOExp: Double = 1 + (saving.interestRate / 12)
                 let exp: Double = 12 * saving.numOfPayments
                 let denomenator: Double = pow(denWOExp, exp)
-                saving.principleAmount = saving.futureValue / denomenator
+                saving.principleAmount = (saving.futureValue / denomenator).fixedTo(2)
                 emptyTextField?.text = "\(saving.principleAmount)"
+                state.values[emptyTextField!.tag] = "\(saving.principleAmount)"
             } else if emptyTextField?.tag == 1 {
                 print("tag == 1")
                 let futureDivPrincipal: Double = saving.futureValue / saving.principleAmount
                 let monthsInYears: Double = saving.numOfPayments / 12
                 let exponent: Double = 1 / ( 12 * monthsInYears)
-                saving.interestRate = 12 * (pow(futureDivPrincipal, exponent) - 1)
+                saving.interestRate = (12 * (pow(futureDivPrincipal, exponent) - 1)).fixedTo(2)
                 emptyTextField?.text = "\(saving.interestRate)"
+                state.values[emptyTextField!.tag] = "\(saving.interestRate)"
             } else if emptyTextField?.tag == 4 {
                 print("tag == 3")
                 let numerator = log((saving.futureValue / saving.principleAmount))
                 let demonenator = 12 * (log((1 + (saving.interestRate / 12))))
-                saving.numOfPayments = (numerator / demonenator) / 12
+                let time = ((numerator / demonenator) / 12).fixedTo(2)
+                saving.numOfPayments = time > 0 ? time : 0
                 emptyTextField?.text = "\(saving.numOfPayments)"
-            } else {
-                print("Empty TF is ", emptyTextField?.tag)
+                state.values[emptyTextField!.tag] = "\(saving.numOfPayments)"
             }
             textfields.setText("12", forTag: 2)
         } else {
@@ -104,11 +106,17 @@ class SavingsViewController: RootStatefulViewController {
                 return }
             emptyTextField = emptyTf
         }
-
-
-
     }
 
+    override func saveCalculation(_ sender: Any) {
+        var history = UserDefaults.standard.savings
+        if history.count >= 5 {
+            _ = history.removeFirst()
+        }
+        history.append(saving)
+        UserDefaults.standard.savings = history
+    }
+    
     override func onHelpButtonPress(_ sender: Any) {
         self.showHelp(type: .savings)
     }

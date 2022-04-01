@@ -17,4 +17,14 @@ extension UserDefaults {
             UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: K.Keys.SavedLoans)
         }
     }
+
+    var savings: [Saving] {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: K.Keys.SavedSavings) else { return [] }
+            return (try? PropertyListDecoder().decode([Saving].self, from: data)) ?? []
+        }
+        set {
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: K.Keys.SavedSavings)
+        }
+    }
 }
