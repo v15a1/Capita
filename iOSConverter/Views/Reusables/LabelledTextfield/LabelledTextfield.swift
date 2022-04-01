@@ -26,6 +26,17 @@ class LabelledTextfield: UIView {
         }
     }
 
+    var isEnabled: Bool {
+        get {
+            return self.isUserInteractionEnabled
+        }
+
+        set {
+            disable()
+            self.isUserInteractionEnabled = newValue
+        }
+    }
+
     var text: String {
         get {
             return inputTextfield.text ?? ""
@@ -72,7 +83,6 @@ class LabelledTextfield: UIView {
         inputTextfield.layer.cornerRadius = 4
         inputTextfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         inputTextfield.leftViewMode = .always
-
     }
 
     func setup(label: String) {
@@ -128,6 +138,11 @@ class LabelledTextfield: UIView {
                 self.isHighlighted = false
             }
         }
+    }
+
+    func disable() {
+        self.inputTextfield.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+        self.inputTextfield.textColor  = UIColor.darkGray
     }
 }
 

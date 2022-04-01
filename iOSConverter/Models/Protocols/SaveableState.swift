@@ -8,11 +8,11 @@
 import Foundation
 
 
-struct SavedState: Codable {
+struct SaveableState: Codable {
     var values: [Int: String]
 }
 
-extension SavedState {
+extension SaveableState {
     func save(forKey: String) {
         do {
             let encoder = JSONEncoder()
@@ -23,11 +23,11 @@ extension SavedState {
         }
     }
 
-    static func getState(forKey: String) -> SavedState? {
+    static func getState(forKey: String) -> SaveableState? {
         if let data = UserDefaults.standard.data(forKey: forKey) {
             do {
                 let decoder = JSONDecoder()
-                let state = try decoder.decode(SavedState.self, from: data)
+                let state = try decoder.decode(SaveableState.self, from: data)
                 return state
             }
             catch {

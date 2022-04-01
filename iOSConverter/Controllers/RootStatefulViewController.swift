@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RootStatefulViewController: UIViewController {
+class RootStatefulViewController: UIViewController, SaveImplementable {
 
     lazy var contentScrollView: UIScrollView = {
         let view = UIScrollView()
@@ -47,7 +47,7 @@ class RootStatefulViewController: UIViewController {
     var textfields: [LabelledTextfield] = []
 
     var isKeyboardOpen: Bool = false
-    var state: SavedState!
+    var state = SaveableState( values: [:])
     var stateKey: String!
 
     var firstResponder: LabelledTextfield? {
@@ -71,7 +71,7 @@ class RootStatefulViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        restoreStateIfNeeded()
+        restoreState()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -190,14 +190,6 @@ class RootStatefulViewController: UIViewController {
         self.keyboard.isHidden = true
     }
 
-    func saveState() {
-        guard let stateKey = self.stateKey else {
-            fatalError("Nil value for stateKey")
-        }
-        state.values[firstResponder!.tag] = firstResponder?.text ?? ""
-        state.save(forKey: stateKey)
-    }
-
     func highlightCalculatedTextField() {
         if calculatorMode == .manual {
             emptyTextField?.highLightAnswer()
@@ -216,21 +208,7 @@ class RootStatefulViewController: UIViewController {
         }
     }
 
-    func restoreStateIfNeeded() {
-        let values = textfields.reduce(into: [Int: String]()) {
-            $0[$1.tag] = ""
-        }
-        state = SavedState(values: values)
-        guard let stateKey = self.stateKey else {
-            fatalError("Nil value for stateKey")
-        }
-        if let savedState = SavedState.getState(forKey: stateKey) {
-            for (i, tf) in textfields.enumerated() {
-                tf.text = savedState.values[i] ?? ""
-            }
-            state = savedState
-        }
-    }
+
 
 }
 

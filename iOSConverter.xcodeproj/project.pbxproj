@@ -16,6 +16,8 @@
 		4B2D445527E77542005915CF /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445427E77542005915CF /* Persistable.swift */; };
 		4B2D445727E7772A005915CF /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445627E7772A005915CF /* Loan.swift */; };
 		4B35D43727F1B8B100CBB5F0 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35D43627F1B8B100CBB5F0 /* Banner.swift */; };
+		4B38194B27F68FAC00171E96 /* LoanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B38194A27F68FAC00171E96 /* LoanState.swift */; };
+		4B38194D27F6940B00171E96 /* SaveImplementable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B38194C27F6940B00171E96 /* SaveImplementable.swift */; };
 		4B44C2E927E0A7CE00314399 /* HistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */; };
 		4B44C2EA27E0A7CE00314399 /* HistoryTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44C2E827E0A7CE00314399 /* HistoryTVC.xib */; };
 		4B44E01F27C79F1B0036B6D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E01E27C79F1B0036B6D6 /* AppDelegate.swift */; };
@@ -45,7 +47,7 @@
 		4B9C6DB627D0DF0600A7EC3C /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB227D0DD5700A7EC3C /* Raleway-Thin.ttf */; };
 		4B9C6DB727D0DF0600A7EC3C /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DAF27D0DD5700A7EC3C /* Raleway-Medium.ttf */; };
 		4B9C6DB827D0DF0600A7EC3C /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB027D0DD5700A7EC3C /* Raleway-SemiBold.ttf */; };
-		4BB32F2D27DA41680077C498 /* SavedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F2C27DA41680077C498 /* SavedState.swift */; };
+		4BB32F2D27DA41680077C498 /* SaveableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F2C27DA41680077C498 /* SaveableState.swift */; };
 		4BB32F2F27DA4F3D0077C498 /* RootStatefulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F2E27DA4F3D0077C498 /* RootStatefulViewController.swift */; };
 		4BB32F3127DA60E20077C498 /* MortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F3027DA60E20077C498 /* MortgageViewController.swift */; };
 		4BF3D66227DC7A0D00E3C13B /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3D66127DC7A0D00E3C13B /* HelpViewController.swift */; };
@@ -66,6 +68,8 @@
 		4B2D445427E77542005915CF /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
 		4B2D445627E7772A005915CF /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
 		4B35D43627F1B8B100CBB5F0 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		4B38194A27F68FAC00171E96 /* LoanState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanState.swift; sourceTree = "<group>"; };
+		4B38194C27F6940B00171E96 /* SaveImplementable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImplementable.swift; sourceTree = "<group>"; };
 		4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTVC.swift; sourceTree = "<group>"; };
 		4B44C2E827E0A7CE00314399 /* HistoryTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTVC.xib; sourceTree = "<group>"; };
 		4B44E01B27C79F1B0036B6D6 /* iOSConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +101,7 @@
 		4B9C6DB127D0DD5700A7EC3C /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		4B9C6DB227D0DD5700A7EC3C /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		4B9C6DB327D0DD5700A7EC3C /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
-		4BB32F2C27DA41680077C498 /* SavedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedState.swift; sourceTree = "<group>"; };
+		4BB32F2C27DA41680077C498 /* SaveableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveableState.swift; sourceTree = "<group>"; };
 		4BB32F2E27DA4F3D0077C498 /* RootStatefulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStatefulViewController.swift; sourceTree = "<group>"; };
 		4BB32F3027DA60E20077C498 /* MortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageViewController.swift; sourceTree = "<group>"; };
 		4BF3D66127DC7A0D00E3C13B /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -312,7 +316,7 @@
 			children = (
 				4B45297827D8E25400813D86 /* Protocols */,
 				4B45297927D8E27000813D86 /* Configuration.swift */,
-				4BB32F2C27DA41680077C498 /* SavedState.swift */,
+				4B38194A27F68FAC00171E96 /* LoanState.swift */,
 				4B2D445627E7772A005915CF /* Loan.swift */,
 				4B14914127F5E06E000A3A40 /* Saving.swift */,
 			);
@@ -322,6 +326,8 @@
 		4B45297827D8E25400813D86 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				4BB32F2C27DA41680077C498 /* SaveableState.swift */,
+				4B38194C27F6940B00171E96 /* SaveImplementable.swift */,
 				4B45297527D8E1FD00813D86 /* Enumerable.swift */,
 				4B2D445427E77542005915CF /* Persistable.swift */,
 			);
@@ -444,6 +450,7 @@
 			files = (
 				4BFA4AF227D99BD7001AB5A5 /* MoreInfoView.swift in Sources */,
 				4B096B2B27D3CFFD00B57AFB /* Util.swift in Sources */,
+				4B38194D27F6940B00171E96 /* SaveImplementable.swift in Sources */,
 				4B2D445527E77542005915CF /* Persistable.swift in Sources */,
 				4BB32F2F27DA4F3D0077C498 /* RootStatefulViewController.swift in Sources */,
 				4BF3D66227DC7A0D00E3C13B /* HelpViewController.swift in Sources */,
@@ -463,7 +470,8 @@
 				4B44E02127C79F1B0036B6D6 /* SceneDelegate.swift in Sources */,
 				4BB32F3127DA60E20077C498 /* MortgageViewController.swift in Sources */,
 				4B1D7A1827E8AB5000EF3506 /* PersistenceController.swift in Sources */,
-				4BB32F2D27DA41680077C498 /* SavedState.swift in Sources */,
+				4B38194B27F68FAC00171E96 /* LoanState.swift in Sources */,
+				4BB32F2D27DA41680077C498 /* SaveableState.swift in Sources */,
 				4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */,
 				4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */,
 				4B45296627D8B16B00813D86 /* HelpTVC.swift in Sources */,

@@ -130,7 +130,10 @@ extension Array where Element: LabelledTextfield {
         return nil
     }
 
-    func getEmpty() -> LabelledTextfield? {
+    mutating func getEmpty(_ excludingTag: Int? = nil) -> LabelledTextfield? {
+        if let tag = excludingTag {
+            self.removeAll { $0.tag == tag }
+        }
         if let tf = self.first(where: { $0.text.isEmpty  == true }) {
             return tf
         }
