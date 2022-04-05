@@ -13,7 +13,7 @@ enum HelpScreenType {
     case mortgate
 }
 
-class HelpViewController: UIViewController {
+class HelpViewController: RootViewController {
 
     var screen: HelpScreenType!
     @IBOutlet weak var descriptionLabel: UILabel!

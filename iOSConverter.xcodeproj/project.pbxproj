@@ -12,11 +12,9 @@
 		4B096B2B27D3CFFD00B57AFB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2A27D3CFFD00B57AFB /* Util.swift */; };
 		4B14914227F5E06E000A3A40 /* Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14914127F5E06E000A3A40 /* Saving.swift */; };
 		4B1D7A1627E8AA7000EF3506 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */; };
-		4B1D7A1827E8AB5000EF3506 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D7A1727E8AB5000EF3506 /* PersistenceController.swift */; };
 		4B2D445527E77542005915CF /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445427E77542005915CF /* Persistable.swift */; };
 		4B2D445727E7772A005915CF /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445627E7772A005915CF /* Loan.swift */; };
 		4B35D43727F1B8B100CBB5F0 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35D43627F1B8B100CBB5F0 /* Banner.swift */; };
-		4B38194B27F68FAC00171E96 /* LoanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B38194A27F68FAC00171E96 /* LoanState.swift */; };
 		4B38194D27F6940B00171E96 /* SaveImplementable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B38194C27F6940B00171E96 /* SaveImplementable.swift */; };
 		4B44C2E927E0A7CE00314399 /* HistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */; };
 		4B44C2EA27E0A7CE00314399 /* HistoryTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44C2E827E0A7CE00314399 /* HistoryTVC.xib */; };
@@ -30,8 +28,6 @@
 		4B44E03B27C7A3360036B6D6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E03A27C7A3360036B6D6 /* Keyboard.swift */; };
 		4B44E03E27C7AB060036B6D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E03D27C7AB060036B6D6 /* Extensions.swift */; };
 		4B44E04327C7C86C0036B6D6 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04227C7C86C0036B6D6 /* LandingViewController.swift */; };
-		4B44E04827C7C9990036B6D6 /* LandingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04627C7C9990036B6D6 /* LandingCVC.swift */; };
-		4B44E04927C7C9990036B6D6 /* LandingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E04727C7C9990036B6D6 /* LandingCVC.xib */; };
 		4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B44E04A27C7D7490036B6D6 /* Constants.swift */; };
 		4B45296627D8B16B00813D86 /* HelpTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45296427D8B16B00813D86 /* HelpTVC.swift */; };
 		4B45296727D8B16B00813D86 /* HelpTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B45296527D8B16B00813D86 /* HelpTVC.xib */; };
@@ -41,6 +37,7 @@
 		4B45297627D8E1FE00813D86 /* Enumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45297527D8E1FD00813D86 /* Enumerable.swift */; };
 		4B45297A27D8E27000813D86 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45297927D8E27000813D86 /* Configuration.swift */; };
 		4B45297C27D8FE7200813D86 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45297B27D8FE7200813D86 /* HistoryViewController.swift */; };
+		4B4B07D827FC438A0028DB23 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B07D727FC438A0028DB23 /* OnboardingView.swift */; };
 		4B681CA627DB34610030704D /* LoansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B681CA527DB34610030704D /* LoansViewController.swift */; };
 		4B9C6DB427D0DF0200A7EC3C /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB327D0DD5700A7EC3C /* Raleway-Light.ttf */; };
 		4B9C6DB527D0DF0600A7EC3C /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB127D0DD5700A7EC3C /* Raleway-Regular.ttf */; };
@@ -49,10 +46,11 @@
 		4B9C6DB827D0DF0600A7EC3C /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B9C6DB027D0DD5700A7EC3C /* Raleway-SemiBold.ttf */; };
 		4BB32F2D27DA41680077C498 /* SaveableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F2C27DA41680077C498 /* SaveableState.swift */; };
 		4BB32F2F27DA4F3D0077C498 /* RootStatefulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F2E27DA4F3D0077C498 /* RootStatefulViewController.swift */; };
-		4BB32F3127DA60E20077C498 /* MortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F3027DA60E20077C498 /* MortgageViewController.swift */; };
+		4BB32F3127DA60E20077C498 /* SimpleSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB32F3027DA60E20077C498 /* SimpleSavingsViewController.swift */; };
+		4BD767A327F7F27E008365BB /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BD767A227F7F14E008365BB /* Raleway-Bold.ttf */; };
+		4BD767A627F7F2BB008365BB /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD767A527F7F2BB008365BB /* RootViewController.swift */; };
+		4BE69F2827F78DB9009F375D /* Calculations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BE69F2727F78DB9009F375D /* Calculations.storyboard */; };
 		4BF3D66227DC7A0D00E3C13B /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3D66127DC7A0D00E3C13B /* HelpViewController.swift */; };
-		4BFA4AF227D99BD7001AB5A5 /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA4AF127D99BD7001AB5A5 /* MoreInfoView.swift */; };
-		4BFA4AF527D99BE6001AB5A5 /* MoreInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BFA4AF427D99BE6001AB5A5 /* MoreInfoView.xib */; };
 		4BFA4AF727D99DE1001AB5A5 /* CalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA4AF627D99DE1001AB5A5 /* CalculationViewController.swift */; };
 		4BFA4AFA27D99F8E001AB5A5 /* CalculationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA4AF827D99F8E001AB5A5 /* CalculationTVC.swift */; };
 		4BFA4AFB27D99F8E001AB5A5 /* CalculationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BFA4AF927D99F8E001AB5A5 /* CalculationTVC.xib */; };
@@ -64,11 +62,9 @@
 		4B096B2A27D3CFFD00B57AFB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4B14914127F5E06E000A3A40 /* Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saving.swift; sourceTree = "<group>"; };
 		4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
-		4B1D7A1727E8AB5000EF3506 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		4B2D445427E77542005915CF /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
 		4B2D445627E7772A005915CF /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
 		4B35D43627F1B8B100CBB5F0 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
-		4B38194A27F68FAC00171E96 /* LoanState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanState.swift; sourceTree = "<group>"; };
 		4B38194C27F6940B00171E96 /* SaveImplementable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImplementable.swift; sourceTree = "<group>"; };
 		4B44C2E727E0A7CE00314399 /* HistoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTVC.swift; sourceTree = "<group>"; };
 		4B44C2E827E0A7CE00314399 /* HistoryTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTVC.xib; sourceTree = "<group>"; };
@@ -84,8 +80,6 @@
 		4B44E03A27C7A3360036B6D6 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		4B44E03D27C7AB060036B6D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4B44E04227C7C86C0036B6D6 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
-		4B44E04627C7C9990036B6D6 /* LandingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingCVC.swift; sourceTree = "<group>"; };
-		4B44E04727C7C9990036B6D6 /* LandingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingCVC.xib; sourceTree = "<group>"; };
 		4B44E04A27C7D7490036B6D6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B45296427D8B16B00813D86 /* HelpTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTVC.swift; sourceTree = "<group>"; };
 		4B45296527D8B16B00813D86 /* HelpTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpTVC.xib; sourceTree = "<group>"; };
@@ -95,6 +89,7 @@
 		4B45297527D8E1FD00813D86 /* Enumerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerable.swift; sourceTree = "<group>"; };
 		4B45297927D8E27000813D86 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4B45297B27D8FE7200813D86 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		4B4B07D727FC438A0028DB23 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4B681CA527DB34610030704D /* LoansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansViewController.swift; sourceTree = "<group>"; };
 		4B9C6DAF27D0DD5700A7EC3C /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		4B9C6DB027D0DD5700A7EC3C /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -103,10 +98,11 @@
 		4B9C6DB327D0DD5700A7EC3C /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		4BB32F2C27DA41680077C498 /* SaveableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveableState.swift; sourceTree = "<group>"; };
 		4BB32F2E27DA4F3D0077C498 /* RootStatefulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStatefulViewController.swift; sourceTree = "<group>"; };
-		4BB32F3027DA60E20077C498 /* MortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageViewController.swift; sourceTree = "<group>"; };
+		4BB32F3027DA60E20077C498 /* SimpleSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSavingsViewController.swift; sourceTree = "<group>"; };
+		4BD767A227F7F14E008365BB /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		4BD767A527F7F2BB008365BB /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		4BE69F2727F78DB9009F375D /* Calculations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calculations.storyboard; sourceTree = "<group>"; };
 		4BF3D66127DC7A0D00E3C13B /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
-		4BFA4AF127D99BD7001AB5A5 /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
-		4BFA4AF427D99BE6001AB5A5 /* MoreInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreInfoView.xib; sourceTree = "<group>"; };
 		4BFA4AF627D99DE1001AB5A5 /* CalculationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationViewController.swift; sourceTree = "<group>"; };
 		4BFA4AF827D99F8E001AB5A5 /* CalculationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationTVC.swift; sourceTree = "<group>"; };
 		4BFA4AF927D99F8E001AB5A5 /* CalculationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalculationTVC.xib; sourceTree = "<group>"; };
@@ -168,7 +164,7 @@
 		4B44E01D27C79F1B0036B6D6 /* iOSConverter */ = {
 			isa = PBXGroup;
 			children = (
-				4B44E03F27C7AB0B0036B6D6 /* Utilities */,
+				4B44E03F27C7AB0B0036B6D6 /* Helpers */,
 				4B44E03227C79F7E0036B6D6 /* Startup */,
 				4B45297727D8E24E00813D86 /* Models */,
 				4B44E03327C79F8A0036B6D6 /* Controllers */,
@@ -192,15 +188,13 @@
 		4B44E03327C79F8A0036B6D6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4B44E02227C79F1B0036B6D6 /* SavingsViewController.swift */,
+				4B4B07D927FC43910028DB23 /* SwiftUI */,
+				4BD767A427F7F29D008365BB /* RootControllers */,
+				4BD767A727F7F3BA008365BB /* Calculations */,
 				4BF3D66127DC7A0D00E3C13B /* HelpViewController.swift */,
-				4BFA4AF627D99DE1001AB5A5 /* CalculationViewController.swift */,
 				4B44E04227C7C86C0036B6D6 /* LandingViewController.swift */,
 				4B45296827D8B32600813D86 /* SettingsViewController.swift */,
 				4B45297B27D8FE7200813D86 /* HistoryViewController.swift */,
-				4BB32F2E27DA4F3D0077C498 /* RootStatefulViewController.swift */,
-				4BB32F3027DA60E20077C498 /* MortgageViewController.swift */,
-				4B681CA527DB34610030704D /* LoansViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -228,6 +222,7 @@
 			children = (
 				4B44E02427C79F1B0036B6D6 /* Tabbar.storyboard */,
 				4B44E02927C79F1D0036B6D6 /* LaunchScreen.storyboard */,
+				4BE69F2727F78DB9009F375D /* Calculations.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -238,7 +233,6 @@
 				4B44E04427C7C96A0036B6D6 /* Cells */,
 				4B44E03C27C7A33B0036B6D6 /* Keyboard */,
 				4B096B2527D3A39100B57AFB /* LabelledTextfield */,
-				4BFA4AF327D99BDC001AB5A5 /* MoreInfo */,
 				4B35D43A27F1B8C100CBB5F0 /* Banner */,
 			);
 			path = Reusables;
@@ -253,33 +247,22 @@
 			path = Keyboard;
 			sourceTree = "<group>";
 		};
-		4B44E03F27C7AB0B0036B6D6 /* Utilities */ = {
+		4B44E03F27C7AB0B0036B6D6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				4B44E03D27C7AB060036B6D6 /* Extensions.swift */,
 				4B096B2A27D3CFFD00B57AFB /* Util.swift */,
 				4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */,
-				4B1D7A1727E8AB5000EF3506 /* PersistenceController.swift */,
 			);
-			path = Utilities;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		4B44E04427C7C96A0036B6D6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				4B45296327D8B12E00813D86 /* TableView */,
-				4B44E04527C7C9740036B6D6 /* CollectionView */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		4B44E04527C7C9740036B6D6 /* CollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				4B44E04627C7C9990036B6D6 /* LandingCVC.swift */,
-				4B44E04727C7C9990036B6D6 /* LandingCVC.xib */,
-			);
-			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		4B45296327D8B12E00813D86 /* TableView */ = {
@@ -316,7 +299,6 @@
 			children = (
 				4B45297827D8E25400813D86 /* Protocols */,
 				4B45297927D8E27000813D86 /* Configuration.swift */,
-				4B38194A27F68FAC00171E96 /* LoanState.swift */,
 				4B2D445627E7772A005915CF /* Loan.swift */,
 				4B14914127F5E06E000A3A40 /* Saving.swift */,
 			);
@@ -334,9 +316,18 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		4B4B07D927FC43910028DB23 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				4B4B07D727FC438A0028DB23 /* OnboardingView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		4B9C6DAD27D0DC5600A7EC3C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4BD767A227F7F14E008365BB /* Raleway-Bold.ttf */,
 				4B9C6DB327D0DD5700A7EC3C /* Raleway-Light.ttf */,
 				4B9C6DAF27D0DD5700A7EC3C /* Raleway-Medium.ttf */,
 				4B9C6DB127D0DD5700A7EC3C /* Raleway-Regular.ttf */,
@@ -346,13 +337,24 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		4BFA4AF327D99BDC001AB5A5 /* MoreInfo */ = {
+		4BD767A427F7F29D008365BB /* RootControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4BFA4AF127D99BD7001AB5A5 /* MoreInfoView.swift */,
-				4BFA4AF427D99BE6001AB5A5 /* MoreInfoView.xib */,
+				4BB32F2E27DA4F3D0077C498 /* RootStatefulViewController.swift */,
+				4BD767A527F7F2BB008365BB /* RootViewController.swift */,
 			);
-			path = MoreInfo;
+			path = RootControllers;
+			sourceTree = "<group>";
+		};
+		4BD767A727F7F3BA008365BB /* Calculations */ = {
+			isa = PBXGroup;
+			children = (
+				4B44E02227C79F1B0036B6D6 /* SavingsViewController.swift */,
+				4BFA4AF627D99DE1001AB5A5 /* CalculationViewController.swift */,
+				4BB32F3027DA60E20077C498 /* SimpleSavingsViewController.swift */,
+				4B681CA527DB34610030704D /* LoansViewController.swift */,
+			);
+			path = Calculations;
 			sourceTree = "<group>";
 		};
 		4BFA4AFC27D99F94001AB5A5 /* CalculationTVC */ = {
@@ -422,22 +424,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B44E04927C7C9990036B6D6 /* LandingCVC.xib in Resources */,
 				4B096B2927D3AA6A00B57AFB /* LabelledTextfield.xib in Resources */,
 				4B9C6DB627D0DF0600A7EC3C /* Raleway-Thin.ttf in Resources */,
+				4BE69F2827F78DB9009F375D /* Calculations.storyboard in Resources */,
 				4B44E02B27C79F1D0036B6D6 /* LaunchScreen.storyboard in Resources */,
 				4B44E02827C79F1D0036B6D6 /* Assets.xcassets in Resources */,
 				4B9C6DB727D0DF0600A7EC3C /* Raleway-Medium.ttf in Resources */,
 				4B9C6DB527D0DF0600A7EC3C /* Raleway-Regular.ttf in Resources */,
 				4B9C6DB427D0DF0200A7EC3C /* Raleway-Light.ttf in Resources */,
 				4B44E03927C7A1F10036B6D6 /* Keyboard.xib in Resources */,
-				4BFA4AF527D99BE6001AB5A5 /* MoreInfoView.xib in Resources */,
 				4B44C2EA27E0A7CE00314399 /* HistoryTVC.xib in Resources */,
 				4B44E02627C79F1B0036B6D6 /* Tabbar.storyboard in Resources */,
 				4B45296727D8B16B00813D86 /* HelpTVC.xib in Resources */,
 				4B45297327D8B78400813D86 /* ConfigurationTVC.xib in Resources */,
 				4B9C6DB827D0DF0600A7EC3C /* Raleway-SemiBold.ttf in Resources */,
 				4BFA4AFB27D99F8E001AB5A5 /* CalculationTVC.xib in Resources */,
+				4BD767A327F7F27E008365BB /* Raleway-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +450,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BFA4AF227D99BD7001AB5A5 /* MoreInfoView.swift in Sources */,
 				4B096B2B27D3CFFD00B57AFB /* Util.swift in Sources */,
 				4B38194D27F6940B00171E96 /* SaveImplementable.swift in Sources */,
 				4B2D445527E77542005915CF /* Persistable.swift in Sources */,
@@ -462,16 +463,15 @@
 				4B14914227F5E06E000A3A40 /* Saving.swift in Sources */,
 				4B44E02327C79F1B0036B6D6 /* SavingsViewController.swift in Sources */,
 				4B45297227D8B78400813D86 /* ConfigurationTVC.swift in Sources */,
-				4B44E04827C7C9990036B6D6 /* LandingCVC.swift in Sources */,
 				4B45297A27D8E27000813D86 /* Configuration.swift in Sources */,
 				4B45297C27D8FE7200813D86 /* HistoryViewController.swift in Sources */,
 				4B44E01F27C79F1B0036B6D6 /* AppDelegate.swift in Sources */,
 				4B44E03B27C7A3360036B6D6 /* Keyboard.swift in Sources */,
 				4B44E02127C79F1B0036B6D6 /* SceneDelegate.swift in Sources */,
-				4BB32F3127DA60E20077C498 /* MortgageViewController.swift in Sources */,
-				4B1D7A1827E8AB5000EF3506 /* PersistenceController.swift in Sources */,
-				4B38194B27F68FAC00171E96 /* LoanState.swift in Sources */,
+				4BB32F3127DA60E20077C498 /* SimpleSavingsViewController.swift in Sources */,
 				4BB32F2D27DA41680077C498 /* SaveableState.swift in Sources */,
+				4B4B07D827FC438A0028DB23 /* OnboardingView.swift in Sources */,
+				4BD767A627F7F2BB008365BB /* RootViewController.swift in Sources */,
 				4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */,
 				4B44E04B27C7D7490036B6D6 /* Constants.swift in Sources */,
 				4B45296627D8B16B00813D86 /* HelpTVC.swift in Sources */,

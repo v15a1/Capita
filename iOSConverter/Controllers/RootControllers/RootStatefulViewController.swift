@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RootStatefulViewController: UIViewController, SaveImplementable {
+class RootStatefulViewController: RootViewController, SaveImplementable {
 
     lazy var contentScrollView: UIScrollView = {
         let view = UIScrollView()
@@ -81,7 +81,6 @@ class RootStatefulViewController: UIViewController, SaveImplementable {
     }
 
     private func setup() {
-
         self.view.addSubview(contentScrollView)
         self.contentScrollView.addSubview(content)
         self.view.addSubview(keyboard)

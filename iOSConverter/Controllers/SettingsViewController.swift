@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: RootViewController {
 
     @IBOutlet weak var settingsTableView: UITableView!
 

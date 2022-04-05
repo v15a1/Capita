@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rgb-Bb-ks3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rgb-Bb-ks3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,9 +14,6 @@
         </array>
         <array key="Raleway-SemiBold.ttf">
             <string>Raleway-SemiBold</string>
-        </array>
-        <array key="Raleway-Thin.ttf">
-            <string>Raleway-Thin</string>
         </array>
     </customFonts>
     <scenes>
@@ -43,55 +40,14 @@
                     <view key="view" contentMode="scaleToFill" id="bNZ-Tg-teE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nkU-kc-wqz">
-                                <rect key="frame" x="20" y="124" width="374" height="90"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plA-pM-Iys">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="35.5"/>
-                                        <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway" pointSize="30"/>
-                                        <color key="textColor" name="NavyBlue"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capita" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJn-CG-B8G">
-                                        <rect key="frame" x="0.0" y="35.5" width="374" height="54.5"/>
-                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="46"/>
-                                        <color key="textColor" name="AccentColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFw-wH-EOn">
-                                <rect key="frame" x="20" y="782" width="374" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="ren-9I-Sbj"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="didPressActionButton:" destination="fga-nx-6oh" eventType="touchUpInside" id="0wl-bT-d74"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eoH-2D-G7N"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="eoH-2D-G7N" firstAttribute="trailing" secondItem="wFw-wH-EOn" secondAttribute="trailing" constant="20" id="1We-Tm-ReS"/>
-                            <constraint firstItem="nkU-kc-wqz" firstAttribute="leading" secondItem="eoH-2D-G7N" secondAttribute="leading" constant="20" id="8Gc-Xa-PVw"/>
-                            <constraint firstItem="nkU-kc-wqz" firstAttribute="top" secondItem="eoH-2D-G7N" secondAttribute="top" constant="80" id="ejx-xV-tqT"/>
-                            <constraint firstItem="wFw-wH-EOn" firstAttribute="leading" secondItem="eoH-2D-G7N" secondAttribute="leading" constant="20" id="kAK-wv-1YV"/>
-                            <constraint firstItem="eoH-2D-G7N" firstAttribute="trailing" secondItem="nkU-kc-wqz" secondAttribute="trailing" constant="20" id="t3g-Ch-qoK"/>
-                            <constraint firstItem="wFw-wH-EOn" firstAttribute="bottom" secondItem="eoH-2D-G7N" secondAttribute="bottom" constant="-20" id="wMw-8y-dmO"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aVx-8W-F5V"/>
-                    <connections>
-                        <outlet property="actionButton" destination="wFw-wH-EOn" id="UOf-Uh-iiD"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wtw-1T-mMh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1352" y="-44"/>
+            <point key="canvasLocation" x="-1352.1739130434785" y="-44.196428571428569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qwn-Lx-cqm">
@@ -102,6 +58,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="NavyBlue"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
                                 <color key="value" name="LightBlue"/>
@@ -181,6 +138,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="tEU-Wj-2Zc">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="NavyBlue"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -191,15 +149,15 @@
             </objects>
             <point key="canvasLocation" x="-184" y="-790"/>
         </scene>
-        <!--Mortgage View Controller-->
+        <!--Simple Savings View Controller-->
         <scene sceneID="aks-1Z-hJw">
             <objects>
-                <viewController id="GrA-nd-nte" customClass="MortgageViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GrA-nd-nte" customClass="SimpleSavingsViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K98-OP-xuT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="gX7-Sl-LA5"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="be2-qz-uLo"/>
                 </viewController>
@@ -398,9 +356,6 @@
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gearshape.circle.fill" catalog="system" width="128" height="121"/>
         <image name="trash" catalog="system" width="121" height="128"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="LightBlue">
             <color red="0.28600001335144043" green="0.77300000190734863" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -409,9 +364,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

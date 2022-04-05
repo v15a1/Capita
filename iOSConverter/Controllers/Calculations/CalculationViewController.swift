@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwiftUI
 
-class CalculationViewController: UIViewController {
+class CalculationViewController: RootViewController {
 
     @IBOutlet weak var calculatorTableView: UITableView!
 
@@ -37,6 +38,18 @@ class CalculationViewController: UIViewController {
 
     private func showOnboardingScreen() {
         if let vc = loadFromStoryboard(K.Storyboard.Tabbar, vc: .LandingViewController) as? LandingViewController {
+            let child = UIHostingController(rootView: OnboardingView())
+            child.view.translatesAutoresizingMaskIntoConstraints = false
+            vc.view.addSubview(child.view)
+
+            child.view.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor).isActive = true
+            child.view.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor).isActive = true
+            child.view.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor).isActive = true
+            child.view.topAnchor.constraint(equalTo: vc.view.topAnchor).isActive = true
+            
+            child.view.frame = vc.view.bounds
+            vc.addChild(child)
+            vc.isModalInPresentation = true
             present(vc, animated: true)
         }
     }
@@ -52,17 +65,17 @@ extension CalculationViewController: UITableViewDataSource, UITableViewDelegate 
             cell.selectionStyle = .none
             if indexPath.row == 0 {
 //                cell.image = UIImage(named: "dog")
-                cell.title = "Savings"
+                cell.title = "Compound Savings"
                 cell.contentDescriptor = "Calculate your savings"
                 cell.tint = .CrayonPeach
             } else if indexPath.row == 1 {
 //                cell.image = UIImage(named: "star")
-                cell.title = "Mortgage "
+                cell.title = "Simple Savings"
                 cell.contentDescriptor = "Calculate your Mortgage based on the interest"
                 cell.tint = .CrayonBlue
             } else if indexPath.row == 2 {
 //                cell.image = UIImage(named: "dog")
-                cell.title = "Loans"
+                cell.title = "Mortgage & Loans"
                 cell.contentDescriptor = "Find various values for a given loan"
                 cell.tint = .CrayonPurple
             } else if indexPath.row == 3 {

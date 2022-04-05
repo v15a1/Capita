@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: RootViewController {
 
     @IBOutlet weak var historyTableView: UITableView!
     @IBOutlet weak var historySegmentedController: UISegmentedControl!
@@ -60,17 +60,6 @@ class HistoryViewController: UIViewController {
         UserDefaults.standard.loans = loans
     }
 
-    private func sortAll() -> [Persistable] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "IST")
-        dateFormatter.dateFormat = "dd MMM yyyy"
-
-        return all
-            .map { return ($0, dateFormatter.date(from: $0.createdAt)!) }
-            .sorted { $0.1 > $1.1 }
-            .map(\.0)
-    }
-
     @IBAction func didChangeSection(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 2:
@@ -80,7 +69,9 @@ class HistoryViewController: UIViewController {
         default:
             deleteAllButton.isEnabled = false
         }
-        historyTableView.reloadData()
+        UIView.transition(with: historyTableView, duration: 0.2, options: .transitionCrossDissolve, animations: {
+            self.historyTableView.reloadData()
+        }, completion: nil)
     }
     @IBAction func didPressDeleteAll(_ sender: Any) {
         self.showAlert(title: "Delete All?", message: "Are you sure you want to delete all the previous calculations?") {
