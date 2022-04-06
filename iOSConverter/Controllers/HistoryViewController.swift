@@ -51,6 +51,8 @@ class HistoryViewController: RootViewController {
         all.append(contentsOf: loans)
         all.append(contentsOf: savings)
         all = all.sorted(by: { $0.toDate().compare($1.toDate()) == .orderedDescending })
+        
+        setDeleteAllButton()
         historyTableView.reloadData()
     }
 
@@ -59,27 +61,81 @@ class HistoryViewController: RootViewController {
         loans.remove(at: index)
         UserDefaults.standard.loans = loans
     }
-
-    @IBAction func didChangeSection(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 2:
-            deleteAllButton.isEnabled = !loans.isEmpty
-        case 3:
-            deleteAllButton.isEnabled = !all.isEmpty
-        default:
-            deleteAllButton.isEnabled = false
-        }
+    
+    private func animatedReload() {
         UIView.transition(with: historyTableView, duration: 0.2, options: .transitionCrossDissolve, animations: {
             self.historyTableView.reloadData()
         }, completion: nil)
     }
+    
+    private func setDeleteAllButton() {
+        switch historySegmentedController.selectedSegmentIndex {
+        case 0:
+            deleteAllButton.isEnabled = !savings.isEmpty
+            setEmptyViewIfNeeded(condition: savings.isEmpty, message: "No savings have been stored\n:(")
+        case 1:
+            setEmptyViewIfNeeded(condition: false, message: "No savings have been stored\n:(")
+            return
+        case 2:
+            deleteAllButton.isEnabled = !loans.isEmpty
+            setEmptyViewIfNeeded(condition: loans.isEmpty, message: "No loans have been stored\n:(")
+        case 3:
+            deleteAllButton.isEnabled = !all.isEmpty
+            setEmptyViewIfNeeded(condition: all.isEmpty, message: "No items have been stored\n:(")
+        default:
+            deleteAllButton.isEnabled = false
+        }
+    }
+    
+    private func setEmptyViewIfNeeded(condition: Bool, message: String) {
+        historyTableView.restore()
+        DispatchQueue.main.async {
+            if condition {
+                self.historyTableView.setEmptyMessage(message)
+            } else {
+                self.historyTableView.restore()
+            }
+        }
+        historyTableView.reloadData()
+    }
+
+    @IBAction func didChangeSection(_ sender: UISegmentedControl) {
+        setDeleteAllButton()
+        animatedReload()
+    }
+    
     @IBAction func didPressDeleteAll(_ sender: Any) {
-        self.showAlert(title: "Delete All?", message: "Are you sure you want to delete all the previous calculations?") {
-            //Delete
+        let selectedIdx = historySegmentedController.selectedSegmentIndex
+        let segmentedTitle = historySegmentedController.titleForSegment(at: selectedIdx)!
+        self.showAlert(title: "Delete \(selectedIdx != 3 ? "all \(segmentedTitle)" : "All")?", message: "Are you sure you want to delete all the previous \(selectedIdx != 3 ? "\(segmentedTitle)" : "") calculations?") {
+            self.deleteAllBySegment(index: selectedIdx)
         } cancel: {
             return
         }
-
+    }
+    
+    private func deleteAllBySegment(index: Int) {
+        switch index {
+        case 0:
+            UserDefaults.standard.savings = []
+            savings.removeAll()
+        case 1:
+            return
+        case 2:
+            UserDefaults.standard.loans = []
+            loans.removeAll()
+        case 3:
+            UserDefaults.standard.loans = []
+            UserDefaults.standard.savings = []
+            loans.removeAll()
+            savings.removeAll()
+        default:
+            return
+        }
+        animatedReload()
+        showAlert(title: "Success!", message: "The history has been successfully deleted") {
+            self.setDeleteAllButton()
+        }
     }
 }
 

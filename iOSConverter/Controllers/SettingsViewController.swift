@@ -65,7 +65,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            return 1
         } else {
             return 3
         }
@@ -82,26 +82,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                     cell.selectionStyle = .none
                     return cell
                 }
-            } else if indexPath.row == 1 {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: ConfigurationTVC.identifier, for: indexPath) as? ConfigurationTVC {
-                    cell.configLabel.text = "Precision"
-                    cell.delegate = self
-                    cell.type = .precision
-                    cell.setSegment(self.precision)
-                    cell.selectionStyle = .none
-                    return cell
-                }
-            } else {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: ConfigurationTVC.identifier, for: indexPath) as? ConfigurationTVC {
-                    cell.configLabel.text = "Calculator Mode"
-                    cell.delegate = self
-                    cell.type = .calculation
-                    cell.setSegment(self.calcMode)
-                    cell.selectionStyle = .none
-                    return cell
-                }
             }
-
             return UITableViewCell()
         } else {
             let content = helpContent[indexPath.row]

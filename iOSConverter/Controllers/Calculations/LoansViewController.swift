@@ -47,6 +47,7 @@ class LoansViewController: RootStatefulViewController {
             content.addArrangedSubview(textfield)
             textfields.append(textfield)
         }
+        selector.setMenuData(data: textfieldLabels)
     }
 
     private func calculateMissingValue() {
@@ -57,22 +58,14 @@ class LoansViewController: RootStatefulViewController {
 
         let values = [loanAmount, interest, monthlyPay, terms].compactMap { $0 }
         guard values.count >= 3 else {
-            if calculatorMode == .manual {
-                self.showAlert(title: "Error", message: "Ensure that 3 out of the 4 textfields are not empty") {
-                    self.highlightEmptyFields()
-                }
-            }
             return
         }
-
 
         loan.principleAmount = loanAmount ?? 0
         loan.interestRate = interest ?? 0
         loan.monthlyPay = monthlyPay ?? 0
         loan.numOfPayments = terms ?? 0
 
-
-        resetEmptyFields()
         var missingOperand: Double = 0
 
         if loanAmount == nil {
@@ -93,7 +86,7 @@ class LoansViewController: RootStatefulViewController {
         } else if terms == nil {
             emptyTextField = textfields.by(tag: 3)
             missingOperand = Util.shared.calculateLoanTerms(amount: loanAmount!, interest: interest!, monthlyPay: monthlyPay!) ?? 0
-            print(missingOperand)
+            print("missingOperand: ", missingOperand)
             textfields.setText(String(Int(missingOperand)), forTag: 3)
             loan.numOfPayments = missingOperand.fixedTo(2)
         }
@@ -111,23 +104,35 @@ class LoansViewController: RootStatefulViewController {
     }
 
     override func saveCalculation(_ sender: Any) {
-        var history = UserDefaults.standard.loans
-        if history.count >= 5 {
-            _ = history.removeFirst()
+        if textfields.isSavable {
+            var history = UserDefaults.standard.loans
+            if history.count >= 5 {
+                _ = history.removeFirst()
+            }
+            history.append(loan)
+            UserDefaults.standard.loans = history
+            showAlert(title: "Saved", message: "Your loan has been saved")
+        } else {
+            showAlert(title: "Whoops!", message: "Your loan could not be saved. Please check if all the necessary fields have been filled")
         }
-        history.append(loan)
-        UserDefaults.standard.loans = history
     }
 }
 
 extension LoansViewController: LabelledTextfieldProtocol {
     func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield) {
+        if selectedParameterIndex < 0 {
+            showAlert(title: "Whoops!", message: "Please select a parameter to calculate") {
+                self.resignFirstResponder()
+            }
+            return
+        }
+        !isKeyboardOpen ? showKeyboard() : nil
+        isKeyboardOpen = true
         firstResponder = labelledTextfield
-        showKeyboard()
     }
 
     func didResignFirstResponder(_ labelledTextfield: LabelledTextfield) {
-        hideKeyboard()
+        isKeyboardOpen = false
     }
 
 

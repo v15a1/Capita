@@ -19,7 +19,6 @@ class CalculationViewController: RootViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(UserDefaults.standard.bool(forKey: K.Keys.DidOnboard))
         if !UserDefaults.standard.bool(forKey: K.Keys.DidOnboard) {
             showOnboardingScreen()
         }

@@ -13,6 +13,7 @@ protocol SaveImplementable {
     func restoreState()
 }
 
+
 extension SaveImplementable where Self: RootStatefulViewController {
 
     func saveState() {
@@ -23,7 +24,11 @@ extension SaveImplementable where Self: RootStatefulViewController {
         textfields.forEach {
             state.values[$0.tag] = $0.text
         }
-        state.save(forKey: stateKey)
+        state.save(forKey: stateKey) { [weak self] _, error in
+            if let error = error {
+                self?.showAlert(title: "Whoops!", message: "An error occured trying to save the state. Error: \(error.localizedDescription)")
+            }
+        }
     }
     
     func saveStateOnEdit() {
@@ -31,7 +36,12 @@ extension SaveImplementable where Self: RootStatefulViewController {
             fatalError("Nil value for stateKey")
         }
         state.values[firstResponder!.tag] = firstResponder?.text ?? ""
-        state.save(forKey: stateKey)
+        state.save(forKey: stateKey) { [weak self] _, error in
+            if let error = error {
+                self?.showAlert(title: "Whoops!", message: "An error occured trying to save the state. Error: \(error.localizedDescription)")
+            }
+             
+        }
     }
 
     func restoreState() {
@@ -39,10 +49,10 @@ extension SaveImplementable where Self: RootStatefulViewController {
             fatalError("Nil value for stateKey")
         }
 
-
-        if let savedState = SaveableState.getState(forKey: stateKey), let tf = textfields.first(where: { $0.tag == savedState.emptyTFTag }) {
+        if let savedState = SaveState.getState(forKey: stateKey), let tf = textfields.first(where: { $0.tag == savedState.emptyTFTag }) {
             emptyTextField = tf
-
+            selectedParameterIndex = savedState.emptyTFTag ?? 0
+            
             for (i, tf) in textfields.enumerated() {
                 tf.text = savedState.values[i] ?? ""
             }

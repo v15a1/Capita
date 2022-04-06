@@ -32,14 +32,24 @@ class LabelledTextfield: UIView {
         }
 
         set {
-            disable()
             self.isUserInteractionEnabled = newValue
+            newValue ? enable() : disable()
+        }
+    }
+    
+    var highlight: Bool {
+        get {
+            return isHighlighted
+        }
+        
+        set {
+             
         }
     }
 
-    var text: String {
+    var text: String? {
         get {
-            return inputTextfield.text ?? ""
+            return inputTextfield.text
         }
 
         set {
@@ -55,6 +65,12 @@ class LabelledTextfield: UIView {
 
         set {
             inputLabel.text = newValue
+        }
+    }
+    
+    var isEmpty: Bool {
+        get {
+            return (inputLabel.text?.isEmpty ?? false)
         }
     }
 
@@ -117,19 +133,6 @@ class LabelledTextfield: UIView {
         }
     }
 
-    func highlightEmpty() {
-        isHighlighted = true
-        inputTextfield.layer.borderColor = UIColor.systemRed.cgColor
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
-            self.inputTextfield.layer.borderWidth = 2
-            self.inputTextfield.backgroundColor = UIColor.systemRed.withAlphaComponent(0.2)
-        } completion: { _ in
-            UIView.animate(withDuration: 1.2) {
-                self.inputTextfield.backgroundColor = UIColor.lightGrey
-            }
-        }
-    }
-
     func removeHighlight() {
         if isHighlighted {
             UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
@@ -140,9 +143,14 @@ class LabelledTextfield: UIView {
         }
     }
 
-    func disable() {
+    private func disable() {
         self.inputTextfield.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
         self.inputTextfield.textColor  = UIColor.darkGray
+    }
+    
+    private func enable() {
+        self.inputTextfield.backgroundColor = UIColor.lightGrey
+        self.inputTextfield.textColor  = UIColor.navyBlue
     }
 }
 
@@ -158,8 +166,8 @@ extension LabelledTextfield: UITextFieldDelegate {
 
 extension LabelledTextfield {
     func removeFinal() {
-        if text.count > 0 {
-            _ = text.removeLast()
+        if (text?.count ?? 0) > 0 {
+            _ = text!.removeLast()
         }
     }
 }

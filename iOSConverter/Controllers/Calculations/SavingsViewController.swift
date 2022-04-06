@@ -36,6 +36,7 @@ class SavingsViewController: RootStatefulViewController {
     private func setup() {
         stateKey = K.Keys.SavedLoansState
         navigationItem.largeTitleDisplayMode = .never
+        var menuItems = [String]()
         for (idx, titleString) in textfieldLabels.enumerated() {
             let textfield = LabelledTextfield()
             textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -46,12 +47,15 @@ class SavingsViewController: RootStatefulViewController {
                 textfield.isEnabled = false
                 textfield.text = "12"
                 state.values[idx] = "12"
+            } else {
+                menuItems.append(titleString)
             }
             textfield.title = titleString
             content.addArrangedSubview(textfield)
             textfields.append(textfield)
         }
         restoreState()
+        selector.setMenuData(data: menuItems)
     }
 
     override func calculate() {
@@ -109,12 +113,18 @@ class SavingsViewController: RootStatefulViewController {
     }
 
     override func saveCalculation(_ sender: Any) {
-        var history = UserDefaults.standard.savings
-        if history.count >= 5 {
-            _ = history.removeFirst()
+        if textfields.isSavable {
+            var history = UserDefaults.standard.savings
+            if history.count >= 5 {
+                _ = history.removeFirst()
+            }
+            history.append(saving)
+            UserDefaults.standard.savings = history
+            showAlert(title: "Saved", message: "Your calculation for compound savings has been saved")
+        } else {
+            showAlert(title: "Whoops!", message: "Your loan could not be saved. Please check if all the necessary fields have been filled")
         }
-        history.append(saving)
-        UserDefaults.standard.savings = history
+
     }
     
     override func onHelpButtonPress(_ sender: Any) {
@@ -125,6 +135,12 @@ class SavingsViewController: RootStatefulViewController {
 
 extension SavingsViewController: LabelledTextfieldProtocol {
     func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield) {
+        if selectedParameterIndex < 0 {
+            showAlert(title: "Whoops!", message: "Please select a parameter to calculate") {
+                self.resignFirstResponder()
+            }
+            return
+        }
         !isKeyboardOpen ? showKeyboard() : nil
         isKeyboardOpen = true
         firstResponder = labelledTextfield

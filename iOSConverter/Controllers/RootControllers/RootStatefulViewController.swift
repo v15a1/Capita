@@ -35,20 +35,25 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         return keyboard
     }()
 
-    lazy var banner: Banner = {
-        let banner = Banner()
-        banner.isHidden = true
-        banner.alpha = 0
-        banner.type = .none
-        return banner
+    lazy var selector: SelectorMenu  = {
+        let selector = SelectorMenu()
+        selector.delegate = self
+        selector.title = "Parameter to Calculate"
+        return selector
     }()
 
     var keyboardBottomAnchor: NSLayoutConstraint!
     var textfields: [LabelledTextfield] = []
 
     var isKeyboardOpen: Bool = false
-    var state = SaveableState( values: [:])
+    var state = SaveState( values: [:])
     var stateKey: String!
+    
+    var selectedParameterIndex: Int = -1 {
+        didSet {
+            selector.selection = selectedParameterIndex
+        }
+    }
 
     var firstResponder: LabelledTextfield? {
         didSet {
@@ -60,13 +65,9 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
 
     var emptyTextField: LabelledTextfield? {
         didSet {
+            emptyTextField?.isEnabled = false
             state.emptyTFTag = emptyTextField?.tag
-            highlightCalculatedTextField()
         }
-    }
-
-    var calculatorMode: Calculate {
-        return Calculate(rawValue: UserDefaults.standard.string(forKey: K.Keys.AutoCalculate) ?? "") ?? .manual
     }
 
     override func viewDidLoad() {
@@ -104,6 +105,8 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
             content.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -40),
         ])
 
+        content.addArrangedSubview(selector)
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
         self.contentScrollView.addGestureRecognizer(tapGesture)
         self.view.backgroundColor = .systemBackground
@@ -127,15 +130,6 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         let saveBarButtonItem = UIBarButtonItem(customView: saveBarButton)
         barButtons.append(saveBarButtonItem)
 
-        if calculatorMode == .manual {
-            let calculateBarButton = UIButton(type: .system)
-            calculateBarButton.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-            calculateBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
-            calculateBarButton.addTarget(self, action: #selector(calculate), for: .touchUpInside)
-            let calculateBarButtonItem = UIBarButtonItem(customView: calculateBarButton)
-            barButtons.append(calculateBarButtonItem)
-        }
-
         let resetBarButton = UIButton(type: .system)
         resetBarButton.setImage(UIImage(systemName: "gobackward"), for: .normal)
         resetBarButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
@@ -154,8 +148,12 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
     @objc func saveCalculation(_ sender: Any) {}
 
     @objc func resetPage(_ sender: Any) {
-        textfields.forEach { $0.text = "" }
-        state = SaveableState(values: [:])
+        textfields.forEach {
+            if $0.isEnabled {
+                $0.text = ""
+            }
+        }
+        state = SaveState(values: [:])
         saveState()
     }
 
@@ -193,27 +191,6 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         self.keyboard.alpha = 0
         self.keyboard.isHidden = true
     }
-
-    func highlightCalculatedTextField() {
-        if calculatorMode == .manual {
-            emptyTextField?.highLightAnswer()
-        }
-    }
-
-    func highlightEmptyFields() {
-        if calculatorMode == .manual {
-            textfields.filter { $0.text.isEmpty }.forEach { $0.highlightEmpty() }
-        }
-    }
-
-    func resetEmptyFields() {
-        if calculatorMode == .manual {
-            textfields.filter { $0.text.isEmpty }.forEach { $0.removeHighlight() }
-        }
-    }
-
-
-
 }
 
 extension RootStatefulViewController: KeyboardDelegate {
@@ -226,32 +203,25 @@ extension RootStatefulViewController: KeyboardDelegate {
         if number == 0 {
             firstResponder?.text = Util.shared.includeZeroIfNeeded(tfString)
         } else {
-            firstResponder?.text += "\(number)"
+            firstResponder?.text! += "\(number)"
         }
         saveStateOnEdit()
 
-        if calculatorMode == .auto {
-            calculate()
-        }
+        calculate()
     }
 
     func didPressDecimal() {
         guard let tfString = firstResponder?.text else { return }
         firstResponder?.text = Util.shared.applyDecimalIfNeeded(tfString)
         saveStateOnEdit()
-
-        if calculatorMode == .auto {
-            calculate()
-        }
+        calculate()
     }
 
     func didPressDelete() {
         firstResponder?.removeFinal()
         saveStateOnEdit()
 
-        if calculatorMode == .auto {
-            calculate()
-        }
+        calculate()
     }
 
     func willCloseKeyboard() {
@@ -259,6 +229,12 @@ extension RootStatefulViewController: KeyboardDelegate {
     }
 }
 
-extension RootStatefulViewController {
-//    func showBanner(title:)
+extension RootStatefulViewController: ParameterSelectorDelegate {
+    func didSelectMenuItem(selectedIndex: Int, item: String) {
+        selectedParameterIndex = selectedIndex
+        textfields.forEach { $0.isEnabled = true }
+        textfields[selectedIndex].isEnabled = false
+        state.emptyTFTag = selectedIndex
+    }
+    
 }

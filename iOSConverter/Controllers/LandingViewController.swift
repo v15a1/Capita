@@ -24,7 +24,7 @@ class LandingViewController: RootViewController {
 
     @IBAction func didPressActionButton(_ sender: Any) {
         dismiss(animated: true) {
-            UserDefaults.standard.set(true, forKey: K.Keys.DidOnboard)
+//            UserDefaults.standard.set(true, forKey: K.Keys.DidOnboard)
         }
     }
 }

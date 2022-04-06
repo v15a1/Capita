@@ -59,6 +59,7 @@ class CalculationTVC: UITableViewCell {
         container.layer.cornerRadius = K.View.CornerRadius
         container.layer.masksToBounds = true
         holderView.addSubview(slantedLabel)
+        sendSubviewToBack(slantedLabel)
     }
     
 }
