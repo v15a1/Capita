@@ -18,11 +18,12 @@ class SelectorMenu: UIView {
         return UIMenu(title: "Parameter", image: nil, identifier: nil, options: [], children: menuItems)
     }()
     
-    var data: [String]!
+    var data: [(name: String, index: Int)]!
     var selection: Int? {
         didSet {
             if !menuItems.isEmpty {
-                setText(self.data[self.selection ?? 0])
+                let item = data.first { $0.index == selection }!
+                setText(item.name)
             }
         }
     }
@@ -53,12 +54,12 @@ class SelectorMenu: UIView {
         commonInitilizer()
     }
     
-    func setMenuData(data: [String]) {
-        self.data = data
-        for (idx, str) in self.data.enumerated() {
-            let action = UIAction(title: str) { invoked in
-                self.delegate?.didSelectMenuItem(selectedIndex: idx, item: str)
-                self.setText(str)
+    func setMenuData(data: [(name: String, index: Int)]) {
+        self.data = data.reversed()
+        self.data.forEach { item in
+            let action = UIAction(title: item.name) { invoked in
+                self.delegate?.didSelectMenuItem(selectedIndex: item.index, item: item.name)
+                self.setText(item.name)
             }
             menuItems.append(action)
         }

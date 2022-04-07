@@ -9,16 +9,6 @@ import UIKit
 
 // MARK: UIView Extensions
 extension UIView {
-
-    var isDarkMode: Bool {
-        if #available(iOS 13.0, *) {
-            return self.traitCollection.userInterfaceStyle == .dark
-        }
-        else {
-            return false
-        }
-    }
-
     /// Loads the UIView from the XIB (Nib is the more popular name. It stems from Swifts predecessor -- Objective-C)
     /// - Parameter nibName: Name of the XIB/Nib in string
     /// - Returns: The UIView corresponding to the given `nibName`
@@ -109,7 +99,7 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    func showHelp(type: HelpScreenType) {
+    func showHelp(type: CalculationType) {
         if let vc = loadFromStoryboard(K.Storyboard.Tabbar, vc: .HelpViewController) as? HelpViewController {
             vc.screen = type
             present(vc, animated: true)
@@ -164,12 +154,6 @@ extension Double {
 
 extension UIStackView {
     func clear() {
-//        let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
-//            self.removeArrangedSubview(subview)
-//            return allSubviews + [subview]
-//        }
-//        NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
-//        removedSubviews.forEach({ $0.removeFromSuperview() })
         self.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
@@ -193,6 +177,5 @@ extension UITableView {
 
     func restore() {
         self.backgroundView = nil
-        self.separatorStyle = .singleLine
     }
 }

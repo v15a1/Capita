@@ -7,15 +7,9 @@
 
 import UIKit
 
-enum HelpScreenType {
-    case savings
-    case loans
-    case mortgate
-}
-
 class HelpViewController: RootViewController {
 
-    var screen: HelpScreenType!
+    var screen: CalculationType!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -26,21 +20,27 @@ class HelpViewController: RootViewController {
 
     private func setContentIfNeeded() {
         switch (screen) {
-        case .savings:
-            setSavingsHelpScreen()
-        case .loans:
+        case .compoundSaving:
+            setCompoundSavingsHelpScreen()
+        case .simpleSaving:
             return
-        case .mortgate:
+        case .loan:
             return
         case .none:
             return
         }
     }
 
-    private func setSavingsHelpScreen() {
-        titleLabel.text = "Help on Savings"
+    private func setCompoundSavingsHelpScreen() {
+        titleLabel.text = "Help on Compound Savings"
         descriptionLabel.text = K.Content.SavingsHelpContent
     }
+    
+    private func setSimpleSavingsHelpScreen() {
+        titleLabel.text = "Help on Simple Savings"
+        descriptionLabel.text = K.Content.SavingsHelpContent
+    }
+    
 
     @IBAction func didReadHelp(_ sender: UIButton) {
         self.dismiss(animated: true)

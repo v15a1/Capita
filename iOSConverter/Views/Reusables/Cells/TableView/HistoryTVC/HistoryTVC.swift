@@ -37,25 +37,46 @@ class HistoryTVC: UITableViewCell {
     func setup(data: Persistable) {
         persistable = data
         setupLoanHistory()
-        setupSavingHistory()
+        setupCompoundSavingHistory()
+        setupSimpleSavingHistory()
         createdAtLabel.text = persistable.toDate()
     }
 
-    private func setupSavingHistory() {
-        guard let data = persistable as? Saving else { return }
-        typeLabel.text = "SAVING"
+    private func setupCompoundSavingHistory() {
+        guard let data = persistable as? CompoundSaving else { return }
+        typeLabel.text = "COMPOUND"
         typeView.backgroundColor = UIColor.CrayonPeach.withAlphaComponent(0.3)
         typeLabel.textColor = UIColor.CrayonPeach
         let content = [
             ["Amount", "\(data.principleAmount)"],
             ["Interest (%)", "\(data.interestRate)"],
-            ["Compounds/yr", "\(data.compound)"],
+            ["Compounds/yr", "\(12)"],
             ["Future value", "\(data.futureValue)"],
-            ["No. of Years", "\(data.numOfPayments)"]
+            ["Terms", "\(data.terms)"],
+            ["Payment", "\(data.payment)"]
         ]
 
         renderData(content)
     }
+    
+    private func setupSimpleSavingHistory() {
+        guard let data = persistable as? SimpleSaving else {
+            return
+        }
+        typeLabel.text = "SIMPLE"
+        typeView.backgroundColor = UIColor.navyBlue.withAlphaComponent(0.3)
+        typeLabel.textColor = UIColor.navyBlue
+        let content = [
+            ["Amount", "\(data.principleAmount)"],
+            ["Interest (%)", "\(data.interestRate)"],
+            ["Compounds/yr", "\(12)"],
+            ["Future value", "\(data.futureValue)"],
+            ["Terms", "\(data.terms)"]
+        ]
+
+        renderData(content)
+    }
+    
 
     private func setupLoanHistory() {
         guard let data = persistable as? Loan else { return }
@@ -66,7 +87,7 @@ class HistoryTVC: UITableViewCell {
             ["Loan Amount", "\(data.principleAmount)"],
             ["Interest (%)", "\(data.interestRate)"],
             ["Payment/mo", "\(data.monthlyPay)"],
-            ["No. of Payments", "\(data.numOfPayments)"]
+            ["Terms", "\(data.terms)"]
         ]
 
         renderData(content)

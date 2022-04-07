@@ -101,11 +101,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 1 {
             switch (indexPath.row) {
             case 0:
-                showHelp(type: .savings)
+                showHelp(type: .compoundSaving)
             case 1:
-                showHelp(type: .mortgate)
+                showHelp(type: .simpleSaving)
             case 2:
-                showHelp(type: .loans)
+                showHelp(type: .loan)
             default:
                 return
             }

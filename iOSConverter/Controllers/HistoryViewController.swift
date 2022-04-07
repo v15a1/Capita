@@ -13,8 +13,8 @@ class HistoryViewController: RootViewController {
     @IBOutlet weak var historySegmentedController: UISegmentedControl!
     @IBOutlet weak var deleteAllButton: UIBarButtonItem!
 
-    var savings: [Saving]!
-    var mortgage: [Loan]!
+    var compoundSavings: [CompoundSaving]!
+    var simpleSavings: [SimpleSaving]!
     var loans: [Loan]!
     var all: [Persistable] = []
 
@@ -45,11 +45,13 @@ class HistoryViewController: RootViewController {
 
     private func retrieveData() {
         loans = UserDefaults.standard.loans.reversed()
-        savings = UserDefaults.standard.savings.reversed()
-
+        compoundSavings = UserDefaults.standard.compoundSavings.reversed()
+        simpleSavings = UserDefaults.standard.simpleSavings.reversed()
+        
         all.removeAll()
         all.append(contentsOf: loans)
-        all.append(contentsOf: savings)
+        all.append(contentsOf: compoundSavings)
+        all.append(contentsOf: simpleSavings)
         all = all.sorted(by: { $0.toDate().compare($1.toDate()) == .orderedDescending })
         
         setDeleteAllButton()
@@ -57,9 +59,18 @@ class HistoryViewController: RootViewController {
     }
 
     private func delete(at indexPath: IndexPath) {
+        let section = selectedSegment
         let index = indexPath.row
-        loans.remove(at: index)
-        UserDefaults.standard.loans = loans
+        if section == 0 {
+            compoundSavings.remove(at: index)
+            UserDefaults.standard.compoundSavings = compoundSavings
+        } else if section == 1 {
+            simpleSavings.remove(at: index)
+            UserDefaults.standard.simpleSavings = simpleSavings
+        } else if section == 2 {
+            loans.remove(at: index)
+            UserDefaults.standard.loans = loans
+        }
     }
     
     private func animatedReload() {
@@ -71,11 +82,11 @@ class HistoryViewController: RootViewController {
     private func setDeleteAllButton() {
         switch historySegmentedController.selectedSegmentIndex {
         case 0:
-            deleteAllButton.isEnabled = !savings.isEmpty
-            setEmptyViewIfNeeded(condition: savings.isEmpty, message: "No savings have been stored\n:(")
+            deleteAllButton.isEnabled = !compoundSavings.isEmpty
+            setEmptyViewIfNeeded(condition: compoundSavings.isEmpty, message: "No savings have been stored\n:(")
         case 1:
-            setEmptyViewIfNeeded(condition: false, message: "No savings have been stored\n:(")
-            return
+            deleteAllButton.isEnabled = !simpleSavings.isEmpty
+            setEmptyViewIfNeeded(condition: simpleSavings.isEmpty, message: "No savings have been stored\n:(")
         case 2:
             deleteAllButton.isEnabled = !loans.isEmpty
             setEmptyViewIfNeeded(condition: loans.isEmpty, message: "No loans have been stored\n:(")
@@ -117,18 +128,20 @@ class HistoryViewController: RootViewController {
     private func deleteAllBySegment(index: Int) {
         switch index {
         case 0:
-            UserDefaults.standard.savings = []
-            savings.removeAll()
+            UserDefaults.standard.compoundSavings = []
+            compoundSavings.removeAll()
         case 1:
-            return
+            UserDefaults.standard.simpleSavings = []
+            simpleSavings.removeAll()
         case 2:
             UserDefaults.standard.loans = []
             loans.removeAll()
         case 3:
             UserDefaults.standard.loans = []
-            UserDefaults.standard.savings = []
+            UserDefaults.standard.compoundSavings = []
+            UserDefaults.standard.simpleSavings = []
             loans.removeAll()
-            savings.removeAll()
+            compoundSavings.removeAll()
         default:
             return
         }
@@ -142,7 +155,9 @@ class HistoryViewController: RootViewController {
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedSegment == 0 {
-            return savings.count
+            return compoundSavings.count
+        } else if selectedSegment == 1 {
+            return simpleSavings.count
         } else if selectedSegment == 2 {
             return loans.count
         } else if selectedSegment == 3 {
@@ -154,7 +169,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTVC.identifier, for: indexPath) as? HistoryTVC {
             if selectedSegment == 0 {
-                cell.setup(data: savings[indexPath.row])
+                cell.setup(data: compoundSavings[indexPath.row])
+            } else if selectedSegment == 1 {
+                cell.setup(data: simpleSavings[indexPath.row])
             } else if selectedSegment == 2 {
                 cell.setup(data: loans[indexPath.row])
             } else if selectedSegment == 3 {
@@ -163,6 +180,14 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if selectedSegment == 3 {
+            return false
+        } else {
+            return true
+        }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

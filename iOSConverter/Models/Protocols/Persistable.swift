@@ -9,21 +9,20 @@ import Foundation
 import UIKit
 
 enum CalculationType: Int, Codable {
-    case saving
-    case mortgage
+    case compoundSaving
+    case simpleSaving
     case loan
 }
 
 protocol Persistable: Codable {
     var type: CalculationType { get }
-    var icon: String { get }
     var createdAt: String { get }
 }
 
 extension Persistable {
     func toDate() -> String? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd \t HH:mm:ssZZZZZ"
         let date = dateFormatter.date(from: self.createdAt)!
 
         dateFormatter.dateFormat = "HH:mm\tdd/MM/yyyy"

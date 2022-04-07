@@ -25,6 +25,8 @@ class LabelledTextfield: UIView {
             return inputTextfield.isFirstResponder
         }
     }
+    
+    var isConstant: Bool = false
 
     var isEnabled: Bool {
         get {

@@ -143,15 +143,15 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
 
     @objc func onHelpButtonPress(_ sender: Any){}
 
-    @objc func calculate(){}
+    @objc func calculate(){
+        state.save(forKey: stateKey)
+    }
 
     @objc func saveCalculation(_ sender: Any) {}
 
     @objc func resetPage(_ sender: Any) {
         textfields.forEach {
-            if $0.isEnabled {
-                $0.text = ""
-            }
+            $0.text = ""
         }
         state = SaveState(values: [:])
         saveState()
@@ -232,9 +232,12 @@ extension RootStatefulViewController: KeyboardDelegate {
 extension RootStatefulViewController: ParameterSelectorDelegate {
     func didSelectMenuItem(selectedIndex: Int, item: String) {
         selectedParameterIndex = selectedIndex
+        firstResponder = nil
         textfields.forEach { $0.isEnabled = true }
         textfields[selectedIndex].isEnabled = false
+        emptyTextField = textfields[selectedIndex]
         state.emptyTFTag = selectedIndex
+        state.save(forKey: stateKey)
     }
     
 }

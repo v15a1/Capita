@@ -18,13 +18,23 @@ extension UserDefaults {
         }
     }
 
-    var savings: [Saving] {
+    var compoundSavings: [CompoundSaving] {
         get {
-            guard let data = UserDefaults.standard.data(forKey: K.Keys.SavedSavings) else { return [] }
-            return (try? PropertyListDecoder().decode([Saving].self, from: data)) ?? []
+            guard let data = UserDefaults.standard.data(forKey: K.Keys.SavedCompoundSavings) else { return [] }
+            return (try? PropertyListDecoder().decode([CompoundSaving].self, from: data)) ?? []
         }
         set {
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: K.Keys.SavedSavings)
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: K.Keys.SavedCompoundSavings)
+        }
+    }
+    
+    var simpleSavings: [SimpleSaving] {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: K.Keys.SavedSimpleSavings) else { return [] }
+            return (try? PropertyListDecoder().decode([SimpleSaving].self, from: data)) ?? []
+        }
+        set {
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: K.Keys.SavedSimpleSavings)
         }
     }
 }
