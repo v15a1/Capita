@@ -29,24 +29,35 @@ struct OnboardingView: View {
             .padding()
             TabView(selection: $tabViewSelection) {
                 Group{
-                    Image("star1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .tag(0)
-                    Image("star2")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .tag(1)
-                    Image("star3")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .tag(2)
+                    VStack {
+                        (Text("Auto calculate your") + Text("\nfinances"))
+                            .multilineTextAlignment(.center)
+                            .font(.custom(UIFont.ralewaySemiBold, size: 26))
+                            .padding()
+                        Image("AutoCalculate")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.horizontal, 80)
+                    }
+                    .tag(0)
+                    VStack {
+                        (Text("Hard to keep everything in check?") + Text("\n\nDon't worry, we can save your data"))
+                            .multilineTextAlignment(.center)
+                            .font(.custom(UIFont.ralewaySemiBold, size: 26))
+                            .padding()
+                        Image("SaveData")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                        .padding(.horizontal, 80)
+                    }
+                    .tag(1)
+
                 }
             }
             .tabViewStyle(.page)
             .disabled(true)
             Button {
-                if tabViewSelection == 2 {
+                if tabViewSelection == 1 {
                     UserDefaults.standard.set(true, forKey: K.Keys.DidOnboard)
                     mode.wrappedValue.dismiss()
                 } else {
