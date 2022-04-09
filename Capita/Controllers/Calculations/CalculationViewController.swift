@@ -26,7 +26,6 @@ class CalculationViewController: RootViewController {
 
     private func setup() {
         title = "Calculations"
-
         calculatorTableView.delegate = self
         calculatorTableView.dataSource = self
         calculatorTableView.separatorStyle = .none

@@ -12,7 +12,8 @@ class HelpViewController: RootViewController {
     var screen: CalculationType!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-
+    @IBOutlet weak var closeButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setContentIfNeeded()
@@ -23,22 +24,30 @@ class HelpViewController: RootViewController {
         case .compoundSaving:
             setCompoundSavingsHelpScreen()
         case .simpleSaving:
-            return
+            setSimpleSavingsHelpScreen()
         case .loan:
-            return
+            setLoansHelpScreen()
         case .none:
             return
         }
     }
 
     private func setCompoundSavingsHelpScreen() {
-        titleLabel.text = "Help on Compound Savings"
-        descriptionLabel.text = K.Content.SavingsHelpContent
+        titleLabel.text = "Compound Savings"
+        descriptionLabel.text = K.Content.CompoundSavingsHelpContent
+        closeButton.tintColor = UIColor.CrayonPeach
     }
     
     private func setSimpleSavingsHelpScreen() {
-        titleLabel.text = "Help on Simple Savings"
-        descriptionLabel.text = K.Content.SavingsHelpContent
+        titleLabel.text = "Simple Savings"
+        descriptionLabel.text = K.Content.SimpleSavingsHelpContent
+        closeButton.tintColor = UIColor.CrayonBlue
+    }
+    
+    private func setLoansHelpScreen() {
+        titleLabel.text = "Loans/Mortgage"
+        descriptionLabel.text = K.Content.LoanHelpContent
+        closeButton.tintColor = UIColor.CrayonPurple
     }
     
 

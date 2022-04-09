@@ -14,10 +14,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectorMenu" customModule="iOSConverter" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectorMenu" customModule="Capita" customModuleProvider="target">
             <connections>
                 <outlet property="selectionButton" destination="Z7H-nI-ttP" id="TvL-SF-U4X"/>
-                <outlet property="selectorTitle" destination="XD0-4g-hIO" id="CVZ-3y-oXv"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,8 +27,8 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="MFi-2G-pys">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XD0-4g-hIO">
-                            <rect key="frame" x="0.0" y="0.0" width="36.5" height="106"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parameter to Calculate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XD0-4g-hIO">
+                            <rect key="frame" x="0.0" y="0.0" width="148.5" height="106"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

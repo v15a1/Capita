@@ -10,6 +10,8 @@
 		4B096B2427D3A38B00B57AFB /* LabelledTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */; };
 		4B096B2927D3AA6A00B57AFB /* LabelledTextfield.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */; };
 		4B096B2B27D3CFFD00B57AFB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B096B2A27D3CFFD00B57AFB /* Util.swift */; };
+		4B1414B728013DF600EB4A69 /* ShowYearsSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B1414B628013DF600EB4A69 /* ShowYearsSwitch.xib */; };
+		4B1414B928013E1100EB4A69 /* ShowYearsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1414B828013E1100EB4A69 /* ShowYearsSwitch.swift */; };
 		4B14914227F5E06E000A3A40 /* CompoundSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14914127F5E06E000A3A40 /* CompoundSaving.swift */; };
 		4B1D7A1627E8AA7000EF3506 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */; };
 		4B2D445527E77542005915CF /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D445427E77542005915CF /* Persistable.swift */; };
@@ -64,6 +66,8 @@
 		4B096B2327D3A38B00B57AFB /* LabelledTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledTextfield.swift; sourceTree = "<group>"; };
 		4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelledTextfield.xib; sourceTree = "<group>"; };
 		4B096B2A27D3CFFD00B57AFB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		4B1414B628013DF600EB4A69 /* ShowYearsSwitch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowYearsSwitch.xib; sourceTree = "<group>"; };
+		4B1414B828013E1100EB4A69 /* ShowYearsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowYearsSwitch.swift; sourceTree = "<group>"; };
 		4B14914127F5E06E000A3A40 /* CompoundSaving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSaving.swift; sourceTree = "<group>"; };
 		4B1D7A1527E8AA7000EF3506 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		4B2D445427E77542005915CF /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
@@ -134,6 +138,15 @@
 				4B096B2827D3AA6A00B57AFB /* LabelledTextfield.xib */,
 			);
 			path = LabelledTextfield;
+			sourceTree = "<group>";
+		};
+		4B1414BA28013E1600EB4A69 /* ShowYearsSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				4B1414B628013DF600EB4A69 /* ShowYearsSwitch.xib */,
+				4B1414B828013E1100EB4A69 /* ShowYearsSwitch.swift */,
+			);
+			path = ShowYearsSwitch;
 			sourceTree = "<group>";
 		};
 		4B35D43A27F1B8C100CBB5F0 /* Banner */ = {
@@ -243,6 +256,7 @@
 				4B096B2527D3A39100B57AFB /* LabelledTextfield */,
 				4B35D43A27F1B8C100CBB5F0 /* Banner */,
 				4B76A6CB27FD9C9100C620F7 /* SelectorMenu */,
+				4B1414BA28013E1600EB4A69 /* ShowYearsSwitch */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -449,6 +463,7 @@
 				4BE69F2827F78DB9009F375D /* Calculations.storyboard in Resources */,
 				4B44E02B27C79F1D0036B6D6 /* LaunchScreen.storyboard in Resources */,
 				4B76A6CA27FD9C8B00C620F7 /* SelectorMenu.xib in Resources */,
+				4B1414B728013DF600EB4A69 /* ShowYearsSwitch.xib in Resources */,
 				4B44E02827C79F1D0036B6D6 /* Assets.xcassets in Resources */,
 				4B9C6DB727D0DF0600A7EC3C /* Raleway-Medium.ttf in Resources */,
 				4B9C6DB527D0DF0600A7EC3C /* Raleway-Regular.ttf in Resources */,
@@ -486,6 +501,7 @@
 				4B76A6CD27FDFC7D00C620F7 /* SimpleSaving.swift in Sources */,
 				4B14914227F5E06E000A3A40 /* CompoundSaving.swift in Sources */,
 				4B44E02327C79F1B0036B6D6 /* CompoundSavingsViewController.swift in Sources */,
+				4B1414B928013E1100EB4A69 /* ShowYearsSwitch.swift in Sources */,
 				4B45297227D8B78400813D86 /* ConfigurationTVC.swift in Sources */,
 				4B45297A27D8E27000813D86 /* Configuration.swift in Sources */,
 				4B45297C27D8FE7200813D86 /* HistoryViewController.swift in Sources */,

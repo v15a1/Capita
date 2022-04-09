@@ -12,7 +12,9 @@ protocol ParameterSelectorDelegate: AnyObject {
 }
 
 class SelectorMenu: UIView {
-    
+
+    private let NibName: String = "SelectorMenu"
+
     lazy var menuItems: [UIAction] = []
     lazy var demoMenu: UIMenu = {
         return UIMenu(title: "Parameter", image: nil, identifier: nil, options: [], children: menuItems)
@@ -27,22 +29,12 @@ class SelectorMenu: UIView {
             }
         }
     }
+    
     weak var delegate: ParameterSelectorDelegate?
     
-    private let NibName: String = "SelectorMenu"
 
-    @IBOutlet weak var selectorTitle: UILabel!
     @IBOutlet weak var selectionButton: UIButton!
-    
-    var title: String? {
-        get {
-            return selectorTitle.text
-        }
-        
-        set {
-            selectorTitle.text = newValue
-        }
-    }
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)

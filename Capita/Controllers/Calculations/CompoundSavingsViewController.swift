@@ -13,11 +13,11 @@ class CompoundSavingsViewController: RootStatefulViewController {
         "Amount (\(Currency.selected))",
         "Interest %",
         "Future Value (\(Currency.selected))",
-        "Terms",
-        "Payment (\(Currency.selected))"
+        "Payment (\(Currency.selected))",
+        "No. of Payments"
     ]
     
-    lazy var saving = CompoundSavingManager()
+    lazy var manager = CompoundSavingManager()
     
     override func viewDidLoad() {
         setup()
@@ -55,8 +55,8 @@ class CompoundSavingsViewController: RootStatefulViewController {
         let principalAmount = textfields.valueByTag(tag: 0)
         let interestRate = textfields.valueByTag(tag: 1)
         let futureValue = textfields.valueByTag(tag: 2)
-        let terms = textfields.valueByTag(tag: 3)
-        let payment = textfields.valueByTag(tag: 4)
+        let payment = textfields.valueByTag(tag: 3)
+        let terms = textfields.valueByTag(tag: 4)
 
         let values = [principalAmount, interestRate, futureValue, terms, payment].compactMap { $0 }
         guard values.count >= 4 else {
@@ -66,28 +66,28 @@ class CompoundSavingsViewController: RootStatefulViewController {
             return }
         if emptyTextField != nil {
             emptyTextField?.text = ""
-            saving.item.principleAmount = principalAmount ?? 0
-            saving.item.interestRate = interestRate ?? 0
-            saving.item.futureValue = futureValue ?? 0
-            saving.item.terms = terms ?? 0
-            saving.item.payment = payment ?? 0
+            manager.item.principleAmount = principalAmount ?? 0
+            manager.item.interestRate = interestRate ?? 0
+            manager.item.futureValue = futureValue ?? 0
+            manager.item.terms = terms ?? 0
+            manager.item.payment = payment ?? 0
             
             if emptyTextField?.tag == 0 {
-                saving.calculatePrincipleAmount()
-                emptyTextField?.text = "\(saving.item.principleAmount)"
-                state.values[emptyTextField!.tag] = "\(saving.item.principleAmount)"
+                manager.calculatePrincipleAmount()
+                emptyTextField?.text = "\(manager.item.principleAmount)"
+                state.values[emptyTextField!.tag] = "\(manager.item.principleAmount)"
             } else if emptyTextField?.tag == 2 {
-                saving.calculateFutureValue()
-                emptyTextField?.text = "\(saving.item.futureValue)"
-                state.values[emptyTextField!.tag] = "\(saving.item.futureValue)"
+                manager.calculateFutureValue()
+                emptyTextField?.text = "\(manager.item.futureValue)"
+                state.values[emptyTextField!.tag] = "\(manager.item.futureValue)"
             } else if emptyTextField?.tag == 3 {
-                saving.calculateTerms()
-                emptyTextField?.text = "\(saving.item.terms)"
-                state.values[emptyTextField!.tag] = "\(saving.item.terms)"
+                manager.calculateTerms()
+                emptyTextField?.text = "\(manager.item.terms)"
+                state.values[emptyTextField!.tag] = "\(manager.item.terms)"
             } else if emptyTextField?.tag == 4 {
-                saving.calculatePaymentValue()
-                emptyTextField?.text = "\(saving.item.payment)"
-                state.values[emptyTextField!.tag] = "\(saving.item.payment)"
+                manager.calculatePaymentValue()
+                emptyTextField?.text = "\(manager.item.payment)"
+                state.values[emptyTextField!.tag] = "\(manager.item.payment)"
             }
         } else {
             guard let emptyTf = textfields.getEmpty(2) else {
@@ -99,7 +99,7 @@ class CompoundSavingsViewController: RootStatefulViewController {
     
     override func saveCalculation(_ sender: Any) {
         if textfields.isSavable {
-            saving.appendHistory()
+            manager.appendHistory()
             showAlert(title: "Saved", message: "Your calculation for compound savings has been saved")
         } else {
             showAlert(title: "Whoops!", message: "Your loan could not be saved. Please check if all the necessary fields have been filled")
@@ -108,6 +108,10 @@ class CompoundSavingsViewController: RootStatefulViewController {
     
     override func onHelpButtonPress(_ sender: Any) {
         self.showHelp(type: .compoundSaving)
+    }
+    
+    override func onSwitchChange(_ sender: UISwitch, to value: Bool) {
+        manager.isShowingYears = value
     }
     
 }

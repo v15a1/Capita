@@ -49,6 +49,7 @@ extension UIColor {
     static let CrayonBlue: UIColor = UIColor(named: "CrayonBlue")!
     static let CrayonPurple: UIColor = UIColor(named: "CrayonPurple")!
     static let CrayonPeach: UIColor = UIColor(named: "CrayonPeach")!
+    static let CrayonGreen: UIColor = UIColor(named: "CrayonGreen")!
     static let Background: UIColor = UIColor(named: "Background")!
 
 }

@@ -16,9 +16,9 @@ class SettingsViewController: RootViewController {
     var calcMode: Calculate!
 
     let helpContent = [
-        ["title": "Savings", "description": "Help regarding savings"],
-        ["title": "Mortgage", "description": "Help regarding mortgages"],
-        ["title": "Loans", "description": "Help regarding loans"],
+        ["descriptor": "C", "title": "Compound savings", "description": "Help regarding compound savings"],
+        ["descriptor": "S", "title": "Simple savings", "description": "Help regarding simple savings"],
+        ["descriptor": "L", "title": "Loans", "description": "Help regarding loans"],
     ]
 
     override func viewDidLoad() {
@@ -29,9 +29,6 @@ class SettingsViewController: RootViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UserDefaults.standard.set(currency.rawValue, forKey: K.Keys.Currency)
-        UserDefaults.standard.set(precision.rawValue, forKey: K.Keys.Precision)
-        UserDefaults.standard.set(calcMode.rawValue, forKey: K.Keys.AutoCalculate)
-
     }
 
     private func setup() {
@@ -43,9 +40,7 @@ class SettingsViewController: RootViewController {
         settingsTableView.register(UINib(nibName: HelpTVC.identifier, bundle: nil), forCellReuseIdentifier: HelpTVC.identifier)
         settingsTableView.register(UINib(nibName: ConfigurationTVC.identifier, bundle: nil), forCellReuseIdentifier: ConfigurationTVC.identifier)
 
-        precision = Precision(rawValue: UserDefaults.standard.integer(forKey: K.Keys.Precision)) ?? .high
         currency = Currency(rawValue: UserDefaults.standard.string(forKey: K.Keys.Currency) ?? "") ?? .usd
-        calcMode = Calculate(rawValue: UserDefaults.standard.string(forKey: K.Keys.AutoCalculate) ?? "") ?? .manual
     }
 }
 
@@ -87,9 +82,16 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             let content = helpContent[indexPath.row]
             if let cell = tableView.dequeueReusableCell(withIdentifier: HelpTVC.identifier, for: indexPath) as? HelpTVC {
-                cell.cellImage.image = UIImage(systemName: "plus")
-                cell.titleLabel.text = content["title"]
-                cell.descriptionLabel.text = content["description"]
+                cell.title = content["title"]
+                cell.content = content["description"]
+                cell.descriptor = content["descriptor"]
+                if indexPath.row == 0 {
+                    cell.tint = UIColor.CrayonPeach
+                } else if indexPath.row == 1 {
+                    cell.tint = UIColor.CrayonBlue
+                } else {
+                    cell.tint = UIColor.CrayonPurple
+                }
                 cell.selectionStyle = .none
                 return cell
             }

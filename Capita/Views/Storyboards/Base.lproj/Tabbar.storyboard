@@ -20,7 +20,7 @@
         <!--Compound Savings View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="CompoundSavingsViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="CompoundSavingsViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +36,7 @@
         <!--Landing View Controller-->
         <scene sceneID="67t-Y6-tNM">
             <objects>
-                <viewController storyboardIdentifier="LandingViewController" id="fga-nx-6oh" customClass="LandingViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" id="fga-nx-6oh" customClass="LandingViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bNZ-Tg-teE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,7 +78,7 @@
         <!--History-->
         <scene sceneID="BjN-Cn-O5E">
             <objects>
-                <viewController title="History" id="Cxh-cz-qeS" customClass="HistoryViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="History" id="Cxh-cz-qeS" customClass="HistoryViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rwX-EG-DTd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                     <navigationItem key="navigationItem" id="20b-j3-Z6w">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="I9e-TF-hIf">
-                            <rect key="frame" x="12" y="6" width="531" height="33"/>
+                            <rect key="frame" x="12" y="5.5" width="341" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Compound"/>
@@ -152,7 +152,7 @@
         <!--Simple Savings View Controller-->
         <scene sceneID="aks-1Z-hJw">
             <objects>
-                <viewController id="GrA-nd-nte" customClass="SimpleSavingsViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GrA-nd-nte" customClass="SimpleSavingsViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K98-OP-xuT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,7 +168,7 @@
         <!--Loans View Controller-->
         <scene sceneID="1uf-bG-vKn">
             <objects>
-                <viewController id="wy1-Wy-oxv" customClass="LoansViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wy1-Wy-oxv" customClass="LoansViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mYn-Mi-GKl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,7 +184,7 @@
         <!--Calculation View Controller-->
         <scene sceneID="iZC-N3-Ojz">
             <objects>
-                <viewController id="sZt-7K-qei" customClass="CalculationViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sZt-7K-qei" customClass="CalculationViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NHy-HT-Pcb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,7 +218,7 @@
         <!--Settings View Controller-->
         <scene sceneID="oWM-XF-Rlh">
             <objects>
-                <viewController id="0HZ-gS-szC" customClass="SettingsViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0HZ-gS-szC" customClass="SettingsViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TaG-im-EM4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -287,7 +287,7 @@
         <!--Help View Controller-->
         <scene sceneID="crW-Kt-86F">
             <objects>
-                <viewController storyboardIdentifier="HelpViewController" id="jGO-j1-duB" customClass="HelpViewController" customModule="iOSConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HelpViewController" id="jGO-j1-duB" customClass="HelpViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WbQ-BA-MxC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,9 +319,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Wr5-qL-RyY"/>
                                 </constraints>
-                                <color key="tintColor" name="NavyBlue"/>
+                                <color key="tintColor" name="CrayonBlue"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Got it!">
+                                <buttonConfiguration key="configuration" style="tinted" title="Got it!">
                                     <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -342,6 +342,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="1Lm-QY-Nri" id="9mT-yJ-4mH"/>
                         <outlet property="descriptionLabel" destination="Toi-r5-anx" id="AQN-65-BAC"/>
                         <outlet property="titleLabel" destination="CnW-TT-H64" id="brb-e5-boJ"/>
                     </connections>
@@ -356,11 +357,14 @@
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gearshape.circle.fill" catalog="system" width="128" height="121"/>
         <image name="trash" catalog="system" width="121" height="128"/>
+        <namedColor name="CrayonBlue">
+            <color red="0.49799999594688416" green="0.87800002098083496" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="LightBlue">
             <color red="0.28600001335144043" green="0.77300000190734863" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NavyBlue">
-            <color red="0.16078431372549018" green="0.4392156862745098" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.16099999845027924" green="0.43900001049041748" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

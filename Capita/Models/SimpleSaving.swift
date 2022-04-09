@@ -28,8 +28,9 @@ struct SimpleSaving: Persistable {
 }
 
 class SimpleSavingManager: ItemManageable {
-    
-    var item: SimpleSaving! = SimpleSaving(principleAmount: 0,
+    typealias T = SimpleSaving
+    var isShowingYears: Bool = false
+    var item: T! = SimpleSaving(principleAmount: 0,
                                            interestRate: 0,
                                            futureValue: 0,
                                            terms: 0)
@@ -38,18 +39,18 @@ class SimpleSavingManager: ItemManageable {
         let PV = item.principleAmount
         let FV = item.futureValue
         let CPY: Double = 12
-        let N = item.terms
+        let N = isShowingYears ? (item.terms * 12) : item.terms
         let I = Double(CPY * (pow(FV / PV, (1 / (CPY * N))) - 1)) 
-        item.interestRate = I.fixedTo(2)
+        item.interestRate = I.isNaN ? 0 : I.fixedTo(2)
     }
     
     func calculateFutureValue() {
         let PV = item.principleAmount
         let I = item.interestRate / 100
-        let N = item.terms
+        let N = isShowingYears ? (item.terms * 12) : item.terms
         let CPY: Double = 12
         let FV = Double(PV * (pow((1 + I / CPY), CPY * N)))
-        item.futureValue = FV.fixedTo(2)
+        item.futureValue = FV.isNaN ? 0 : FV.fixedTo(2)
     }
     
     func calculatePrincipleAmount() {
@@ -58,7 +59,7 @@ class SimpleSavingManager: ItemManageable {
         let N: Double = item.terms
         let CPY: Double = 12
         let PV = Double(FV / pow(1 + (I / CPY), CPY * N))
-        item.principleAmount = PV.fixedTo(2)
+        item.principleAmount = PV.isNaN ? 0 : PV.fixedTo(2)
     }
     
     func calculateTerms() {
@@ -67,7 +68,7 @@ class SimpleSavingManager: ItemManageable {
         let I = item.interestRate / 100
         let CPY: Double = 12
         let N = Double(log(FV / PV) / (CPY * log(1 + (I / CPY))))
-        item.terms = N.fixedTo(2)
+        item.terms = N.isNaN ? 0 : N.fixedTo(2)
     }
     
     func appendHistory() {
@@ -76,7 +77,6 @@ class SimpleSavingManager: ItemManageable {
             _ = history.removeFirst()
         }
         history.append(item)
-        print(item)
         UserDefaults.standard.simpleSavings = history
     }
     

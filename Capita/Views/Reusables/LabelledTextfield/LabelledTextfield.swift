@@ -39,6 +39,17 @@ class LabelledTextfield: UIView {
         }
     }
     
+    var isSelected: Bool {
+        get {
+            return self.isUserInteractionEnabled
+        }
+        
+        set {
+            self.isUserInteractionEnabled = newValue
+            newValue ? selected() : enable()
+        }
+    }
+    
     var highlight: Bool {
         get {
             return isHighlighted
@@ -152,6 +163,11 @@ class LabelledTextfield: UIView {
     
     private func enable() {
         self.inputTextfield.backgroundColor = UIColor.lightGrey
+        self.inputTextfield.textColor  = UIColor.navyBlue
+    }
+    
+    private func selected() {
+        self.inputTextfield.backgroundColor = UIColor.CrayonGreen.withAlphaComponent(0.3)
         self.inputTextfield.textColor  = UIColor.navyBlue
     }
 }

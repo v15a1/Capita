@@ -9,7 +9,8 @@ import Foundation
 
 protocol ItemManageable {
     associatedtype T
-    
     var item: T! { get set }
+    var isShowingYears: Bool { get set }
+    
     func appendHistory()
 }

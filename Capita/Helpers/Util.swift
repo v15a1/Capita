@@ -11,13 +11,7 @@ final class Util {
 
     static let shared: Util = Util()
 
-    var precision: Int {
-        return UserDefaults.standard.integer(forKey: K.Keys.Precision)
-    }
-
-    private init() {
-
-    }
+    private init() {}
 
     func validateNegative(_ forString: String) -> String {
         if forString.contains("-") {
@@ -44,41 +38,5 @@ final class Util {
         }
         string += "0"
         return string
-    }
-
-    func calculateLoanInterest(amount: Double, monthlyPay: Double, terms: Double) -> Double? {
-//        let precision = UserDefaults.standard.integer(forKey: K.Keys.Precision)
-//        let rate: Double = (interest / 100.0) / 12
-        return 0
-    }
-
-    func calculateLoanPrincipalAmount(interest: Double, monthlyPay: Double, terms: Double) -> Double {
-        let interestPerMonth: Double = (interest / 100) / 12
-        let amount: Double = (monthlyPay / interestPerMonth) * (1 - (1 / pow(1 + interestPerMonth, terms)))
-        return amount.fixedTo(2)
-    }
-
-    func calculateLoanMonthlyPay(amount: Double, interest: Double, terms: Double) -> Double {
-        let rate: Double = (interest / 100) / 12
-        let numerator = (rate * amount)
-        let denomenator = (1 - pow(1 + rate, -terms))
-        return (numerator / denomenator).fixedTo(2)
-    }
-
-    func calculateLoanTerms(amount: Double, interest: Double, monthlyPay: Double) -> Double? {
-        var minMonthlyPay = calculateLoanMonthlyPay(amount: amount, interest: interest, terms: 1) - amount
-        minMonthlyPay -= amount
-
-        if Int(monthlyPay) <= Int(minMonthlyPay) {
-            return nil
-        }
-        print(minMonthlyPay)
-
-        let interestPerMonth: Double = (interest / 100) / 12
-        let mPayForInterest: Double = monthlyPay / interestPerMonth
-        let terms = (log(mPayForInterest / (mPayForInterest - amount)) / log(1 + interestPerMonth))
-
-        print("int/mo: \(interestPerMonth), mpayI: \(mPayForInterest), t: \(terms)")
-        return terms
     }
 }

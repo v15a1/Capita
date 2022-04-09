@@ -28,7 +28,8 @@ struct Loan: Persistable {
 }
 
 class LoanManager: ItemManageable {
-    
+
+    var isShowingYears: Bool = false
     var item: Loan! = Loan(principleAmount: 0,
                            interestRate: 0,
                            monthlyPay: 0,
@@ -37,26 +38,25 @@ class LoanManager: ItemManageable {
     func calculateMonthlyPayment() {
         let P = item.principleAmount
         let R = (item.interestRate / 100.0) / 12
-        let N = item.terms
+        let N = isShowingYears ? (item.terms * 12) : item.terms
         let PMT = (R * P) / (1 - pow(1 + R, -N))
-        item.monthlyPay = PMT.fixedTo(2)
+        item.monthlyPay = PMT.isNaN ? 0 : PMT.fixedTo(2)
     }
     
     func calculatePrincipleAmount() {
         let PMT = item.monthlyPay
         let R = (item.interestRate / 100.0) / 12
-        let N = item.terms
+        let N = isShowingYears ? (item.terms * 12) : item.terms
         let P = (PMT / R) * (1 - (1 / pow(1 + R, N)))
-        item.principleAmount = P
+        item.principleAmount = P.isNaN ? 0 : P
     }
     
     func calculateInterestRate() {
         let PMT = item.monthlyPay
-        let N = item.terms
+        let N = isShowingYears ? (item.terms * 12) : item.terms
         let P = item.principleAmount
         
         var x = 1 + (((PMT * N / P) - 1) / 12)
-        /// var x = 0.1;
         let FINANCIAL_PRECISION = Double(0.000001) // 1e-6
         
         func F(_ x: Double) -> Double { // f(x)
@@ -78,7 +78,7 @@ class LoanManager: ItemManageable {
             R = 0.00;
         }
         
-        item.interestRate = R
+        item.interestRate = R.isNaN ? 0 : R
     }
     
     func calculateTerms() {
@@ -97,7 +97,7 @@ class LoanManager: ItemManageable {
         let I = (item.interestRate / 100.0) / 12
         let D = PM / I
         N = (log(D / (D - P)) / log(1 + I))
-        item.terms = N
+        item.terms = N.isNaN ? 0 : N
     }
     
     func appendHistory() {
@@ -106,7 +106,6 @@ class LoanManager: ItemManageable {
             _ = history.removeFirst()
         }
         history.append(item)
-        print(item)
         UserDefaults.standard.loans = history
     }
 }

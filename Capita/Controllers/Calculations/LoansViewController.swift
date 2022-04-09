@@ -16,7 +16,7 @@ class LoansViewController: RootStatefulViewController {
         "Number of Payments"
     ]
 
-    lazy var loan = LoanManager()
+    lazy var manager = LoanManager()
 
     override func viewDidLoad() {
         setup()
@@ -63,27 +63,26 @@ class LoansViewController: RootStatefulViewController {
         }
         if emptyTextField != nil {
             emptyTextField?.text = ""
-            loan.item.principleAmount = principalAmount ?? 0
-            loan.item.interestRate = (interestRate ?? 0)
-            loan.item.terms = terms ?? 0
-            loan.item.monthlyPay = payment ?? 0
+            manager.item.principleAmount = principalAmount ?? 0
+            manager.item.interestRate = (interestRate ?? 0)
+            manager.item.monthlyPay = payment ?? 0
             
             if emptyTextField?.tag == 0 {
-                loan.calculatePrincipleAmount()
-                emptyTextField?.text = "\(loan.item.principleAmount)"
-                state.values[emptyTextField!.tag] = "\(loan.item.principleAmount)"
+                manager.calculatePrincipleAmount()
+                emptyTextField?.text = "\(manager.item.principleAmount)"
+                state.values[emptyTextField!.tag] = "\(manager.item.principleAmount)"
             } else if emptyTextField?.tag == 2 {
-                loan.calculateInterestRate()
-                emptyTextField?.text = "\(loan.item.interestRate)"
-                state.values[emptyTextField!.tag] = "\(loan.item.interestRate)"
+                manager.calculateInterestRate()
+                emptyTextField?.text = "\(manager.item.interestRate)"
+                state.values[emptyTextField!.tag] = "\(manager.item.interestRate)"
             } else if emptyTextField?.tag == 3 {
-                loan.calculateMonthlyPayment()
-                emptyTextField?.text = "\(loan.item.monthlyPay)"
-                state.values[emptyTextField!.tag] = "\(loan.item.monthlyPay)"
+                manager.calculateMonthlyPayment()
+                emptyTextField?.text = "\(manager.item.monthlyPay)"
+                state.values[emptyTextField!.tag] = "\(manager.item.monthlyPay)"
             } else if emptyTextField?.tag == 4 {
-                loan.calculateTerms()
-                emptyTextField?.text = "\(loan.item.terms)"
-                state.values[emptyTextField!.tag] = "\(loan.item.terms)"
+                manager.calculateTerms()
+                emptyTextField?.text = "\(manager.item.terms)"
+                state.values[emptyTextField!.tag] = "\(manager.item.terms)"
             }
         } else {
             guard let emptyTf = textfields.getEmpty(2) else {
@@ -106,11 +105,15 @@ class LoansViewController: RootStatefulViewController {
 
     override func saveCalculation(_ sender: Any) {
         if textfields.isSavable {
-            loan.appendHistory()
+            manager.appendHistory()
             showAlert(title: "Saved", message: "Your loan has been saved")
         } else {
             showAlert(title: "Whoops!", message: "Your loan could not be saved. Please check if all the necessary fields have been filled")
         }
+    }
+    
+    override func onSwitchChange(_ sender: UISwitch, to value: Bool) {
+        manager.isShowingYears = value
     }
 }
 

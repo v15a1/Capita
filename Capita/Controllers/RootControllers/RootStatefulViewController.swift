@@ -8,6 +8,8 @@
 import UIKit
 
 class RootStatefulViewController: RootViewController, SaveImplementable {
+    
+    typealias T = ItemManageable
 
     lazy var contentScrollView: UIScrollView = {
         let view = UIScrollView()
@@ -38,14 +40,21 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
     lazy var selector: SelectorMenu  = {
         let selector = SelectorMenu()
         selector.delegate = self
-        selector.title = "Parameter to Calculate"
         return selector
+    }()
+    
+    lazy var showYearsSwitch: ShowYearsSwitch = {
+        let yearsSwitch = ShowYearsSwitch()
+        yearsSwitch.delegate = self
+        yearsSwitch.isOn = false
+        return yearsSwitch
     }()
 
     var keyboardBottomAnchor: NSLayoutConstraint!
     var textfields: [LabelledTextfield] = []
 
     var isKeyboardOpen: Bool = false
+    var isShowingYears: Bool = false
     var state = SaveState( values: [:])
     var stateKey: String!
     
@@ -65,7 +74,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
 
     var emptyTextField: LabelledTextfield? {
         didSet {
-            emptyTextField?.isEnabled = false
+            emptyTextField?.isSelected = true
             state.emptyTFTag = emptyTextField?.tag
         }
     }
@@ -105,6 +114,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
             content.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -40),
         ])
 
+        content.addArrangedSubview(showYearsSwitch)
         content.addArrangedSubview(selector)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
@@ -161,6 +171,9 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         self.view.endEditing(true)
         self.firstResponder = nil
     }
+    
+    @objc func onSwitchChange(_ sender: UISwitch, to value: Bool) {}
+
 
     func showKeyboard() {
         self.keyboard.isHidden = false
@@ -239,5 +252,21 @@ extension RootStatefulViewController: ParameterSelectorDelegate {
         state.emptyTFTag = selectedIndex
         state.save(forKey: stateKey)
     }
-    
+}
+
+extension RootStatefulViewController: ShowYearsSwitchProtocol {
+    func didSwitchButton(_ sender: UISwitch, to value: Bool) {
+        onSwitchChange(sender, to: value)
+        if let tf = textfields.last {
+            if value {
+                tf.title = "No. of Years"
+                let years = (Double(tf.text ?? "0") ?? 0)
+                tf.text = "\((years / 12).fixedTo(2))"
+            } else {
+                tf.title = "No. of Payments"
+                let terms = (Double(tf.text ?? "0") ?? 0)
+                tf.text = "\((terms * 12).fixedTo(2))"
+            }
+        }
+    }
 }
