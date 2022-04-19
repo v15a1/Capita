@@ -32,7 +32,6 @@ class SelectorMenu: UIView {
     
     weak var delegate: ParameterSelectorDelegate?
     
-
     @IBOutlet weak var selectionButton: UIButton!
 
 
@@ -71,7 +70,5 @@ class SelectorMenu: UIView {
         guard let view = self.loadFromNib(NibName) else { return }
         view.frame = self.bounds
         self.addSubview(view)
-        
-
     }
 }

@@ -241,7 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				4BFE48DE280286EB002ACC9B /* Primary */,
-				4B5A42672801ED4200B8B7E6 /* TabbarItems */,
+				4B5A42672801ED4200B8B7E6 /* Pages */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -346,14 +346,14 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
-		4B5A42672801ED4200B8B7E6 /* TabbarItems */ = {
+		4B5A42672801ED4200B8B7E6 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
 				4BE69F2727F78DB9009F375D /* Calculations.storyboard */,
 				4B5A42632801EBB100B8B7E6 /* Settings.storyboard */,
 				4B5A42652801EBFB00B8B7E6 /* History.storyboard */,
 			);
-			path = TabbarItems;
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		4B76A6CB27FD9C9100C620F7 /* SelectorMenu */ = {
