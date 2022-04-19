@@ -57,7 +57,9 @@ class HistoryViewController: RootViewController {
         setDeleteAllButton()
         historyTableView.reloadData()
     }
-
+    
+    /// Deleting handler for swipe actions
+    /// - Parameter indexPath: Index of the row to delete
     private func delete(at indexPath: IndexPath) {
         let section = selectedSegment
         let index = indexPath.row
@@ -79,6 +81,7 @@ class HistoryViewController: RootViewController {
         }, completion: nil)
     }
     
+    /// Sets Delete all button based on content
     private func setDeleteAllButton() {
         switch historySegmentedController.selectedSegmentIndex {
         case 0:
@@ -125,6 +128,8 @@ class HistoryViewController: RootViewController {
         }
     }
     
+    /// Deletes based on the segmented selected
+    /// - Parameter index: Segmented index selected
     private func deleteAllBySegment(index: Int) {
         switch index {
         case 0:
@@ -142,12 +147,14 @@ class HistoryViewController: RootViewController {
             UserDefaults.standard.simpleSavings = []
             loans.removeAll()
             compoundSavings.removeAll()
+            simpleSavings.removeAll()
         default:
             return
         }
         animatedReload()
         showAlert(title: "Success!", message: "The history has been successfully deleted") {
             self.setDeleteAllButton()
+            self.animatedReload()
         }
     }
 }

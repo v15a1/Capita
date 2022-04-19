@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p1v-hA-ZGm">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
+        <array key="Raleway-SemiBold.ttf">
+            <string>Raleway-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Compound Savings View Controller-->
+        <scene sceneID="hkt-FR-YDK">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UtT-Hd-7mS" customClass="CompoundSavingsViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fq9-Lf-mU7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tY1-1T-kgt"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AV0-Ww-3oE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ORI-XT-zXf" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1351" y="790"/>
+        </scene>
+        <!--Landing View Controller-->
+        <scene sceneID="FOz-M4-f6F">
+            <objects>
+                <viewController storyboardIdentifier="LandingViewController" id="MTG-OK-oeF" customClass="LandingViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Uk-Gc-6Fx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="h9E-fT-DVW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lRg-4o-smV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aRb-Fk-VYh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1352.1739130434785" y="-44.196428571428569"/>
+        </scene>
+        <!--Calculations-->
+        <scene sceneID="UDx-Qr-Hme">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-rf-TAf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p1v-hA-ZGm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calculations" image="dollarsign.circle.fill" catalog="system" id="CSo-e6-gA8"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1YQ-iD-9lO">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="NavyBlue"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gtC-T6-aMI" kind="relationship" relationship="rootViewController" id="ajS-jA-g1k"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-184" y="-790"/>
+        </scene>
+        <!--Simple Savings View Controller-->
+        <scene sceneID="SwT-jr-QhB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9gC-xu-GSZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="6Q7-6C-LWM" customClass="SimpleSavingsViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CRz-Iv-GX9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="PZT-iF-7ut"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hgl-2n-DYZ"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-184" y="790"/>
+        </scene>
+        <!--Loans View Controller-->
+        <scene sceneID="8nB-Gn-PIl">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Mo-jh-aqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="JwH-4J-z06" customClass="LoansViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="btj-3R-wJv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="JYB-1n-Uvd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cVL-7C-vek"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="865" y="792"/>
+        </scene>
+        <!--Calculation View Controller-->
+        <scene sceneID="FAH-ev-C3x">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8U-dK-dxH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="gtC-T6-aMI" customClass="CalculationViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oSA-sH-e3A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dX9-CB-d9u">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HXD-yf-YqC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="dX9-CB-d9u" secondAttribute="bottom" id="4Zv-gL-QXH"/>
+                            <constraint firstItem="dX9-CB-d9u" firstAttribute="trailing" secondItem="HXD-yf-YqC" secondAttribute="trailing" id="5Cc-4J-G81"/>
+                            <constraint firstItem="dX9-CB-d9u" firstAttribute="top" secondItem="oSA-sH-e3A" secondAttribute="top" id="cRz-y0-ePr"/>
+                            <constraint firstItem="dX9-CB-d9u" firstAttribute="leading" secondItem="HXD-yf-YqC" secondAttribute="leading" id="fzg-uL-Gly"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gGu-AJ-vIh"/>
+                    <connections>
+                        <outlet property="calculatorTableView" destination="dX9-CB-d9u" id="BtV-PM-Mxx"/>
+                        <segue destination="6Q7-6C-LWM" kind="show" identifier="MortgageCalculator" id="bcv-3t-9Kg"/>
+                        <segue destination="JwH-4J-z06" kind="show" identifier="LoansCalculation" id="fd6-KS-iOt"/>
+                        <segue destination="UtT-Hd-7mS" kind="show" identifier="SavingsCalculation" id="h4P-rx-SyP"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-184" y="-44"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="R7I-wf-vxO">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgi-GI-dDO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="HelpViewController" id="mUO-Dg-doX" customClass="HelpViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yCj-kB-Mfr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="CRY-B6-y2w">
+                                <rect key="frame" x="20" y="84" width="374" height="74.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zeu-Hk-qY4">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="74.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVf-ZF-AG0">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="35.5"/>
+                                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJg-xZ-wuW">
+                                                <rect key="frame" x="0.0" y="55.5" width="374" height="19"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMX-tv-R3Q">
+                                <rect key="frame" x="20" y="762" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="JOL-C9-oFL"/>
+                                </constraints>
+                                <color key="tintColor" name="CrayonBlue"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Got it!">
+                                    <fontDescription key="titleFontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didReadHelp:" destination="mUO-Dg-doX" eventType="touchUpInside" id="itF-h6-c24"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Ul-Tf-llB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jMX-tv-R3Q" firstAttribute="leading" secondItem="8Ul-Tf-llB" secondAttribute="leading" constant="20" id="2Jm-Tg-dda"/>
+                            <constraint firstItem="8Ul-Tf-llB" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CRY-B6-y2w" secondAttribute="bottom" id="5jm-D3-ZKA"/>
+                            <constraint firstItem="8Ul-Tf-llB" firstAttribute="bottom" secondItem="jMX-tv-R3Q" secondAttribute="bottom" constant="40" id="OZm-bk-YCl"/>
+                            <constraint firstItem="8Ul-Tf-llB" firstAttribute="trailing" secondItem="jMX-tv-R3Q" secondAttribute="trailing" constant="20" id="VB4-R7-HZf"/>
+                            <constraint firstItem="CRY-B6-y2w" firstAttribute="top" secondItem="8Ul-Tf-llB" secondAttribute="top" constant="40" id="Yc3-yG-wsb"/>
+                            <constraint firstItem="CRY-B6-y2w" firstAttribute="leading" secondItem="8Ul-Tf-llB" secondAttribute="leading" constant="20" id="iXq-UP-ODb"/>
+                            <constraint firstItem="8Ul-Tf-llB" firstAttribute="trailing" secondItem="CRY-B6-y2w" secondAttribute="trailing" constant="20" id="uft-z3-7mx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="jMX-tv-R3Q" id="BZY-IT-2nS"/>
+                        <outlet property="descriptionLabel" destination="nJg-xZ-wuW" id="S4Q-HN-3zn"/>
+                        <outlet property="titleLabel" destination="vVf-ZF-AG0" id="0Mt-q0-akt"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="895.6521739130435" y="-49.553571428571423"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="CrayonBlue">
+            <color red="0.49799999594688416" green="0.87800002098083496" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="NavyBlue">
+            <color red="0.16099999845027924" green="0.43900001049041748" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

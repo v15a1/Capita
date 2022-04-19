@@ -13,6 +13,7 @@ enum Precision: Int {
     case high = 7
 }
 
+/// Custom currency for user configuration
 enum Currency: String {
     case lkr = "රු"
     case usd = "$"
@@ -35,7 +36,7 @@ enum ConfigurationType {
     case calculation
 }
 
-protocol ConfigurationProtocol: AnyObject {
+protocol ConfigurationDelegate: AnyObject {
     func didChangePrecision(_ precision: Precision)
     func didChangeCurrency(_ currency: Currency)
     func didChangeCalculationMode(_ mode: Calculate)
@@ -60,7 +61,7 @@ class ConfigurationTVC: UITableViewCell {
         }
     }
 
-    weak var delegate: ConfigurationProtocol?
+    weak var delegate: ConfigurationDelegate?
 
     @IBOutlet weak var configSegmentController: UISegmentedControl!
     @IBOutlet weak var configLabel: UILabel!

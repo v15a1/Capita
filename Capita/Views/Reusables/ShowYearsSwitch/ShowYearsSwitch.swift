@@ -7,7 +7,8 @@
 
 import UIKit
 
-protocol ShowYearsSwitchProtocol: AnyObject {
+
+protocol ShowYearsSwitchDelegate: AnyObject {
     func didSwitchButton(_ sender: UISwitch, to value: Bool)
 }
 
@@ -17,7 +18,7 @@ class ShowYearsSwitch: UIView {
     
     @IBOutlet weak var showYearsSwitch: UISwitch!
     
-    weak var delegate: ShowYearsSwitchProtocol?
+    weak var delegate: ShowYearsSwitchDelegate?
     
     var isOn: Bool {
         get {

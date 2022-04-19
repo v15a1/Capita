@@ -19,6 +19,7 @@ class HelpViewController: RootViewController {
         setContentIfNeeded()
     }
 
+    /// Setting content on load
     private func setContentIfNeeded() {
         switch (screen) {
         case .compoundSaving:

@@ -39,62 +39,57 @@ class CompoundSavingManager: ItemManageable {
                                                terms: 0,
                                                payment: 0)
         
+    // MARK: Calculations
     func calculateFutureValue() {
         let PMT = item.payment
-        let I = item.interestRate / 100
-        let PV = item.principleAmount
-        let CPY: Double = 12
-        let N = isShowingYears ? (item.terms * 12) : item.terms
-
-        let a = pow((1 + I / CPY), CPY * N)
-        let b = (PMT * (pow((1 + I / CPY), CPY * N) - 1) / (I / CPY))
-        let FV = PV * a + b * (1 + I / CPY)
+        let R = item.interestRate / 100
+        let N = isShowingYears ? (item.terms) : (item.terms / 12)
+        
+        let numerator = ((pow((1 + (R / 12)), 12 * N)) - 1)
+        let denomenator = R / 12
+        let FV = PMT * (numerator / denomenator)
         item.futureValue = FV.isNaN ? 0 : FV.fixedTo(2)
     }
     
     func calculatePrincipleAmount() {
         let FV = item.futureValue
         let PMT = item.payment
-        let I = item.interestRate / 100
+        let R = item.interestRate / 100
         let CPY: Double = 12
-        let N = isShowingYears ? (item.terms * 12) : item.terms
+        let N = isShowingYears ? (item.terms * 12) : (item.terms)
         
-        print("\(FV), \(PMT), \(I), \(CPY), \(N)")
-
-        let a: Double = (PMT * (pow((1 + I / CPY), CPY * N) - 1) / (I / CPY))
-        let b: Double = (1 + I / CPY)
-        let c: Double = pow((1 + I / CPY), CPY * N)
+        let a: Double = (PMT * (pow((1 + R / CPY), CPY * N) - 1) / (R / CPY))
+        let b: Double = (1 + R / CPY)
+        let c: Double = pow((1 + R / CPY), CPY * N)
         let PV = (FV - a * b) / c
         item.principleAmount = PV.isNaN ? 0 : PV.fixedTo(2)
     }
     
     func calculatePaymentValue() {
         let FV = item.futureValue
-        let PV = item.principleAmount
-        let I = item.interestRate / 100
+        let R = item.interestRate / 100
         let CPY: Double = 12
-        let N = isShowingYears ? (item.terms * 12) : item.terms
+        let N = isShowingYears ? (item.terms * 12) : (item.terms)
 
-        let numerator: Double = (FV - (PV * pow((1 + I / CPY), CPY * N)))
-        let denomenator: Double = ((pow((1 + I / CPY), CPY * N) - 1) / (I / CPY))
+        let numerator = FV
+        let denomenator = ((pow((1 + (R / CPY)), (12 * N)) - 1) / (R / 12))
         let PMT = Double( numerator / denomenator)
+        print(PMT)
         item.payment = PMT.isNaN ? 0 : PMT.fixedTo(2)
     }
     
     func calculateTerms() {
         let FV = item.futureValue
-        let PV = item.principleAmount
         let PMT = item.payment
-        let I = item.interestRate / 100
-        let CPY: Double = 12
+        let R = item.interestRate / 100
 
-        let a = log(FV + PMT + ((PMT * CPY) / I))
-        let b = log(PV + PMT + ((PMT * CPY) / I))
-        let c = (CPY * log(1 + (I / CPY)))
-        let N: Double = ((a - b) / c);
+        let numerator = log(1 + ((R * FV) / PMT))
+        let denomenator = log(1 + R)
+        let N: Double = (numerator / denomenator);
         item.terms = N.isNaN ? 0 : N.fixedTo(2)
     }
     
+    // MARK: Persisting the data
     func appendHistory() {
         var history = UserDefaults.standard.compoundSavings
         if history.count >= 5 {

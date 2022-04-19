@@ -17,6 +17,7 @@ class HistoryTVC: UITableViewCell {
     @IBOutlet weak var contentHolder: UIView!
     @IBOutlet weak var createdAtLabel: UILabel!
 
+    // Using Protocols as datatypes for generalization
     var persistable: Persistable!
 
     override func awakeFromNib() {
@@ -36,12 +37,14 @@ class HistoryTVC: UITableViewCell {
 
     func setup(data: Persistable) {
         persistable = data
+        // Setting data if possible
         setupLoanHistory()
         setupCompoundSavingHistory()
         setupSimpleSavingHistory()
         createdAtLabel.text = persistable.toDate()
     }
 
+    // Sets up Compound saving history item
     private func setupCompoundSavingHistory() {
         guard let data = persistable as? CompoundSaving else { return }
         typeLabel.text = "COMPOUND"
@@ -59,6 +62,7 @@ class HistoryTVC: UITableViewCell {
         renderData(content)
     }
     
+    // Sets up Simple saving history item
     private func setupSimpleSavingHistory() {
         guard let data = persistable as? SimpleSaving else {
             return
@@ -77,7 +81,7 @@ class HistoryTVC: UITableViewCell {
         renderData(content)
     }
     
-
+    // Sets up Loans history item
     private func setupLoanHistory() {
         guard let data = persistable as? Loan else { return }
         typeLabel.text = "LOAN"
@@ -93,6 +97,9 @@ class HistoryTVC: UITableViewCell {
         renderData(content)
     }
 
+    
+    /// Renders the items based on the content
+    /// - Parameter content: 2D array of the content
     private func renderData(_ content: [[String]]) {
         content.forEach { arr in
             let hStack = UIStackView()

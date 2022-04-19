@@ -7,13 +7,12 @@
 
 import SwiftUI
 
+/// Swift UI View for Onboarding
+/// Has been ported to UIKit using `UIViewRepresentable`
 struct OnboardingView: View {
-    
     @Environment(\.presentationMode) private var mode
     @State private var tabViewSelection = 0
-    
-    var action: (() -> Void)?
-    
+        
     var body: some View {
         VStack(alignment: .leading){
             VStack(alignment: .leading) {
@@ -90,9 +89,7 @@ struct OnboardingView: View {
 #if DEBUG
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView {
-            
-        }
+        OnboardingView()
     }
 }
 #endif

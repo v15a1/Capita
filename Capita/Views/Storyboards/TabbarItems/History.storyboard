@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jbo-NN-g2Y">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--History-->
+        <scene sceneID="BqA-Rl-quI">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cW3-vl-ySK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController title="History" id="pAA-AT-bJp" customClass="HistoryViewController" customModule="Capita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q1x-2b-mJq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ctN-hf-vEX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rei-kF-Wwb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ctN-hf-vEX" firstAttribute="top" secondItem="Q1x-2b-mJq" secondAttribute="top" id="Xfo-uL-Xi9"/>
+                            <constraint firstItem="ctN-hf-vEX" firstAttribute="leading" secondItem="Rei-kF-Wwb" secondAttribute="leading" id="YYu-sg-iXc"/>
+                            <constraint firstAttribute="bottom" secondItem="ctN-hf-vEX" secondAttribute="bottom" id="gNz-AM-dsa"/>
+                            <constraint firstItem="ctN-hf-vEX" firstAttribute="trailing" secondItem="Rei-kF-Wwb" secondAttribute="trailing" id="yyp-4G-WK0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RaS-Em-RhT">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="vrj-bM-sis">
+                            <rect key="frame" x="12" y="5.5" width="341" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Compound"/>
+                                <segment title="Simple"/>
+                                <segment title="Loans"/>
+                                <segment title="All"/>
+                            </segments>
+                            <connections>
+                                <action selector="didChangeSection:" destination="pAA-AT-bJp" eventType="valueChanged" id="Ncc-7D-4HA"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" id="Ccm-ys-qL2">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="didPressDeleteAll:" destination="pAA-AT-bJp" id="JbH-1i-7RN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deleteAllButton" destination="Ccm-ys-qL2" id="eX5-F8-cUA"/>
+                        <outlet property="historySegmentedController" destination="vrj-bM-sis" id="SPy-vP-Oa9"/>
+                        <outlet property="historyTableView" destination="ctN-hf-vEX" id="RmQ-93-JHw"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="3877" y="-15"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="9FX-Ke-h22">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MHg-Bp-RUL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jbo-NN-g2Y" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" image="clock.fill" catalog="system" id="Rzk-Kw-0Fq"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qcY-fZ-Hdy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pAA-AT-bJp" kind="relationship" relationship="rootViewController" id="bZA-Dy-bDf"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="3877" y="-790"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="clock.fill" catalog="system" width="128" height="121"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

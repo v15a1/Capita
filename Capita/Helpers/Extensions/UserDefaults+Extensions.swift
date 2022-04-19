@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+/// Custom UserDefaults extension for history items
 extension UserDefaults {
     var loans: [Loan] {
         get {

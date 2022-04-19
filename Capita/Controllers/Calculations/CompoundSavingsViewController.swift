@@ -9,6 +9,7 @@ import UIKit
 
 class CompoundSavingsViewController: RootStatefulViewController {
     
+    // MARK: Variables
     let textfieldLabels = [
         "Amount (\(Currency.selected))",
         "Interest %",
@@ -19,6 +20,7 @@ class CompoundSavingsViewController: RootStatefulViewController {
     
     lazy var manager = CompoundSavingManager()
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         setup()
         super.viewDidLoad()
@@ -29,6 +31,7 @@ class CompoundSavingsViewController: RootStatefulViewController {
         abruptlyHideKeyboard()
     }
     
+    // MARK: Setup
     private func setup() {
         stateKey = K.Keys.SavedCompoundSavings
         title = "Compound Savings"
@@ -51,6 +54,7 @@ class CompoundSavingsViewController: RootStatefulViewController {
         selector.setMenuData(data: menuItems)
     }
     
+    // MARK: Calculate
     override func calculate() {
         let principalAmount = textfields.valueByTag(tag: 0)
         let interestRate = textfields.valueByTag(tag: 1)
@@ -58,6 +62,7 @@ class CompoundSavingsViewController: RootStatefulViewController {
         let payment = textfields.valueByTag(tag: 3)
         let terms = textfields.valueByTag(tag: 4)
 
+        // Validating the TFs to see if necessary data has been entered
         let values = [principalAmount, interestRate, futureValue, terms, payment].compactMap { $0 }
         guard values.count >= 4 else {
             if let emptyTF = emptyTextField {
@@ -81,13 +86,13 @@ class CompoundSavingsViewController: RootStatefulViewController {
                 emptyTextField?.text = "\(manager.item.futureValue)"
                 state.values[emptyTextField!.tag] = "\(manager.item.futureValue)"
             } else if emptyTextField?.tag == 3 {
-                manager.calculateTerms()
-                emptyTextField?.text = "\(manager.item.terms)"
-                state.values[emptyTextField!.tag] = "\(manager.item.terms)"
-            } else if emptyTextField?.tag == 4 {
                 manager.calculatePaymentValue()
                 emptyTextField?.text = "\(manager.item.payment)"
                 state.values[emptyTextField!.tag] = "\(manager.item.payment)"
+            } else if emptyTextField?.tag == 4 {
+                manager.calculateTerms()
+                emptyTextField?.text = "\(manager.item.terms)"
+                state.values[emptyTextField!.tag] = "\(manager.item.terms)"
             }
         } else {
             guard let emptyTf = textfields.getEmpty(2) else {
@@ -106,6 +111,8 @@ class CompoundSavingsViewController: RootStatefulViewController {
         }
     }
     
+    /// Presents help screen
+    /// - Parameter sender: Invoker
     override func onHelpButtonPress(_ sender: Any) {
         self.showHelp(type: .compoundSaving)
     }
@@ -116,9 +123,13 @@ class CompoundSavingsViewController: RootStatefulViewController {
     
 }
 
-extension CompoundSavingsViewController: LabelledTextfieldProtocol {
+extension CompoundSavingsViewController: LabelledTextfieldDelegate {
+    
+    /// Did become first responder event handler
+    /// - Parameter labelledTextfield: Textfield that `isFirstResponder`
     func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield) {
         if selectedParameterIndex < 0 {
+            // Showing an alert if no parameter to calculate is selected
             showAlert(title: "Whoops!", message: "Please select a parameter to calculate") {
                 self.resignFirstResponder()
             }
@@ -129,6 +140,9 @@ extension CompoundSavingsViewController: LabelledTextfieldProtocol {
         firstResponder = labelledTextfield
     }
     
+    
+    /// Did resign first responder event hander
+    /// - Parameter labelledTextfield: Textfield where `isFirstResponder` just resigned
     func didResignFirstResponder(_ labelledTextfield: LabelledTextfield) {
         isKeyboardOpen = false
     }

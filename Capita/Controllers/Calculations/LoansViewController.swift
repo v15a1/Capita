@@ -66,20 +66,21 @@ class LoansViewController: RootStatefulViewController {
             manager.item.principleAmount = principalAmount ?? 0
             manager.item.interestRate = (interestRate ?? 0)
             manager.item.monthlyPay = payment ?? 0
+            manager.item.terms = terms ?? 0
             
             if emptyTextField?.tag == 0 {
                 manager.calculatePrincipleAmount()
                 emptyTextField?.text = "\(manager.item.principleAmount)"
                 state.values[emptyTextField!.tag] = "\(manager.item.principleAmount)"
-            } else if emptyTextField?.tag == 2 {
+            } else if emptyTextField?.tag == 1 {
                 manager.calculateInterestRate()
                 emptyTextField?.text = "\(manager.item.interestRate)"
                 state.values[emptyTextField!.tag] = "\(manager.item.interestRate)"
-            } else if emptyTextField?.tag == 3 {
+            } else if emptyTextField?.tag == 2 {
                 manager.calculateMonthlyPayment()
                 emptyTextField?.text = "\(manager.item.monthlyPay)"
                 state.values[emptyTextField!.tag] = "\(manager.item.monthlyPay)"
-            } else if emptyTextField?.tag == 4 {
+            } else if emptyTextField?.tag == 3 {
                 manager.calculateTerms()
                 emptyTextField?.text = "\(manager.item.terms)"
                 state.values[emptyTextField!.tag] = "\(manager.item.terms)"
@@ -117,7 +118,7 @@ class LoansViewController: RootStatefulViewController {
     }
 }
 
-extension LoansViewController: LabelledTextfieldProtocol {
+extension LoansViewController: LabelledTextfieldDelegate {
     func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield) {
         if selectedParameterIndex < 0 {
             showAlert(title: "Whoops!", message: "Please select a parameter to calculate") {

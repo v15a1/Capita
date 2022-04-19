@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LabelledTextfieldProtocol: AnyObject {
+protocol LabelledTextfieldDelegate: AnyObject {
     func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield)
     func didResignFirstResponder(_ labelledTextfield: LabelledTextfield)
 }
@@ -45,7 +45,7 @@ class LabelledTextfield: UIView {
         }
         
         set {
-            self.isUserInteractionEnabled = newValue
+            self.isUserInteractionEnabled = !newValue
             newValue ? selected() : enable()
         }
     }
@@ -89,7 +89,7 @@ class LabelledTextfield: UIView {
 
     var isHighlighted: Bool = false
 
-    weak var delegate: LabelledTextfieldProtocol?
+    weak var delegate: LabelledTextfieldDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -183,6 +183,7 @@ extension LabelledTextfield: UITextFieldDelegate {
 }
 
 extension LabelledTextfield {
+    /// Removes final characters
     func removeFinal() {
         if (text?.count ?? 0) > 0 {
             _ = text!.removeLast()

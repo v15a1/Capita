@@ -44,6 +44,7 @@ class SettingsViewController: RootViewController {
     }
 }
 
+// MARK: UITableView Ext.
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -120,7 +121,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
 }
 
-extension SettingsViewController: ConfigurationProtocol {
+// MARK: ConfigurationDelegate Ext.
+extension SettingsViewController: ConfigurationDelegate {
     func didChangeCalculationMode(_ mode: Calculate) {
         self.calcMode = mode
     }

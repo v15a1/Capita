@@ -107,7 +107,7 @@ class SimpleSavingsViewController: RootStatefulViewController {
     }
 }
 
-extension SimpleSavingsViewController: LabelledTextfieldProtocol {
+extension SimpleSavingsViewController: LabelledTextfieldDelegate {
     func didBecomeFirstResponder(_ labelledTextfield: LabelledTextfield) {
         if selectedParameterIndex < 0 {
             showAlert(title: "Whoops!", message: "Please select a parameter to calculate") {

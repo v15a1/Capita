@@ -9,8 +9,7 @@ import UIKit
 
 class RootStatefulViewController: RootViewController, SaveImplementable {
     
-    typealias T = ItemManageable
-
+    // MARK: Views + Variables
     lazy var contentScrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +17,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         return view
     }()
 
+    // Content where the textfields are embedded into
     lazy var content: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +27,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         return stack
     }()
 
+    // Shared keyboard instance among screens for inputs
     lazy var keyboard: Keyboard = {
         let keyboard = Keyboard()
         keyboard.delegate = self
@@ -37,6 +38,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         return keyboard
     }()
 
+    // Common Selector menu for selecting parameter
     lazy var selector: SelectorMenu  = {
         let selector = SelectorMenu()
         selector.delegate = self
@@ -50,8 +52,26 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         return yearsSwitch
     }()
 
+    // Contstraint for translating the keyboard in the Y-axis
     var keyboardBottomAnchor: NSLayoutConstraint!
-    var textfields: [LabelledTextfield] = []
+    var textfields: [LabelledTextfield] = [] // Textfield holder
+    
+    // Textfield currently listening to keyboard inputs
+    var firstResponder: LabelledTextfield? {
+        didSet {
+            if firstResponder == nil {
+                hideKeyboard()
+            }
+        }
+    }
+
+    // Textfield to append calculations to
+    var emptyTextField: LabelledTextfield? {
+        didSet {
+            emptyTextField?.isSelected = true
+            state.emptyTFTag = emptyTextField?.tag
+        }
+    }
 
     var isKeyboardOpen: Bool = false
     var isShowingYears: Bool = false
@@ -64,21 +84,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         }
     }
 
-    var firstResponder: LabelledTextfield? {
-        didSet {
-            if firstResponder == nil {
-                hideKeyboard()
-            }
-        }
-    }
-
-    var emptyTextField: LabelledTextfield? {
-        didSet {
-            emptyTextField?.isSelected = true
-            state.emptyTFTag = emptyTextField?.tag
-        }
-    }
-
+    // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -90,6 +96,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         setupBarButtons()
     }
 
+    // MARK: setup
     private func setup() {
         self.view.addSubview(contentScrollView)
         self.contentScrollView.addSubview(content)
@@ -151,14 +158,18 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         self.navigationItem.rightBarButtonItems = barButtons
     }
 
+    // MARK: Selectors
     @objc func onHelpButtonPress(_ sender: Any){}
 
+    
+    /// Override-able function for customized calculations on inheriting classes
     @objc func calculate(){
         state.save(forKey: stateKey)
     }
 
     @objc func saveCalculation(_ sender: Any) {}
 
+    /// Resets the textfields
     @objc func resetPage(_ sender: Any) {
         textfields.forEach {
             $0.text = ""
@@ -174,7 +185,8 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
     
     @objc func onSwitchChange(_ sender: UISwitch, to value: Bool) {}
 
-
+    // MARK: Misc
+    /// Shows keyboard with animations
     func showKeyboard() {
         self.keyboard.isHidden = false
         keyboardBottomAnchor.constant = 0
@@ -187,6 +199,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
             }
     }
 
+    /// Hides keyboard with animations
     func hideKeyboard() {
         keyboardBottomAnchor.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
         firstResponder?.inputTextfield.resignFirstResponder()
@@ -199,6 +212,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
             }
     }
 
+    /// Immediately hides the keyboard
     func abruptlyHideKeyboard() {
         self.view.layoutIfNeeded()
         self.keyboard.alpha = 0
@@ -206,7 +220,9 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
     }
 }
 
+// MARK: KeyboardDelegate Ext.
 extension RootStatefulViewController: KeyboardDelegate {
+    
     func willDeleteAllText() {
         firstResponder?.text = ""
     }
@@ -219,7 +235,6 @@ extension RootStatefulViewController: KeyboardDelegate {
             firstResponder?.text! += "\(number)"
         }
         saveStateOnEdit()
-
         calculate()
     }
 
@@ -228,6 +243,10 @@ extension RootStatefulViewController: KeyboardDelegate {
         firstResponder?.text = Util.shared.applyDecimalIfNeeded(tfString)
         saveStateOnEdit()
         calculate()
+    }
+    
+    func didPressMinus() {
+        firstResponder?.text = Util.shared.validateNegative(firstResponder?.text ?? "")
     }
 
     func didPressDelete() {
@@ -242,6 +261,7 @@ extension RootStatefulViewController: KeyboardDelegate {
     }
 }
 
+// MARK: ParameterSelectorDelegate Ext.
 extension RootStatefulViewController: ParameterSelectorDelegate {
     func didSelectMenuItem(selectedIndex: Int, item: String) {
         selectedParameterIndex = selectedIndex
@@ -254,7 +274,8 @@ extension RootStatefulViewController: ParameterSelectorDelegate {
     }
 }
 
-extension RootStatefulViewController: ShowYearsSwitchProtocol {
+// MARK: ShowYearsSwitchDelegate Ext.
+extension RootStatefulViewController: ShowYearsSwitchDelegate {
     func didSwitchButton(_ sender: UISwitch, to value: Bool) {
         onSwitchChange(sender, to: value)
         if let tf = textfields.last {

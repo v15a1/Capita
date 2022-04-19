@@ -7,9 +7,11 @@
 
 import UIKit
 
+/// Keyboard protocol
 protocol KeyboardDelegate: AnyObject {
     func didPressNumber(_ number: Int)
     func didPressDecimal()
+    func didPressMinus()
     func didPressDelete()
     func willDeleteAllText()
     func willCloseKeyboard()
@@ -18,7 +20,7 @@ protocol KeyboardDelegate: AnyObject {
 class Keyboard: UIView {
 
     private let NibName: String = "Keyboard"
-    static let height: CGFloat = 380
+    static let height: CGFloat = 380 // Constant height for the keyboard
     
     weak var delegate: KeyboardDelegate?
 
@@ -41,6 +43,7 @@ class Keyboard: UIView {
         commonInitilizer()
     }
 
+    // Setting up the keyboard
     private func commonInitilizer() {
         guard let view = self.loadFromNib(NibName) else { return }
         view.frame = self.bounds
@@ -50,6 +53,7 @@ class Keyboard: UIView {
             button.layer.cornerRadius = K.View.CornerRadius
         }
 
+        // Adding a long press gesture to delete the content in the entire text field
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressDeleteButton(_:)))
         longPressRecognizer.numberOfTouchesRequired = 1
         longPressRecognizer.allowableMovement = 10
@@ -62,15 +66,11 @@ class Keyboard: UIView {
         delegate?.willDeleteAllText()
     }
 
+    // MARK: On press event actions + delegate function invocation
     @IBAction func didPressNumber(_ sender: UIButton) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
-//        sender.backgroundColor = .navyBlue.withAlphaComponent(0.5)
         let number = Int((sender.titleLabel?.text)!)
         delegate?.didPressNumber(number!)
-
-//        UIView.animate(withDuration: 0.2) {
-//            sender.backgroundColor = .lightGrey
-//        }
     }
 
     @IBAction func didPressDelete(_ sender: UIButton) {
@@ -84,10 +84,17 @@ class Keyboard: UIView {
         UIView.animate(withDuration: 0.2) {
             sender.backgroundColor = .lightGrey
         }
-
         delegate?.didPressDecimal()
     }
-
+    @IBAction func didPressMinus(_ sender: UIButton) {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        sender.backgroundColor = .navyBlue.withAlphaComponent(0.5)
+        UIView.animate(withDuration: 0.2) {
+            sender.backgroundColor = .lightGrey
+        }
+        delegate?.didPressMinus()
+    }
+    
     @IBAction func didPressCloseKeyboard(_ sender: Any) {
         delegate?.willCloseKeyboard()
     }

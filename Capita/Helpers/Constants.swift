@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Constants
 struct K {
     struct View {
         static let CornerRadius: CGFloat = 10
@@ -14,6 +15,7 @@ struct K {
 
     struct Storyboard {
         static let Tabbar: String = "Tabbar"
+        static let Calculations: String = "Calculations"
     }
 
     struct VC {
@@ -21,6 +23,7 @@ struct K {
         static let HelpViewController: String = "HelpViewController"
     }
 
+    /// UserDefaults keys
     struct Keys {
         static let DidOnboard: String = "ONBOARD"
         static let Currency: String = "CURRENCY"
@@ -30,11 +33,12 @@ struct K {
         static let SavedLoansState: String = "MORTGAGE_STATE"
 
         static let SavedLoans: String = "SAVED_LOANS"
-        static let SavedCompoundSavings: String = "SAVED_C_SAVINGS"
-        static let SavedSimpleSavings: String = "SAVED_S_SAVINGS"
+        static let SavedCompoundSavings: String = "SAVED_COMPOUND_SAVINGS"
+        static let SavedSimpleSavings: String = "SAVED_SIMPLE_SAVINGS"
 
     }
 
+    /// Segue identifiers
     struct Segues {
         static let SavingsCalculation: String = "SavingsCalculation"
         static let MortgageCalculator: String = "MortgageCalculator"

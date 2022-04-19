@@ -10,6 +10,7 @@ import SwiftUI
 
 class CalculationViewController: RootViewController {
 
+   // MARK: Variables + Views
     @IBOutlet weak var calculatorTableView: UITableView!
 
     override func viewDidLoad() {
@@ -24,6 +25,7 @@ class CalculationViewController: RootViewController {
         }
     }
 
+    // MARK: Setup
     private func setup() {
         title = "Calculations"
         calculatorTableView.delegate = self
@@ -35,7 +37,7 @@ class CalculationViewController: RootViewController {
     }
 
     private func showOnboardingScreen() {
-        if let vc = loadFromStoryboard(K.Storyboard.Tabbar, vc: .LandingViewController) as? LandingViewController {
+        if let vc = loadFromStoryboard(K.Storyboard.Calculations, vc: .LandingViewController) as? LandingViewController {
             let child = UIHostingController(rootView: OnboardingView())
             child.view.translatesAutoresizingMaskIntoConstraints = false
             vc.view.addSubview(child.view)
@@ -62,17 +64,14 @@ extension CalculationViewController: UITableViewDataSource, UITableViewDelegate 
         if let cell = tableView.dequeueReusableCell(withIdentifier: CalculationTVC.identifier, for: indexPath) as? CalculationTVC {
             cell.selectionStyle = .none
             if indexPath.row == 0 {
-//                cell.image = UIImage(named: "dog")
                 cell.title = "Compound Savings"
                 cell.contentDescriptor = "Calculate your savings"
                 cell.tint = .CrayonPeach
             } else if indexPath.row == 1 {
-//                cell.image = UIImage(named: "star")
                 cell.title = "Simple Savings"
                 cell.contentDescriptor = "Calculate your Mortgage based on the interest"
                 cell.tint = .CrayonBlue
             } else if indexPath.row == 2 {
-//                cell.image = UIImage(named: "dog")
                 cell.title = "Mortgage & Loans"
                 cell.contentDescriptor = "Find various values for a given loan"
                 cell.tint = .CrayonPurple
@@ -86,6 +85,7 @@ extension CalculationViewController: UITableViewDataSource, UITableViewDelegate 
         return UITableViewCell()
     }
 
+    /// Performs segue based on item selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
         case 0:

@@ -7,15 +7,15 @@
 
 import Foundation
 
+/// Protocol for saving the current state
 protocol SaveImplementable {
     func saveStateOnEdit()
     func saveState()
     func restoreState()
 }
 
-
 extension SaveImplementable where Self: RootStatefulViewController {
-
+    /// Saves the current state
     func saveState() {
         guard let stateKey = self.stateKey else {
             fatalError("Nil value for stateKey")
@@ -31,6 +31,7 @@ extension SaveImplementable where Self: RootStatefulViewController {
         }
     }
     
+    /// Saves state on edit of a textfield
     func saveStateOnEdit() {
         guard let stateKey = self.stateKey else {
             fatalError("Nil value for stateKey")
@@ -44,6 +45,7 @@ extension SaveImplementable where Self: RootStatefulViewController {
         }
     }
 
+    /// Restores state and assigns data to the textfields
     func restoreState() {
         guard let stateKey = self.stateKey else {
             fatalError("Nil value for stateKey")

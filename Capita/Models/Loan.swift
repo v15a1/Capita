@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Loan Object
 struct Loan: Persistable {
     var createdAt: String
     var type: CalculationType = .loan
@@ -27,6 +28,8 @@ struct Loan: Persistable {
     }
 }
 
+
+/// Loan Manager
 class LoanManager: ItemManageable {
 
     var isShowingYears: Bool = false
@@ -35,25 +38,32 @@ class LoanManager: ItemManageable {
                            monthlyPay: 0,
                            terms: 0)
     
+    // MARK: Calculations
     func calculateMonthlyPayment() {
         let P = item.principleAmount
-        let R = (item.interestRate / 100.0) / 12
-        let N = isShowingYears ? (item.terms * 12) : item.terms
-        let PMT = (R * P) / (1 - pow(1 + R, -N))
+        let R = (item.interestRate / 100.0)
+        let N = isShowingYears ? (item.terms * 12) : (item.terms / 12)
+        
+        let numerator = (P * (R / 12)) * pow((1 + (R / 12)), (12 * N))
+        let denomenator = pow((1 + (R / 12)), (12 * N)) - 1
+        let PMT = numerator / denomenator
         item.monthlyPay = PMT.isNaN ? 0 : PMT.fixedTo(2)
+        print(PMT)
     }
     
     func calculatePrincipleAmount() {
         let PMT = item.monthlyPay
-        let R = (item.interestRate / 100.0) / 12
-        let N = isShowingYears ? (item.terms * 12) : item.terms
-        let P = (PMT / R) * (1 - (1 / pow(1 + R, N)))
-        item.principleAmount = P.isNaN ? 0 : P
+        let R = (item.interestRate / 100.0)
+        let N = isShowingYears ? (item.terms * 12) : (item.terms)
+        print(item.terms)
+        let a = ((R / 12) + 1)
+        let P = (PMT * ((pow(a, N) - 1)) * pow(a, -N)) / (R / 12)
+        item.principleAmount = P.isNaN ? 0 : P.fixedTo(2)
     }
     
     func calculateInterestRate() {
         let PMT = item.monthlyPay
-        let N = isShowingYears ? (item.terms * 12) : item.terms
+        let N = isShowingYears ? (item.terms * 12) : (item.terms)
         let P = item.principleAmount
         
         var x = 1 + (((PMT * N / P) - 1) / 12)
@@ -73,33 +83,26 @@ class LoanManager: ItemManageable {
             x = x - F(x) / FPrime(x)
         }
         
-        var R = Double(12 * x * 100).fixedTo(2)
-        if R.isNaN || R.isInfinite || R < 0 {
-            R = 0.00;
+        var I = Double(12 * x * 100).fixedTo(2)
+        if I.isNaN || I.isInfinite || I < 0 {
+            I = 0.00;
         }
         
-        item.interestRate = R.isNaN ? 0 : R
+        item.interestRate = I.isNaN ? 0 : I.fixedTo(2)
     }
     
     func calculateTerms() {
         let P = item.principleAmount
-        let R = (item.interestRate / 100.0) / 12
-        let PMT = (R * P) / (1 - pow(1 + R, -1))
-        var N: Double = 0
+        let R = (item.interestRate / 100.0)
+        let PMT = item.monthlyPay
         
-        let minMonthlyPayment = PMT - P
-        
-        if Int(PMT) <= Int(minMonthlyPayment) {
-            item.terms = N
-        }
-        
-        let PM = item.monthlyPay
-        let I = (item.interestRate / 100.0) / 12
-        let D = PM / I
-        N = (log(D / (D - P)) / log(1 + I))
-        item.terms = N.isNaN ? 0 : N
+        let numerator = log(1 - ((P / PMT) * (R / 12)))
+        let denomenator = -log((R / 12) + 1)
+        let N = (numerator / denomenator)
+        item.terms = N.isNaN ? 0 : N.fixedTo(2)
     }
     
+    // MARK: Persisting the data
     func appendHistory() {
         var history = UserDefaults.standard.loans
         if history.count >= 5 {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// For extending Settings configs
 protocol Enumerable {
     var name: String { get set }
     var setting: Int { get set }
