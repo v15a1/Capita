@@ -103,6 +103,7 @@ class RootStatefulViewController: RootViewController, SaveImplementable {
         self.view.addSubview(keyboard)
         keyboardBottomAnchor = keyboard.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: Keyboard.height)
 
+        // Programmatical constraining
         NSLayoutConstraint.activate([
             keyboard.heightAnchor.constraint(equalToConstant: Keyboard.height),
             keyboard.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -230,7 +231,7 @@ extension RootStatefulViewController: KeyboardDelegate {
     func didPressNumber(_ number: Int) {
         guard let tfString = firstResponder?.text else { return }
         if number == 0 {
-            firstResponder?.text = Util.shared.includeZeroIfNeeded(tfString)
+            firstResponder?.text = Util.includeZeroIfNeeded(tfString)
         } else {
             firstResponder?.text! += "\(number)"
         }
@@ -240,13 +241,13 @@ extension RootStatefulViewController: KeyboardDelegate {
 
     func didPressDecimal() {
         guard let tfString = firstResponder?.text else { return }
-        firstResponder?.text = Util.shared.applyDecimalIfNeeded(tfString)
+        firstResponder?.text = Util.applyDecimalIfNeeded(tfString)
         saveStateOnEdit()
         calculate()
     }
     
     func didPressMinus() {
-        firstResponder?.text = Util.shared.validateNegative(firstResponder?.text ?? "")
+        firstResponder?.text = Util.validateNegative(firstResponder?.text ?? "")
     }
 
     func didPressDelete() {

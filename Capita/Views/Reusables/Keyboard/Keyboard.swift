@@ -62,7 +62,7 @@ class Keyboard: UIView {
     }
 
     @objc private func didLongPressDeleteButton(_ sender: UILongPressGestureRecognizer) {
-        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred() // Haptic feedback generator
         delegate?.willDeleteAllText()
     }
 

@@ -22,29 +22,23 @@ extension UIViewController {
         return storyboard.instantiateViewController(withIdentifier: vc.rawValue)
     }
 
-    /// Shows Alert with a single action
+    /// Shows Alert with a single action and a single callback
     func showAlert(title: String, message: String, action: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            if let action = action {
-                action()
-            }
+            action?()
         }))
         self.present(alert, animated: true, completion: nil)
     }
 
-    /// Shows Alert with a cancel action
+    /// Shows Alert with a cancel action and two callbacks for each of the buttons
     func showAlert(title: String, message: String, action: (() -> Void)? = nil, cancel: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            if let action = action {
-                action()
-            }
+            action?()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
-            if let cancel = cancel {
-                cancel()
-            }
+            cancel?()
         }))
         self.present(alert, animated: true, completion: nil)
     }
